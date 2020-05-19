@@ -1,0 +1,71 @@
+module.exports = {
+  siteTitle: "Howard Tseng",
+  siteDescription: "Howard Tseng is a freelance photographer and mobile developer based in Toronto, ON.",
+  siteKeywords: "Howard Tseng, Howard, Tseng, howardt12345, ht12345, freelance, photographer, freelance photographer, mobile developer, software engineer, front-end developer, flutter, java, javascript, uottawa, Ottawa, Toronto",
+  siteUrl: "https://howardt12345.com",
+  siteLanguage: "en_US",
+  name: "Howard Tseng",
+  firstName: "Howard",
+  location: "Toronto, ON, CA",
+  email: "me@howardt1345.com",
+  github: "https://github.com/howardt12345",
+  insta: "@howardt12345",
+  socialMedia: [
+    {
+      name: "Instagram",
+      url: "https://instagram.com/howardt12345"
+    },
+    {
+      name: "GitHub",
+      url: "https://github.com/howardt12345"
+    },
+    {
+      name: "Linkedin",
+      url: "https://linkedin.com/in/howardt12345"
+    },
+    {
+      name: "Redbubble",
+      url: "https://www.redbubble.com/people/howardt12345/"
+    },
+  ],
+  colors: {
+    background: "#FFFFFF",
+    text1: "#0C0C0C",
+    text2: "#7A7A7A",
+  },
+  navLinks: [
+    {
+      name: "About",
+      url: '/about'
+    },
+    {
+      name: "Photos",
+      url: '/photos'
+    },
+    {
+      name: "Projects",
+      url: '/projects'
+    },
+    {
+      name: "Contact",
+      url: '/contact'
+    },
+  ],
+  navHeight: 96,
+  
+  srConfig: (delay = 200) => ({
+    origin: 'bottom',
+    distance: '20px',
+    duration: 500,
+    delay,
+    rotate: { x: 0, y: 0, z: 0 },
+    opacity: 0,
+    scale: 1,
+    easing: 'cubic-bezier(0.645, 0.045, 0.355, 1)',
+    mobile: true,
+    reset: false,
+    useDelay: 'always',
+    viewFactor: 0.25,
+    viewOffset: { top: 0, right: 0, bottom: 0, left: 0 },
+  }),
+}
