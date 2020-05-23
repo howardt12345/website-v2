@@ -35,8 +35,21 @@ module.exports = {
     `gatsby-plugin-styled-components`,
 
 
-
-
+    `gatsby-plugin-offline`,
+    {
+      resolve: 'gatsby-source-filesystem',
+      options: {
+        name: 'content',
+        path: `${__dirname}/content/`,
+      },
+    },
+    {
+      resolve: `gatsby-source-filesystem`,
+      options: {
+        path: `${__dirname}/content/projects`,
+        name: `projects`,
+      },
+    },
     {
       resolve: `gatsby-transformer-remark`,
       options: {

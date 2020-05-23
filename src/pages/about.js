@@ -1,11 +1,13 @@
 import React from "react"
-
+import { Layout } from '@components';
 
 const AboutPage = () => {
   return (
-    <div>
-      <h1>About</h1>
-    </div>
+    <Layout>
+      <div>
+        <h1>About</h1>
+      </div>
+    </Layout>
   )
 }
 

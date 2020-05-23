@@ -1,12 +1,10 @@
 import React, { Component } from 'react';
 import { Link } from 'gatsby';
-import Helmet from 'react-helmet';
 import PropTypes from 'prop-types';
 import { CSSTransition, TransitionGroup } from 'react-transition-group';
 import { throttle } from '@utils';
 import { navLinks, navHeight, siteTitle } from '@config';
 import { Menu } from '@components';
-import { IconGitHub } from '@components/icons';
 import styled from 'styled-components';
 import { theme, mixins, media } from '@styles';
 const { colors, fontSizes, fonts, loaderDelay } = theme;
@@ -47,6 +45,7 @@ const StyledTitle = styled.h2`
   font-size: ${fontSizes.xxl};
   color: ${colors.textPrimary};
   font-family: ${fonts.Poppins};
+  font-weight: normal;
 `;
 const StyledHamburger = styled.div`
   ${mixins.flexCenter};
@@ -138,7 +137,7 @@ const DELTA = 5;
 
 class Nav extends Component {
   state = {
-    isMounted: !this.props.isHome,
+    isMounted: !this.props.animate,
     menuOpen: false,
     scrollDirection: 'none',
     lastScrollTop: 0,
@@ -206,10 +205,10 @@ class Nav extends Component {
 
   render() {
     const { isMounted, menuOpen, scrollDirection } = this.state;
-    const { isHome } = this.props;
-    const timeout = isHome ? loaderDelay : 0;
-    const fadeClass = isHome ? 'fade' : '';
-    const fadeDownClass = isHome ? 'fadedown' : '';
+    const { animate } = this.props;
+    const timeout = animate ? loaderDelay : 0;
+    const fadeClass = animate ? 'fade' : '';
+    const fadeDownClass = animate ? 'fadedown' : '';
 
     return (
       <StyledContainer scrollDirection={scrollDirection}>
@@ -244,7 +243,7 @@ class Nav extends Component {
                 navLinks.map(({ url, name }, i) => (
                   <CSSTransition key={i} classNames={fadeDownClass} timeout={timeout}>
                     <StyledListItem
-                      style={{ transitionDelay: `${isHome ? i * 100 : 0}ms` }}>
+                      style={{ transitionDelay: `${animate ? i * 100 : 0}ms` }}>
                       <StyledListLink to={url}>{name}</StyledListLink>
                     </StyledListItem>
                   </CSSTransition>
@@ -260,7 +259,7 @@ class Nav extends Component {
 }
 
 Nav.propTypes = {
-  isHome: PropTypes.bool,
+  animate: PropTypes.bool,
 };
 
 export default Nav;

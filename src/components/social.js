@@ -1,9 +1,8 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import { socialMedia } from '@config';
 import { FormattedIcon } from '@components/icons';
 import styled from 'styled-components';
-import { theme, mixins, media } from '@styles';
+import { theme } from '@styles';
 const { colors } = theme;
 
 

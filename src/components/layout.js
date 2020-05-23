@@ -18,7 +18,7 @@ const StyledContent = styled.div`
   min-height: 100vh;
 `;
 
-const Layout = ({ children, isHome }) => {
+const Layout = ({ children, isHome, animateNav }) => {
   return (
     <StaticQuery
       query={graphql`
@@ -36,7 +36,7 @@ const Layout = ({ children, isHome }) => {
         <div id="root">
           <GlobalStyle />
           <StyledContent>
-            <Nav isHome={isHome} />
+            {!isHome ? <Nav animate={animateNav} /> : <br/>}
             <div id="content">
               {children}
               <Footer />
@@ -51,6 +51,7 @@ const Layout = ({ children, isHome }) => {
 Layout.propTypes = {
   children: PropTypes.node.isRequired,
   isHome: PropTypes.bool.isRequired,
+  animateNav: PropTypes.bool.isRequired,
 };
 
 export default Layout;

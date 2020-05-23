@@ -51,7 +51,7 @@ module.exports = {
       url: '/contact'
     },
   ],
-  navHeight: 96,
+  navHeight: 72,
   
   srConfig: (delay = 200) => ({
     origin: 'bottom',
