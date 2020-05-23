@@ -32,8 +32,8 @@ const StyledOverline = styled.h2`
   line-height: 1;
   ${media.bigDesktop`font-size: 36px;`};
   ${media.bigDesktop`text-align: left;`}
-  ${media.desktop`font-size: 24px;`};
-  ${media.desktop`text-align: center;`}
+  ${media.desktop`font-size: 20px;`};
+  ${media.thone`text-align: center;`}
 `;
 const StyledTitle = styled.h1`
   text-align: left;
@@ -44,14 +44,16 @@ const StyledTitle = styled.h1`
   font-weight: 400;
   ${media.bigDesktop`font-size: 114px;`};
   ${media.bigDesktop`text-align: left;`}
-  ${media.desktop`text-align: center;`}
+  ${media.thone`text-align: center;`}
   ${media.desktop`font-size: 114px;`};
-  ${media.tablet`font-size: 86px;`};
-  ${media.phablet`font-size: 50px;`};
-  ${media.phone`font-size: 40px;`};
+  ${media.tablet`font-size: 92px;`};
+  ${media.phablet`font-size: 64px;`};
+  ${media.tiny`font-size: 54px;`};
 `;
 const StyledSubtitle = styled.h2`
   width: 800px;
+  ${media.bigDesktop`width: 800px;`};
+  ${media.desktop`width: 80vw;`};
   text-align: right;
   font-size: 36px;
   font-weight: 400;
@@ -60,8 +62,8 @@ const StyledSubtitle = styled.h2`
   line-height: 1;
   ${media.bigDesktop`font-size: 36px;`};
   ${media.bigDesktop`text-align: right;`}
-  ${media.desktop`text-align: center;`}
-  ${media.desktop`font-size: 24px;`};
+  ${media.thone`text-align: center;`}
+  ${media.desktop`font-size: 20px;`};
 `;
 const Line = styled.hr`
   width: 800px;
@@ -83,6 +85,7 @@ const StyledNavList = styled.ol`
 `;
 const StyledNavListItem = styled.li`
   margin: 0 10px;
+  ${media.phone`margin: 0 0px;`}
   font-size: ${fontSizes.lg};
 `;
 const StyledNavListLink = styled(Link)`
