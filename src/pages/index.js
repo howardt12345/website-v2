@@ -12,9 +12,6 @@ const { colors, fontSizes, fonts, navDelay } = theme;
 const StyledContainer = styled(Main)`
   ${mixins.flexCenter};
   flex-direction: column;
-  width: 800px;
-  ${media.bigDesktop`width: 800px;`};
-  ${media.desktop`width: 80vw;`};
 `;
 const StyledTitleBox = styled.div`
   flex-direction: column;
@@ -48,7 +45,7 @@ const StyledTitle = styled.h1`
   ${media.desktop`font-size: 114px;`};
   ${media.tablet`font-size: 92px;`};
   ${media.phablet`font-size: 64px;`};
-  ${media.tiny`font-size: 54px;`};
+  ${media.phablet`font-size: 58px;`};
 `;
 const StyledSubtitle = styled.h2`
   width: 800px;
@@ -62,8 +59,8 @@ const StyledSubtitle = styled.h2`
   line-height: 1;
   ${media.bigDesktop`font-size: 36px;`};
   ${media.bigDesktop`text-align: right;`}
-  ${media.thone`text-align: center;`}
   ${media.desktop`font-size: 20px;`};
+  ${media.thone`text-align: center;`}
 `;
 const Line = styled.hr`
   width: 800px;
@@ -85,7 +82,7 @@ const StyledNavList = styled.ol`
 `;
 const StyledNavListItem = styled.li`
   margin: 0 10px;
-  ${media.phone`margin: 0 0px;`}
+  ${media.thone`margin: 0 0px;`}
   font-size: ${fontSizes.lg};
 `;
 const StyledNavListLink = styled(Link)`
