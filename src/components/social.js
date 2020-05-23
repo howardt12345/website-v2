@@ -17,7 +17,7 @@ const StyledList = styled.ul`
   color: ${colors.textPrimary};
 `;
 const StyledLink = styled.a`
-  padding: 14px;
+  padding: 12px;
   &:hover,
   &:focus {
     transform: translateY(-3px);

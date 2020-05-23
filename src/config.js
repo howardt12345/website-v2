@@ -12,6 +12,10 @@ module.exports = {
   insta: "@howardt12345",
   socialMedia: [
     {
+      name: "Dribbble",
+      url: "https://dribbble.com/howardt12345"
+    },
+    {
       name: "Instagram",
       url: "https://instagram.com/howardt12345"
     },

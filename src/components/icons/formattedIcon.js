@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import {
+  IconDribbble,
   IconExternal,
   IconFolder,
   IconFork,
@@ -15,6 +16,8 @@ import {
 
 const FormattedIcon = ({ name }) => {
   switch (name) {
+    case 'Dribbble':
+      return <IconDribbble />;
     case 'External':
       return <IconExternal />;
     case 'Folder':
