@@ -4,12 +4,14 @@ module.exports = {
   siteKeywords: "Howard Tseng, Howard, Tseng, howardt12345, ht12345, freelance, photographer, freelance photographer, mobile developer, software engineer, front-end developer, flutter, java, javascript, uottawa, Ottawa, Toronto",
   siteUrl: "https://howardt12345.com",
   siteLanguage: "en_US",
+  googleVerification: "Y1H6DvIHTlzQB6yi1I0UZOWIA5LFG6aFN7TodKgaJaI",
   name: "Howard Tseng",
   firstName: "Howard",
   location: "Toronto, ON, CA",
   email: "me@howardt1345.com",
   github: "https://github.com/howardt12345",
   insta: "@howardt12345",
+  twitterHandle: '@howardt12345',
   socialMedia: [
     {
       name: "Dribbble",
@@ -36,6 +38,7 @@ module.exports = {
     background: "#FFFFFF",
     text1: "#0C0C0C",
     text2: "#7A7A7A",
+    tile: "#FFFFFF",
   },
   navLinks: [
     {

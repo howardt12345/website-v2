@@ -1,5 +1,5 @@
 ---
 overline: "Hi, I'm"
 title: "HOWARD"
-subtitle: "Freelance Photographer<br>Mobile Developer"
+subtitle: "Freelance Photographer<br>Front-End Developer"
 ---

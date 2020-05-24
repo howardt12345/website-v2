@@ -44,10 +44,6 @@ const GlobalStyle = createGlobalStyle`
       }
     }
   }
-  ::selection {
-    background-color: ${colors.textSecondary};
-    color: ${colors.textSecondary};
-  }
   #root {
     min-height: 100vh;
     display: grid;

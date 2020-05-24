@@ -29,7 +29,7 @@ const StyledOverline = styled.h2`
   line-height: 1;
   ${media.bigDesktop`font-size: 36px;`};
   ${media.bigDesktop`text-align: left;`}
-  ${media.desktop`font-size: 20px;`};
+  ${media.tablet`font-size: 20px;`};
   ${media.thone`text-align: center;`}
 `;
 const StyledTitle = styled.h1`
@@ -45,7 +45,7 @@ const StyledTitle = styled.h1`
   ${media.desktop`font-size: 114px;`};
   ${media.tablet`font-size: 92px;`};
   ${media.phablet`font-size: 64px;`};
-  ${media.phablet`font-size: 58px;`};
+  ${media.phablet`font-size: 56px;`};
 `;
 const StyledSubtitle = styled.h2`
   width: 800px;
@@ -59,7 +59,7 @@ const StyledSubtitle = styled.h2`
   line-height: 1;
   ${media.bigDesktop`font-size: 36px;`};
   ${media.bigDesktop`text-align: right;`}
-  ${media.desktop`font-size: 20px;`};
+  ${media.tablet`font-size: 20px;`};
   ${media.thone`text-align: center;`}
 `;
 const Line = styled.hr`
