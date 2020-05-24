@@ -1,6 +1,6 @@
 ---
 title: "About Me"
-avatar: "/me.jpg"
+avatar: "./me.jpg"
 ---
 Hi, I'm Howard! I'm a freelance photographer and front-end developer based in Toronto, Ontario. 
 
