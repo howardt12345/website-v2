@@ -5,7 +5,7 @@ const PhotosPage = () => {
   return (
     <Layout>
       <div>
-        <h1>Projects</h1>
+        <h1>Photos</h1>
       </div>
     </Layout>
   )
