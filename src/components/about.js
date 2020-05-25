@@ -125,7 +125,7 @@ const StyledResumeContainer = styled.div`
   position: relative;
   flex-direction: column;
 `;
-const StyledResumeButton = styled(Link)`
+const StyledResumeButton = styled.a`
   ${mixins.bigButton};
   margin-top: 40px;
 `;
@@ -153,12 +153,14 @@ const About = ({ data }) => {
         </StyledPic>
       </StyledFlexContainer>
       <StyledResumeContainer>
-        <StyledResumeButton
-          href="/resume.pdf"
-          target="_blank"
-          rel="nofollow noopener noreferrer">
-          Resume
-        </StyledResumeButton>
+        <div>
+          <StyledResumeButton
+            href="/resume.pdf"
+            target="_blank"
+            rel="nofollow noopener noreferrer">
+            Resume
+          </StyledResumeButton>
+        </div>
       </StyledResumeContainer>
     </StyledContainer>
   );
