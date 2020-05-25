@@ -1,3 +1,5 @@
+//About section mostly taken from https://github.com/bchiang7/v4
+
 import React, { useState, useEffect, useRef } from 'react';
 import { Link, graphql } from 'gatsby';
 import { CSSTransition, TransitionGroup } from 'react-transition-group';
