@@ -1,23 +1,14 @@
-import React from "react"
-import { Link, graphql } from 'gatsby';
+import React from 'react';
+import { graphql } from 'gatsby';
 import PropTypes from 'prop-types';
-import styled from 'styled-components';
-import { Layout } from '@components';
-import { srConfig, github } from '@config';
-import Img from 'gatsby-image';
-import { theme, mixins, media, Section } from '@styles';
-const { colors, fontSizes, fonts } = theme;
+import { Layout, About, Jobs } from '@components';
+import { Section } from '@styles';
 
-const AboutPage = ({ data }) => {
-
-  const { frontmatter, html } = data.about.edges[0].node;
-  const { title, avatar } = frontmatter;
-
+const AboutPage = ({ data }) => {  
   return (
     <Layout>
-      <div>
-        <h1>About</h1>
-      </div>
+      <About data={data.about.edges} />
+      <Jobs data={data.jobs.edges} />
     </Layout>
   )
 }
@@ -43,6 +34,23 @@ export const pageQuery = graphql`
               }
             }
           }
+        }
+        html
+      }
+    }
+  }
+  jobs: allMarkdownRemark(
+    filter: { fileAbsolutePath: { regex: "/jobs/" } }
+    sort: { fields: [frontmatter___date], order: DESC }
+  ) {
+    edges {
+      node {
+        frontmatter {
+          title
+          company
+          location
+          range
+          url
         }
         html
       }

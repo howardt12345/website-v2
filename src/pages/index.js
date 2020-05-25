@@ -169,6 +169,7 @@ const HomePage = ({ data }) => {
       <StyledContainer className="fillHeight">
         {isMounted && (
           <motion.div
+            key="overline"
             initial="hidden"
             animate="visible"
             variants={titleVariants}
@@ -181,6 +182,7 @@ const HomePage = ({ data }) => {
         )}
         {isMounted && (
           <motion.div
+            key="title"
             initial="hidden"
             animate="visible"
             variants={lineVariants}
@@ -190,6 +192,7 @@ const HomePage = ({ data }) => {
         )}
         {isMounted && (
           <motion.div
+            key="subtitle"
             initial="hidden"
             animate="visible"
             variants={subtitleVariants}
@@ -203,6 +206,7 @@ const HomePage = ({ data }) => {
               navLinks &&
               navLinks.map(({ url, name }, i) => (
                 <motion.div
+                  key={"nav" + i}
                   custom={i}
                   initial="hidden"
                   animate="visible"
