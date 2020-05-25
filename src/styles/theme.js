@@ -8,7 +8,7 @@ const BG = '#FFFFFF';
 const theme = {
   colors: {
     background: BG,
-    background_dark: DARK_BG,
+    background_secondary: DARK_BG,
     accent: ACCENT,
     textPrimary: '#000000',
     textSecondary: '#7A7A7A',
