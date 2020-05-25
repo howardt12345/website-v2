@@ -10,3 +10,4 @@ export { default as IconLocation } from './location';
 export { default as IconPlayStore } from './playstore';
 export { default as IconRedbubble } from './redbubble';
 export { default as IconStar } from './star';
+export { default as IconLogo } from './logo';

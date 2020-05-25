@@ -5,6 +5,7 @@ import { CSSTransition, TransitionGroup } from 'react-transition-group';
 import { throttle } from '@utils';
 import { navLinks, navHeight, siteTitle } from '@config';
 import { Menu } from '@components';
+import { IconLogo } from '@components/icons';
 import styled from 'styled-components';
 import { theme, mixins, media } from '@styles';
 const { colors, fontSizes, fonts, loaderDelay } = theme;
@@ -40,12 +41,33 @@ const StyledNav = styled.nav`
   z-index: 12;
 `;
 const StyledTitle = styled.h2`
-  margin: 0 10px;
-  position: relative;
   font-size: ${fontSizes.xxl};
   color: ${colors.textPrimary};
   font-family: ${fonts.Poppins};
   font-weight: normal;
+  display: block;
+  ${media.tablet`display: none;`};
+`;
+const StyledLogo = styled.div`
+  ${mixins.flexCenter};
+  a {
+    display: none;
+    ${media.tablet`display: block;`};
+    color: ${colors.accent};
+    width: 42px;
+    height: 42px;
+    &:hover,
+    &:focus {
+      svg {
+        fill: ${colors.translucent_accent};
+      }
+    }
+    svg {
+      fill: none;
+      transition: ${theme.transition};
+      user-select: none;
+    }
+  }
 `;
 const StyledHamburger = styled.div`
   ${mixins.flexCenter};
@@ -219,6 +241,23 @@ class Nav extends Component {
               <StyledTitle>
                 <StyledListLink to={'/'}>{siteTitle.toUpperCase()}</StyledListLink>
               </StyledTitle>
+            </CSSTransition>
+          )}
+        </TransitionGroup>
+        <TransitionGroup component={null}>
+          {isMounted && (
+            <CSSTransition classNames={fadeClass} timeout={timeout}>
+              <StyledLogo tabindex="-1">
+                {animate ? (
+                  <a href="/" aria-label="home">
+                    <IconLogo />
+                  </a>
+                ) : (
+                  <Link to="/" aria-label="home">
+                    <IconLogo />
+                  </Link>
+                )}
+              </StyledLogo>
             </CSSTransition>
           )}
         </TransitionGroup>

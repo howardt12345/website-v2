@@ -61,7 +61,7 @@ const NavListItem = styled.li`
 `;
 const NavLink = styled(Link)`
   ${mixins.link};
-  padding: 3px 20px 20px;
+  padding: 3px 20px 15px;
   width: 100%;
 `;
 const Menu = ({ menuOpen, toggleMenu }) => {

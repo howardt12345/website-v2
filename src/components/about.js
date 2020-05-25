@@ -94,6 +94,30 @@ const StyledAvatarLink = styled.a`
     z-index: -1;
   }
 `;
+const SkillsContainer = styled.ul`
+  display: grid;
+  grid-template-columns: repeat(2, minmax(140px, 200px));
+  overflow: hidden;
+  padding: 0;
+  margin: 20px 0 0 0;
+  list-style: none;
+`;
+const Skill = styled.li`
+  position: relative;
+  margin-bottom: 10px;
+  padding-left: 20px;
+  font-family: ${fonts.Raleway};
+  font-size: ${fontSizes.sm};
+  color: ${colors.textPRimary};
+  &:before {
+    content: '▹';
+    position: absolute;
+    left: 0;
+    color: ${colors.accent};
+    font-size: ${fontSizes.md};
+    line-height: 12px;
+  }
+`;
 const StyledResumeContainer = styled.div`
   display: flex;
   justify-content: center;
@@ -118,6 +142,9 @@ const About = ({ data }) => {
       <StyledFlexContainer>
         <StyledContent>
           <div dangerouslySetInnerHTML={{ __html: html }} />
+          <SkillsContainer>
+            {skills && skills.map((skill, i) => <Skill key={i}>{skill}</Skill>)}
+          </SkillsContainer>
         </StyledContent>
         <StyledPic>
           <StyledAvatarLink href={instalink}>

@@ -12,6 +12,7 @@ import {
   IconPlayStore,
   IconRedbubble,
   IconStar,
+  IconLogo,
 } from '@components/icons';
 
 const FormattedIcon = ({ name }) => {
@@ -32,6 +33,8 @@ const FormattedIcon = ({ name }) => {
       return <IconLinkedin />;
     case 'Location':
       return <IconLocation />;
+    case 'Logo':
+      return <IconLogo />;
     case 'PlayStore':
       return <IconPlayStore />;
     case 'Redbubble':
