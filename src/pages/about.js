@@ -1,4 +1,5 @@
 import React from 'react';
+import { Helmet } from 'react-helmet';
 import { graphql } from 'gatsby';
 import PropTypes from 'prop-types';
 import { Layout, About, Jobs } from '@components';
@@ -6,6 +7,10 @@ import { Layout, About, Jobs } from '@components';
 const AboutPage = ({ data }) => {  
   return (
     <Layout>
+      <Helmet>
+        <title>About | Howard Tseng</title>
+        <link rel="canonical" href="https://howardt12345.com/about" />
+      </Helmet>
       <About data={data.about.edges} />
       <Jobs data={data.jobs.edges} />
     </Layout>

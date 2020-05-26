@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect, useRef } from 'react';
 import { Link, graphql } from 'gatsby';
+import { Helmet } from 'react-helmet';
 import PropTypes from 'prop-types';
 import { CSSTransition, TransitionGroup } from 'react-transition-group';
 import sr from '@utils/sr';
@@ -139,7 +140,11 @@ const ProjectsPage = ({ data }) => {
   const projectsToShow = showMore ? projects : firstSix;
 
   return (
-    <Layout>
+    <Layout>      
+      <Helmet>
+        <title>Projects | Howard Tseng</title>
+        <link rel="canonical" href="https://howardt12345.com/projects" />
+      </Helmet>
       <StyledContainer>
         <Heading ref={revealTitle}>Projects</Heading>
         <StyledArchiveLink to="/archive" ref={revealArchiveLink}>
