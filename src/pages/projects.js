@@ -1,4 +1,4 @@
-//Projects page taken from https://github.com/bchiang7/v4
+//Projects page taken and modified from https://github.com/bchiang7/v4
 
 import React, { useState, useEffect, useRef } from 'react';
 import { Link, graphql } from 'gatsby';
@@ -18,14 +18,6 @@ const StyledContainer = styled(Section)`
   align-items: flex-start;
   padding-bottom: 50px;
   width: 80vw;
-`;
-const StyledTitle = styled.h4`
-  margin: 0 auto;
-  font-size: ${fontSizes.h3};
-  ${media.tablet`font-size: 24px;`};
-  a {
-    display: block;
-  }
 `;
 const StyledArchiveLink = styled(Link)`
   ${mixins.inlineLink};

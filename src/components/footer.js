@@ -1,6 +1,5 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
-import { FormattedIcon } from '@components/icons';
 import { Social } from '@components'; 
 import styled from 'styled-components';
 import { theme, mixins } from '@styles';

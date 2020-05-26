@@ -1,16 +1,13 @@
 //About section mostly taken from https://github.com/bchiang7/v4
 
-import React, { useState, useEffect, useRef } from 'react';
-import { Link, graphql } from 'gatsby';
-import { CSSTransition, TransitionGroup } from 'react-transition-group';
+import React, { useEffect, useRef } from 'react';
 import PropTypes from 'prop-types';
 import Img from 'gatsby-image';
 import sr from '@utils/sr';
 import { srConfig, instalink } from '@config';
 import styled from 'styled-components';
-import { Layout } from '@components';
-import { theme, mixins, media, Section, Heading, Button } from '@styles';
-const { colors, fontSizes, fonts, navDelay } = theme;
+import { theme, mixins, media, Section, Heading } from '@styles';
+const { colors, fontSizes, fonts } = theme;
 
 const StyledContainer = styled(Section)`
   padding-bottom: 50px;

@@ -2,7 +2,6 @@ import React from 'react';
 import { graphql } from 'gatsby';
 import PropTypes from 'prop-types';
 import { Layout, About, Jobs } from '@components';
-import { Section } from '@styles';
 
 const AboutPage = ({ data }) => {  
   return (
