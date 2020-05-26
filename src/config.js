@@ -1,6 +1,6 @@
 module.exports = {
   siteTitle: "Howard Tseng",
-  siteDescription: "Howard Tseng is a freelance photographer and mobile developer based in Toronto, ON.",
+  siteDescription: "Howard Tseng is a freelance photographer and front-end developer based in Toronto, ON.",
   siteKeywords: "Howard Tseng, Howard, Tseng, howardt12345, ht12345, freelance, photographer, freelance photographer, mobile developer, software engineer, front-end developer, flutter, java, javascript, uottawa, Ottawa, Toronto",
   siteUrl: "https://howardt12345.com",
   siteLanguage: "en_US",
