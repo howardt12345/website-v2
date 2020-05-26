@@ -47,8 +47,8 @@ module.exports = {
       url: '/about'
     },
     {
-      name: "Photos",
-      url: '/photos'
+      name: "Portfolio",
+      url: '/portfolio'
     },
     {
       name: "Projects",
