@@ -7,3 +7,4 @@ export { default as Section } from './Section';
 export { default as Button } from './Button';
 export { default as Heading } from './Heading';
 export { default as Subheading } from './Subheading';
+export { default as FlexContainer } from './FlexContainer';

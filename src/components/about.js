@@ -6,7 +6,7 @@ import Img from 'gatsby-image';
 import sr from '@utils/sr';
 import { srConfig, instalink } from '@config';
 import styled from 'styled-components';
-import { theme, mixins, media, Section, Heading } from '@styles';
+import { theme, mixins, media, Section, Heading, FlexContainer } from '@styles';
 const { colors, fontSizes, fonts } = theme;
 
 const StyledContainer = styled(Section)`
@@ -16,11 +16,6 @@ const StyledContainer = styled(Section)`
   flex-direction: column;
 `;
 
-const StyledFlexContainer = styled.div`
-  ${mixins.flexBetween};
-  align-items: flex-start;
-  ${media.tablet`display: block;`};
-`;
 const StyledContent = styled.div`
   width: 55%;
   max-width: 480px;
@@ -107,7 +102,7 @@ const Skill = styled.li`
   padding-left: 20px;
   font-family: ${fonts.Raleway};
   font-size: ${fontSizes.sm};
-  color: ${colors.textPRimary};
+  color: ${colors.textPrimary};
   &:before {
     content: '▹';
     position: absolute;
@@ -138,7 +133,7 @@ const About = ({ data }) => {
   return (
     <StyledContainer id="about" ref={revealContainer}>
       <Heading>{title}</Heading>
-      <StyledFlexContainer>
+      <FlexContainer>
         <StyledContent>
           <div dangerouslySetInnerHTML={{ __html: html }} />
           <SkillsContainer>
@@ -150,7 +145,7 @@ const About = ({ data }) => {
             <StyledAvatar fluid={avatar.childImageSharp.fluid} alt="Avatar" />
           </StyledAvatarLink>
         </StyledPic>
-      </StyledFlexContainer>
+      </FlexContainer>
       <StyledResumeContainer>
         <div>
           <StyledResumeButton
