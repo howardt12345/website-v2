@@ -44,7 +44,7 @@ const StyledInput = styled.input`
 const StyledTextArea = styled.textarea`
   width: 100%;
   height: 150px;
-  padding: 12px 20px;
+  padding: 12px 10px;
   box-sizing: border-box;
   border: 1px solid ${colors.textSecondary};
   border-radius: 4px;
