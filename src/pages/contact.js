@@ -16,6 +16,8 @@ const StyledContainer = styled(Section)`
   flex-direction: column;
 `;
 const StyledSubtitle = styled.div`
+  font-size: ${fontSizes.lg};
+  ${media.tablet`font-size: ${fontSizes.md};`};
   text-align: center;
 `;
 const StyledContactForm = styled.form`
@@ -58,7 +60,7 @@ const StyledSubmitContainer = styled.div`
   position: relative;
   flex-direction: column;
 `;
-const StyledSubmitButton = styled.a`
+const StyledSubmitButton = styled.button`
   ${mixins.bigButton};
   margin-top: 20px;
 `;
@@ -93,6 +95,11 @@ class ContactPage extends Component {
     })
   }
 
+  handleSubmit = event => {
+    event.preventDefault()
+    alert(`Welcome ${this.state.name}!`)
+  }
+
   render() {
     const { title, subtitle } = this.props.data.contact.edges[0].node.frontmatter;
     return (
@@ -105,7 +112,7 @@ class ContactPage extends Component {
           <Heading>{title}</Heading>
           <StyledSubtitle>{subtitle}</StyledSubtitle>
           <FlexContainer>
-            <StyledContactForm>
+            <StyledContactForm onSubmit={this.handleSubmit}>
               <StyledLabel>
                 Name
                 <StyledInput
