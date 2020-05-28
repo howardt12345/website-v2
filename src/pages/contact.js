@@ -147,6 +147,7 @@ class ContactPage extends Component {
       console.log("error");
       alert(`An unexpected error has occured.`);
     } */
+    alert("Form submission is currently disabled. Please try again later.");
     this.setState({
       name: '',
       email: '',
