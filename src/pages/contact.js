@@ -118,14 +118,14 @@ class ContactPage extends Component {
 
   handleSubmit = event => {
     let errors = validate(this.state);
-    console.log(_.isEmpty(errors));
     if(!_.isEmpty(errors)) {
       alert(Object.values(errors).map(v => "Error: " + v).join("\n"));
       return;
     }
     event.preventDefault();
     let now = new Date();
-    firebase
+    try {
+      firebase
       .firestore()
       .collection("messages")
       .add({
@@ -139,7 +139,20 @@ class ContactPage extends Component {
       })
       .then(() => {
         alert(`Message has been sent! Thank you ${this.state.name}!`);
+      }).catch(e => {
+        console.log("error");
+        alert(`An unexpected error has occured.`);
       });
+    } catch (error) {
+      console.log("error");
+      alert(`An unexpected error has occured.`);
+    }
+    this.setState({
+      name: '',
+      email: '',
+      subject: '',
+      body: '',
+    });
   }
 
   render() {
