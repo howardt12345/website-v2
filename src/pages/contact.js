@@ -123,7 +123,7 @@ class ContactPage extends Component {
       return;
     }
     event.preventDefault();
-    let now = new Date();
+    /* let now = new Date();
     try {
       firebase
       .firestore()
@@ -146,13 +146,13 @@ class ContactPage extends Component {
     } catch (error) {
       console.log("error");
       alert(`An unexpected error has occured.`);
-    }
+    } */
     this.setState({
       name: '',
       email: '',
       subject: '',
       body: '',
-    });
+    }); 
   }
 
   render() {
