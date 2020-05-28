@@ -1,4 +1,4 @@
-import React, { Component } from "react"
+import React, { Component } from "react";
 import { Link, graphql } from 'gatsby';
 import { Helmet } from 'react-helmet';
 import { Layout } from '@components';
@@ -6,8 +6,10 @@ import { email, location, insta, instalink } from '@config';
 import PropTypes from 'prop-types';
 import { FormattedIcon } from '@components/icons';
 import styled from 'styled-components';
+import firebase from "gatsby-plugin-firebase";
 import { theme, mixins, media, Section, Button, Heading, FlexContainer } from '@styles';
 const { colors, fontSizes, fonts } = theme;
+const _ = require('lodash');
 
 const StyledContainer = styled(Section)`
   padding-bottom: 50px;
@@ -78,6 +80,25 @@ const StyledInfo = styled.div`
   }
 `;
 
+const validate = (values) => {
+  let errors = {};
+  if (!values.name) {
+    errors.name = 'Name is required';
+  }
+  if (!values.email) {
+    errors.email = 'Email address is required';
+  } else if (!/\S+@\S+\.\S+/.test(values.email)) {
+    errors.email = 'Email address is invalid';
+  }
+  if (!values.subject) {
+    errors.subject = 'Subject is required';
+  }
+  if (!values.body) {
+    errors.body = 'Body is required';
+  }
+  return errors;
+}
+
 class ContactPage extends Component {
   state = {
     name: '',
@@ -96,14 +117,35 @@ class ContactPage extends Component {
   }
 
   handleSubmit = event => {
-    event.preventDefault()
-    alert(`Welcome ${this.state.name}!`)
+    let errors = validate(this.state);
+    console.log(_.isEmpty(errors));
+    if(!_.isEmpty(errors)) {
+      alert(Object.values(errors).map(v => "Error: " + v).join("\n"));
+      return;
+    }
+    event.preventDefault();
+    let now = new Date();
+    firebase
+      .firestore()
+      .collection("messages")
+      .add({
+        name: this.state.name,
+        email: this.state.email,
+        subject: this.state.subject,
+        body: this.state.body,
+        date: `${now.getFullYear()}-${now.getMonth().toLocaleString('en-US', {minimumIntegerDigits: 2, useGrouping:false})}-${now.getDate().toLocaleString('en-US', {minimumIntegerDigits: 2, useGrouping:false})} ${now.getHours().toLocaleString('en-US', {minimumIntegerDigits: 2, useGrouping:false})}:${now.getMinutes().toLocaleString('en-US', {minimumIntegerDigits: 2, useGrouping:false})}:${now.getSeconds().toLocaleString('en-US', {minimumIntegerDigits: 2, useGrouping:false})}.${now.getMilliseconds().toLocaleString('en-US', {minimumIntegerDigits: 3, useGrouping:false})}`,
+        replied: false,
+        archived: false,
+      })
+      .then(() => {
+        alert(`Message has been sent! Thank you ${this.state.name}!`);
+      });
   }
 
   render() {
     const { title, subtitle } = this.props.data.contact.edges[0].node.frontmatter;
     return (
-      <Layout>
+      <Layout isHome={false} animateNav={false}>
         <Helmet>
           <title>Contact | Howard Tseng</title>
           <link rel="canonical" href="https://howardt12345.com/contact" />
@@ -118,7 +160,7 @@ class ContactPage extends Component {
                 <StyledInput
                   type="text"
                   name="name"
-                  value={this.state.name}
+                  value={this.state.name || ''}
                   onChange={this.handleInputChange}
                 />
               </StyledLabel>
@@ -127,7 +169,7 @@ class ContactPage extends Component {
                 <StyledInput
                   type="text"
                   name="email"
-                  value={this.state.email}
+                  value={this.state.email || ''}
                   onChange={this.handleInputChange}
                 />
               </StyledLabel>
@@ -136,7 +178,7 @@ class ContactPage extends Component {
                 <StyledInput
                   type="text"
                   name="subject"
-                  value={this.state.subject}
+                  value={this.state.subject || ''}
                   onChange={this.handleInputChange}
                 />
               </StyledLabel>              
@@ -145,7 +187,7 @@ class ContactPage extends Component {
                 <StyledTextArea
                   type="text"
                   name="body"
-                  value={this.state.body}
+                  value={this.state.body || ''}
                   onChange={this.handleInputChange}
                 />
               </StyledLabel>
