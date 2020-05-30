@@ -31,7 +31,7 @@ const StyledHomeButton = styled(Link)`
   margin-top: 40px;
 `;
 
-const NotFoundPage = ({ location }) => {
+const NotFoundPage = () => {
   const [isMounted, setIsMounted] = useState(false);
 
   useEffect(() => {

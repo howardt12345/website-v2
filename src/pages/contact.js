@@ -8,6 +8,7 @@ import { FormattedIcon } from '@components/icons';
 import styled from 'styled-components';
 import firebase from "gatsby-plugin-firebase";
 import { theme, mixins, media, Section, Button, Heading, FlexContainer } from '@styles';
+import { currentTime } from '@utils';
 const { colors, fontSizes, fonts } = theme;
 const _ = require('lodash');
 
@@ -133,7 +134,7 @@ class ContactPage extends Component {
         email: this.state.email,
         subject: this.state.subject,
         body: this.state.body,
-        date: `${now.getFullYear()}-${now.getMonth().toLocaleString('en-US', {minimumIntegerDigits: 2, useGrouping:false})}-${now.getDate().toLocaleString('en-US', {minimumIntegerDigits: 2, useGrouping:false})} ${now.getHours().toLocaleString('en-US', {minimumIntegerDigits: 2, useGrouping:false})}:${now.getMinutes().toLocaleString('en-US', {minimumIntegerDigits: 2, useGrouping:false})}:${now.getSeconds().toLocaleString('en-US', {minimumIntegerDigits: 2, useGrouping:false})}.${now.getMilliseconds().toLocaleString('en-US', {minimumIntegerDigits: 3, useGrouping:false})}`,
+        date: currentTime(),
         replied: false,
         archived: false,
       })
@@ -153,7 +154,7 @@ class ContactPage extends Component {
       email: '',
       subject: '',
       body: '',
-    }); 
+    });
   }
 
   render() {
