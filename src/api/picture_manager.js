@@ -7,6 +7,12 @@ class PictureManager {
     this.token = token;
     this.menu = menu;
   }
+
+  getCategories = () => [...this.menu.keys()];
+  getCategory = (index) => [...this.menu.keys()][index];
+
+  getSubcategoriesAt = (category) => [...this.menu.get(category).keys()];
+  getSubcategoriesFrom = (index) => [...this.menu.get([...this.menu.keys()][index]).keys()];
 }
 
 class Picture {
@@ -25,33 +31,35 @@ class Picture {
 
 const fromFirestore = async (url, token) => {
   let menu = new Map();
-  firebase
+
+  await firebase
   .firestore()
   .collection("photos")
   .orderBy('category')
-  .onSnapshot(snapshot1 => {
+  .get()
+  .then(async (snapshot1) => {
     const categories = snapshot1.docs.map(doc => ({
       ...doc.data()
     }));
-    categories.forEach((item) => {
-      let categoryName = item.category;
+    for await (const item of categories) {let categoryName = item.category;
       let icon = item.icon;
       let subcategories = item.subcategories;
 
       let subTmp = new Map();
 
-      subTmp.set( icon, [new Picture({ name: icon, time: currentTime() })] );
+      subTmp.set( 'icon', [new Picture({ name: icon, time: currentTime() })] );
 
       if(subcategories.length !== 0) {
         subcategories.sort();
 
-        subcategories.forEach((subcategory) => {
-          firebase
+        for await (const subcategory of subcategories) {
+          await firebase
             .firestore()
             .collection("photos")
             .doc(categoryName)
             .collection(subcategory)
-            .onSnapshot(snapshot2 => {
+            .get()
+            .then(snapshot2 => {
               const images = snapshot2.docs.map(doc => ({
                 ...doc.data()
               }));
@@ -71,18 +79,19 @@ const fromFirestore = async (url, token) => {
               });
               pictures.sort((a, b) => b.time.localeCompare(a.time))
               subTmp.set(subcategory, pictures);
-              subTmp.get(icon).concat(pictures);
+              subTmp.get('icon').concat(pictures);
             });
-        });
-      }
+          }
+        }
 
       try {
-        firebase
+        await firebase
         .firestore()
         .collection("photos")
         .doc(categoryName)
         .collection("images")
-        .onSnapshot(snapshot3 => {
+        .get()
+        .then(snapshot3 => {
           const images = snapshot3.docs.map(doc => ({
             ...doc.data()
           }));
@@ -90,7 +99,7 @@ const fromFirestore = async (url, token) => {
             try {
               console.log(JSON.stringify(image));
               if(image.name !== 'null') {
-                subTmp.get(icon).push(new Picture({
+                subTmp.get('icon').push(new Picture({
                   path: `${categoryName}`,
                   ...image
                 }));
@@ -119,11 +128,13 @@ const fromFirestore = async (url, token) => {
         console.log(e);
       }
       
-      subTmp.get(icon).sort((a, b) => b.time.localeCompare(a.time))
-
+      subTmp.get('icon').sort((a, b) => b.time.localeCompare(a.time))
       menu.set(categoryName, subTmp);
-    });
+      
+    }
   });
+
+  console.log("process done");
 
   return new PictureManager(url, token, menu);
 }

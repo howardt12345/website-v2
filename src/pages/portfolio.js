@@ -3,8 +3,7 @@ import { Layout } from '@components';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
 import { Helmet } from 'react-helmet';
-import firebase from "gatsby-plugin-firebase";
-import { replaceAll } from "@utils";
+import { replaceAll, isEmpty } from "@utils";
 import { fromFirestore } from '@api';
 
 const url = "https://firebasestorage.googleapis.com/v0/b/portfolio-49b69.appspot.com/o/";
@@ -16,13 +15,10 @@ const StyledSection = styled.section`
 `;
 
 const PortfolioPage = ({ location }) => {
-  const [isLoading, setIsLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
   const [data, setData] = useState({});
 
   useEffect(() => {
-    if (isLoading) {
-      return;
-    }
     if (location.hash) {
       const id = location.hash.substring(1); // location.hash without the '#'
       setTimeout(() => {
@@ -33,21 +29,14 @@ const PortfolioPage = ({ location }) => {
         }
       }, 0);
     }
-    /*firebase
-      .firestore()
-      .collection("photos").doc('Nature').collection("Landscapes")
-      .onSnapshot(snapshot => {
-        const categories = snapshot.docs.map(doc => ({
-          ...doc.data()
-        }));
-        setData(categories);
-      });*/
-      async function fetchData() {
+    async function fetchData() {
+      if(isEmpty(data)) {
         let tmp = await fromFirestore(url, token);
         setData(tmp);
+        setIsLoading(false);
       }
-      fetchData();
-    setIsLoading(true);
+    }
+    fetchData();
   }, [isLoading]);
 
   return (
@@ -60,10 +49,15 @@ const PortfolioPage = ({ location }) => {
         <div>
           <h1>{location.hash}</h1>
         </div>
-        <div dangerouslySetInnerHTML={{ __html: JSON.stringify(data.menu, (key, value) => (value instanceof Map ? [...value] : value)) }} />
+       {!isLoading && (
+          <div dangerouslySetInnerHTML={
+            //{ __html: JSON.stringify(data.menu, (key, value) => (value instanceof Map ? [...value] : value)) }
+            {__html: JSON.stringify(data.getSubcategoriesFrom(0))}
+          } />
+       )}
       </StyledSection>
     </Layout>
-  )
+  );
 }
 
 PortfolioPage.propTypes = {
