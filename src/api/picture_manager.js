@@ -26,26 +26,26 @@ class PictureManager {
    */
   getCategoriesLowercase = () => [...[...this.menu.keys()].map(category => category.toLowerCase())];
   /**
-   * Gets the category at the given index.
+   * Gets the category name at the given index.
    * @param {Number} index  The index to get category from. 
    * @return {String}       The category name at the given index.
    */
   getCategory = (index) => [...this.menu.keys()][index];
 
   /**
-   * Gets the subcategory at the given category name.
+   * Gets the subcategories at the given category name.
    * @param {String} category The category to get the subcategories from.
    * @return {!Array<String>} The list of subcategories at the given category name.
    */
   getSubcategoriesAt = (category) => [...this.menu.get(category).keys()];  
   /**
-  * Gets the subcategory at the given category name, but in lowercase.
+  * Gets the subcategories at the given category name, but in lowercase.
   * @param {String} category  The category to get the subcategories from.
    * @return {!Array<String>} The list of subcategories at the given category name, but in lowercase.
   */
   getSubcategoriesAtLowercase = (category) => [...[...this.menu.get(category).keys()].map(s => s.toLowerCase())];
   /**
-   * Gets the subcategory at the given category index.
+   * Gets the subcategories at the given category index.
    * @param {Number} index    The index of the category to get the subcategories from.
    * @return {!Array<String>} The list of subcategories at the given category index.
    */
