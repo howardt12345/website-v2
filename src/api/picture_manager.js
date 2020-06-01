@@ -24,11 +24,7 @@ class PictureManager {
   getAllUrlsFrom = (index) => [this.getAllPicturesFrom(index).map((pic) => `${this.url}${replaceAll(pic.path, '/', '%2F')}%2F${replaceAll(pic.name, ' ', '%20')}?alt=media&token=${this.token}`)];
   getUrlsFor = (pictures) => [pictures.map((pic) => `${this.url}${replaceAll(pic.path, '/', '%2F')}%2F${replaceAll(pic.name, ' ', '%20')}?alt=media&token=${this.token}`)];
 
-  getAllPictures = () => {
-    let tmp = [];
-    this.getCategories().forEach(category => tmp = tmp.concat(this.getAllPicturesAt(category)));
-    return tmp;
-  }
+  getAllPictures = () => [this.getCategories().map(category => this.getAllPicturesAt(category))];
 }
 
 class Picture {
