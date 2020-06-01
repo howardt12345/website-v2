@@ -24,7 +24,12 @@ class PictureManager {
   getAllUrlsFrom = (index) => [this.getAllPicturesFrom(index).map((pic) => `${this.url}${replaceAll(pic.path, '/', '%2F')}%2F${replaceAll(pic.name, ' ', '%20')}?alt=media&token=${this.token}`)];
   getUrlsFor = (pictures) => [pictures.map((pic) => `${this.url}${replaceAll(pic.path, '/', '%2F')}%2F${replaceAll(pic.name, ' ', '%20')}?alt=media&token=${this.token}`)];
 
-  getAllPictures = () => [this.getCategories().map(category => this.getAllPicturesAt(category))];
+  getAllPictures = () => {
+    let tmp = [];
+    this.getCategories().forEach(category => tmp = tmp.concat(this.getAllPicturesAt(category)));
+    tmp.sort((a, b) => b.time.localeCompare(a.time));
+    return tmp;
+  }
 }
 
 class Picture {
@@ -89,7 +94,7 @@ const fromFirestore = async (url, token) => {
                   console.log(e);
                 }
               });
-              pictures.sort((a, b) => b.time.localeCompare(a.time))
+              pictures.sort((a, b) => b.time.localeCompare(a.time));
               subTmp.set(subcategory, pictures);
               subTmp.set('icon', [...subTmp.get('icon'), ...pictures]);
             });
