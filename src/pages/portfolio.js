@@ -17,18 +17,10 @@ const StyledSection = styled.section`
 const PortfolioPage = ({ location }) => {
   const [isLoading, setIsLoading] = useState(true);
   const [data, setData] = useState({});
+  const [path, setPath] = useState("");
+  const [currentData, setCurrentData] = useState([]);
 
   useEffect(() => {
-    if (location.hash) {
-      const id = location.hash.substring(1); // location.hash without the '#'
-      setTimeout(() => {
-        const el = document.getElementById(id);
-        if (el) {
-          el.scrollIntoView();
-          el.focus();
-        }
-      }, 0);
-    }
     async function fetchData() {
       if(isEmpty(data)) {
         let tmp = await fromFirestore(url, token);
@@ -37,7 +29,19 @@ const PortfolioPage = ({ location }) => {
       }
     }
     fetchData();
-  }, [isLoading]);
+
+    if (location.hash) {
+      const id = location.hash.substring(1); // location.hash without the '#'
+      setPath(id);
+      /*setTimeout(() => {
+        const el = document.getElementById(id);
+        if (el) {
+          el.scrollIntoView();
+          el.focus();
+        }
+      }, 0);*/
+    } 
+  });
 
   return (
     <Layout isHome={false} animateNav={false}>
@@ -47,13 +51,14 @@ const PortfolioPage = ({ location }) => {
       </Helmet>
       <StyledSection>
         <div>
-          <h1>{location.hash}</h1>
+          <h1>{path}</h1>
         </div>
        {!isLoading && (
-          <div dangerouslySetInnerHTML={
+          /*<div dangerouslySetInnerHTML={
             //{ __html: JSON.stringify(data.menu, (key, value) => (value instanceof Map ? [...value] : value)) }
-            {__html: JSON.stringify(data.getAllPictures())}
-          } />
+            {__html: JSON.stringify(data.getPicturesQuery(path))}
+          } />*/
+          <div>{JSON.stringify(data.getPicturesQuery(path))}</div>
        )}
       </StyledSection>
     </Layout>
