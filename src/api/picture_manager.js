@@ -167,7 +167,9 @@ class PictureManager {
           return false;
         }
       }
-    } else {
+    } else if(query.toLowerCase().localeCompare('all') === 0) {
+      return true;
+    }else {
       return false;
     }
   }
