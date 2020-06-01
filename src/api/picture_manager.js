@@ -219,6 +219,14 @@ class Picture {
     this.time = (typeof data.time !== 'undefined') ? data.time : '';
     this.path = (typeof data.path !== 'undefined') ? data.path : '';
   }
+
+  /**
+   * Gets the url for this picture.
+   * @param {String} url    The url of the storage reference.
+   * @param {String} token  The token for the firebase storage.
+   * @return {String}       The url for this picture.
+   */
+  getUrl = (url, token) => `${url}${replaceAll(this.path, '/', '%2F')}%2F${replaceAll(this.name, ' ', '%20')}?alt=media&token=${token}`;
 }
 
 const fromFirestore = async (url, token) => {
