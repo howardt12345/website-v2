@@ -1,5 +1,5 @@
 import firebase from "gatsby-plugin-firebase";
-import { currentTime } from '@utils';
+import { currentTime, replaceAll } from '@utils';
 
 class PictureManager {
   constructor(url, token, menu) {
@@ -13,6 +13,22 @@ class PictureManager {
 
   getSubcategoriesAt = (category) => [...this.menu.get(category).keys()];
   getSubcategoriesFrom = (index) => [...this.menu.get([...this.menu.keys()][index]).keys()];
+
+  getPicturesAt = (category, subcategory) => this.menu.get(category).get(subcategory);
+  getPicturesFrom = (category, subcategory) => this.menu.get([...this.menu.keys()][category]).get([...this.menu.get([...this.menu.keys()][category]).keys()][subcategory]);
+
+  getAllPicturesAt = (category) => this.getPicturesAt(category, 'icon').slice(1);
+  getAllPicturesFrom = (index) => this.getPicturesAt(this.getCategory(index), 'icon').slice(1);
+
+  getAllUrlsAt = (category) => [this.getAllPicturesAt(category).map((pic) => `${this.url}${replaceAll(pic.path, '/', '%2F')}%2F${replaceAll(pic.name, ' ', '%20')}?alt=media&token=${this.token}`)];
+  getAllUrlsFrom = (index) => [this.getAllPicturesFrom(index).map((pic) => `${this.url}${replaceAll(pic.path, '/', '%2F')}%2F${replaceAll(pic.name, ' ', '%20')}?alt=media&token=${this.token}`)];
+  getUrlsFor = (pictures) => [pictures.map((pic) => `${this.url}${replaceAll(pic.path, '/', '%2F')}%2F${replaceAll(pic.name, ' ', '%20')}?alt=media&token=${this.token}`)];
+
+  getAllPictures = () => {
+    let tmp = [];
+    this.getCategories().forEach(category => tmp = tmp.concat(this.getAllPicturesAt(category)));
+    return tmp;
+  }
 }
 
 class Picture {
@@ -79,7 +95,7 @@ const fromFirestore = async (url, token) => {
               });
               pictures.sort((a, b) => b.time.localeCompare(a.time))
               subTmp.set(subcategory, pictures);
-              subTmp.get('icon').concat(pictures);
+              subTmp.set('icon', [...subTmp.get('icon'), ...pictures]);
             });
           }
         }
@@ -119,6 +135,8 @@ const fromFirestore = async (url, token) => {
                   }
                 }
               }
+              subTmp.get('icon').sort((a, b) => b.time.localeCompare(a.time));
+              subTmp.get('Miscellaneous').sort((a, b) => b.time.localeCompare(a.time));
             } catch(e) {
               console.log(e);
             }

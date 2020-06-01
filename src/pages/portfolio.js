@@ -52,7 +52,7 @@ const PortfolioPage = ({ location }) => {
        {!isLoading && (
           <div dangerouslySetInnerHTML={
             //{ __html: JSON.stringify(data.menu, (key, value) => (value instanceof Map ? [...value] : value)) }
-            {__html: JSON.stringify(data.getSubcategoriesFrom(0))}
+            {__html: JSON.stringify(data.getAllPictures())}
           } />
        )}
       </StyledSection>
