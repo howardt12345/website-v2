@@ -6,6 +6,7 @@ import { Helmet } from 'react-helmet';
 import { replaceAll, isEmpty } from "@utils";
 import { fromFirestore } from '@api';
 
+const _ = require('lodash');
 const url = "https://firebasestorage.googleapis.com/v0/b/portfolio-49b69.appspot.com/o/";
 const token = "810d1310-0533-4e13-bc33-6fc77ac56ef1";
 
@@ -40,7 +41,10 @@ const PortfolioPage = ({ location }) => {
           el.focus();
         }
       }, 0);*/
-    } 
+    }
+    if(!_.isEmpty(data)) {
+      setCurrentData(data.getPicturesQuery(path));
+    }
   });
 
   return (
@@ -58,7 +62,7 @@ const PortfolioPage = ({ location }) => {
             //{ __html: JSON.stringify(data.menu, (key, value) => (value instanceof Map ? [...value] : value)) }
             {__html: JSON.stringify(data.getPicturesQuery(path))}
           } />*/
-          <div>{JSON.stringify(data.getPicturesQuery(path))}</div>
+          <div>{JSON.stringify(currentData)}</div>
        )}
       </StyledSection>
     </Layout>

@@ -1,3 +1,6 @@
+
+const _ = require('lodash');
+
 export const throttle = (func, wait = 100) => {
   let timer = null;
   return function(...args) {
@@ -31,3 +34,5 @@ export const isEmpty = (obj) => {
   }
   return true;
 }
+
+export const filter = (array) => array.filter(function (e) {return !_.isEmpty(e);});

@@ -1,5 +1,5 @@
 import firebase from "gatsby-plugin-firebase";
-import { currentTime, replaceAll, capitalize } from '@utils';
+import { currentTime, replaceAll, capitalize, filter } from '@utils';
 
 const _ = require('lodash');
 
@@ -146,12 +146,12 @@ class PictureManager {
 
   /**
    * Searches for images in a given query string, and returns whether the query contains any pictures.
-   * By default, a trailing forward slash ('.../') or '.../all' will search for the category preceding the forward flash.
+   * By default, a trailing forward slash ('.../') or '.../all' will search for the category preceding the forward slash.
    * @param {String} query  The query string to search.
    * @return {Boolean}      Whether the query contains any pictures.
    */
   hasPictures = (query) => {
-    let raw = query.split('/');
+    let raw = filter(query.split('/'));
     if(raw.length === 1) {
       let category = raw[0].toLowerCase();
       return !_.isEmpty(this.trueCategoryName(category));
@@ -181,7 +181,7 @@ class PictureManager {
    */
   getPicturesQuery = (query) => {
     if(this.hasPictures(query)) {
-      let raw = query.split('/');
+      let raw = filter(query.split('/'));
       if(raw.length === 1) {
         let category = raw[0];
         return this.getAllPicturesAt(this.trueCategoryName(category));
