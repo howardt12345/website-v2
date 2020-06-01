@@ -146,7 +146,7 @@ class PictureManager {
 
   /**
    * Searches for images in a given query string, and returns whether the query contains any pictures.
-   * By default, a trailing forward slash ('.../') or '/all' will search for the category preceding the forward flash.
+   * By default, a trailing forward slash ('.../') or '.../all' will search for the category preceding the forward flash.
    * @param {String} query  The query string to search.
    * @return {Boolean}      Whether the query contains any pictures.
    */
@@ -174,7 +174,8 @@ class PictureManager {
 
   /**
    * Checks if the given query string has any pictures, and returns the list of pictures if so.
-   * By default, a trailing forward slash ('.../'), '/all', or '/icon' will return all the photos in the category.
+   * By default, a trailing forward slash ('.../'), '.../all', or '.../icon' will return all the photos in the category.
+   * 'all' will return all the pictures in the Picture Manager.
    * @param {String} query        The query string to search.
    * @return {!Array<Pictures>}   The list of pictures at the given query string. Returns an empty list if the query fails.
    */
