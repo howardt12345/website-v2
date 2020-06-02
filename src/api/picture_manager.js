@@ -183,28 +183,32 @@ class PictureManager {
    * @return {!Array<Pictures>}   The list of pictures at the given query string. Returns an empty list if the query fails.
    */
   getPicturesQuery = (query) => {
-    if(this.hasPictures(query)) {
-      let raw = filter(query.split('/'));
-      if(raw.length === 1) {
-        let category = raw[0];
-        return this.getAllPicturesAt(this.trueCategoryName(category));
-      } else if(raw.length === 2) {
-        let category = this.trueCategoryName(raw[0]);
-        let subcategory = raw[1];
-        if((subcategory.toLowerCase().localeCompare("all") === 0) || (subcategory.toLowerCase().localeCompare("icon") === 0) || _.isEmpty(subcategory)) {
-          return this.getAllPicturesAt(category);
+    try {
+      if(this.hasPictures(query)) {
+        let raw = filter(query.split('/'));
+        if(raw.length === 1) {
+          let category = raw[0];
+          return this.getAllPicturesAt(this.trueCategoryName(category));
+        } else if(raw.length === 2) {
+          let category = this.trueCategoryName(raw[0]);
+          let subcategory = raw[1];
+          if((subcategory.toLowerCase().localeCompare("all") === 0) || (subcategory.toLowerCase().localeCompare("icon") === 0) || _.isEmpty(subcategory)) {
+            return this.getAllPicturesAt(category);
+          } else {
+            return this.getPicturesAt(category, this.trueSubcategoryName(category, subcategory));
+          }
         } else {
-          return this.getPicturesAt(category, this.trueSubcategoryName(category, subcategory));
+          return [];
         }
-      } else {
+      } else if(filter(query.split('/'))[0].toLowerCase().localeCompare('all') === 0) {
+        return this.getAllPictures();
+      }
+      else {
         return [];
       }
-    } else if(filter(query.split('/'))[0].toLowerCase().localeCompare('all') === 0) {
-      return this.getAllPictures();
-    }
-    else {
+    } catch (e) {
       return [];
-    }
+    }  
   }
 
   getNames = (query) => {
