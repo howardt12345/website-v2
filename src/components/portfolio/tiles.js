@@ -5,7 +5,7 @@ import { Link } from 'gatsby';
 import sr from '@utils/sr';
 import { srConfig, instalink } from '@config';
 import styled from 'styled-components';
-import ImageMasonry from 'react-image-masonry';
+import { ImageMasonry } from '@api';
 import { theme, mixins, media, Section, Heading, Subheading } from '@styles';
 
 const { colors, fontSizes, fonts } = theme;
@@ -68,6 +68,9 @@ const TilesPage = ({ data, name }) => {
       <ImageMasonry 
         numCols={Math.ceil(width/450)}
         containerWidth={'100%'}
+        forceOrder={true}
+        animate={true}
+        className={name.category +'/'+ name.subcategory}
         imageUrls={data}
       >
       </ImageMasonry>
