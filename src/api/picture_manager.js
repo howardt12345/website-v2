@@ -259,7 +259,7 @@ class Picture {
    * @param {String} token  The token for the firebase storage.
    * @return {String}       The url for this picture.
    */
-  getUrl = (url, token) => `${url}${replaceAll(this.path, '/', '%2F')}%2F${replaceAll(this.name, ' ', '%20')}?alt=media&token=${token}`;
+  getUrl = () => `${url}${replaceAll(this.path, '/', '%2F')}%2F${replaceAll(this.name, ' ', '%20')}?alt=media&token=${token}`;
 }
 
 /**
@@ -267,7 +267,7 @@ class Picture {
  * @param {!Array<Picture>} pictures  The list of pictures to get urls for.
  * @return {!Array<String>}           The list of picture urls for the given list of pictures.
  */
-export const getUrlsFor = (pictures) => [...pictures.map((pic) => pic.getUrl(url, token))];
+export const getUrlsFor = (pictures) => [...pictures.map((pic) => pic.getUrl())];
 
 export const fromFirestore = async () => {
   let menu = new Map();
@@ -307,7 +307,7 @@ export const fromFirestore = async () => {
               let pictures = [];
               images.forEach((image) => {
                 try {
-                  console.log(JSON.stringify(image));
+                  //console.log(JSON.stringify(image));
                   if(image.name !== 'null') {
                     pictures.push(new Picture({
                       path: `${categoryName}/${subcategory}`,
@@ -338,7 +338,7 @@ export const fromFirestore = async () => {
           }));
           images.forEach((image) => {
             try {
-              console.log(JSON.stringify(image));
+              //console.log(JSON.stringify(image));
               if(image.name !== 'null') {
                 subTmp.get('icon').push(new Picture({
                   path: `${categoryName}`,
@@ -378,7 +378,7 @@ export const fromFirestore = async () => {
     }
   });
 
-  console.log("process done");
+  console.log("Picture Manager initialized.");
 
   return new PictureManager(menu);
 }
