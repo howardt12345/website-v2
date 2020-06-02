@@ -212,17 +212,29 @@ class PictureManager {
   }
 
   getNames = (query) => {
-    if(this.hasPictures(query)) {
-      let raw = filter(query.split('/'));
-      if(raw.length === 1) { 
+    try {
+      if(this.hasPictures(query)) {
+        let raw = filter(query.split('/'));
+        if(raw.length === 1) { 
+          return {
+            category: this.trueCategoryName(raw[0]),
+            subcategory: '',
+          };
+        } else if (raw.length === 2) {
+          return {
+            category: this.trueCategoryName(raw[0]),
+            subcategory: this.trueSubcategoryName(this.trueCategoryName(raw[0]), raw[1]),
+          };
+        } else {
+          return {
+            category: '',
+            subcategory: '',
+          };
+        }
+      } else if(filter(query.split('/'))[0].toLowerCase().localeCompare('all') === 0) {
         return {
-          category: this.trueCategoryName(raw[0]),
+          category: 'All Photos',
           subcategory: '',
-        };
-      } else if (raw.length === 2) {
-        return {
-          category: this.trueCategoryName(raw[0]),
-          subcategory: this.trueSubcategoryName(this.trueCategoryName(raw[0]), raw[1]),
         };
       } else {
         return {
@@ -230,12 +242,7 @@ class PictureManager {
           subcategory: '',
         };
       }
-    } else if(filter(query.split('/'))[0].toLowerCase().localeCompare('all') === 0) {
-      return {
-        category: 'All Photos',
-        subcategory: '',
-      };
-    } else {
+    } catch (e) {
       return {
         category: '',
         subcategory: '',
