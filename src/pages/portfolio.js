@@ -48,7 +48,13 @@ const PortfolioPage = ({ location }) => {
     if(!_.isEmpty(data)) {
       setCurrentData(data.getPicturesQuery(path));
     }
-  });
+    document.addEventListener('contextmenu', (e) => {
+      if (e.target.tagName === 'IMG') {
+        e.preventDefault()
+        e.stopPropagation()
+      }
+    })
+  }, [location.hash, data, path]);
 
   return (
     <Layout isHome={false} animateNav={false}>
@@ -58,7 +64,7 @@ const PortfolioPage = ({ location }) => {
       </Helmet>
       <StyledSection>
        {!isLoading && !isHome && !_.isEmpty(currentData) && (
-          <TilesPage data={getUrlsFor(currentData)} name={data.getNames(path)}></TilesPage>
+          <TilesPage data={currentData} name={data.getNames(path)}></TilesPage>
        )}
       </StyledSection>
     </Layout>
