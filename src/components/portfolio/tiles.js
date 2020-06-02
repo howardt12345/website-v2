@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
-import Img from 'gatsby-image';
 import { Link } from 'gatsby';
 import sr from '@utils/sr';
-import { srConfig, instalink } from '@config';
 import styled from 'styled-components';
-import { ImageMasonry } from '@api';
-import { theme, mixins, media, Section, Heading, Subheading } from '@styles';
+import { ImageMasonry, getUrlsFor } from '@api';
+import { Dialog } from '@reach/dialog';
+import '@reach/dialog/styles.css';
+import { theme, mixins, media, Section, Heading, Subheading, Button } from '@styles';
 
 const { colors, fontSizes, fonts } = theme;
 const _ = require('lodash');
@@ -39,18 +39,17 @@ const StyledSubheading = styled.span`
   ${media.phablet`font-size: 28px;`};
   ${media.phone`font-size: 28px;`};
 `;
+const StyledImg = styled.img`
+  padding-bottom: 1rem;
+`;
 
-const TilesPage = ({ data, name }) => {
-  const [width, setWidth] = useState(window.innerWidth);
 
+const TilesPage = ({ data, name, width }) => {
+  const [showDialog, setShowDialog] = useState(false);
+  const [currentImage, setCurrentImage] = useState(0);
 
-  useEffect(() => {
-    function handleResize() {
-      setWidth(window.innerWidth);
-    }
-    window.addEventListener("resize", handleResize);
-    return () => window.removeEventListener("resize", handleResize);
-  }, [width]);
+  const open = () => setShowDialog(true);
+  const close = () => setShowDialog(false);
 
   return (
     <StyledSection>
@@ -71,9 +70,22 @@ const TilesPage = ({ data, name }) => {
         forceOrder={true}
         animate={true}
         className={name.category +'/'+ name.subcategory}
-        imageUrls={data}
+        imageUrls={getUrlsFor(data)}
+        onClick={(index) => {
+          setCurrentImage(index);
+          open();
+        }}
       >
       </ImageMasonry>
+      <Dialog isOpen={showDialog} onDismiss={close} aria-label="Image">
+        <StyledImg 
+          src={data[currentImage].getUrl()}
+          alt={data[currentImage].getUrl()}
+        />
+        <Button onClick={close}>
+          Close
+        </Button>
+      </Dialog>
     </StyledSection>
   );
 }
@@ -81,6 +93,7 @@ const TilesPage = ({ data, name }) => {
 TilesPage.prototypes = {
   data: PropTypes.array.isRequired,
   name: PropTypes.object.isRequired,
+  width: PropTypes.number.isRequired,
 }
 
 export default TilesPage;
