@@ -60,7 +60,7 @@ const PortfolioPage = ({ location }) => {
       </Helmet>
       <StyledSection>
        {!isLoading && !isHome && !_.isEmpty(currentData) && (
-          <TilesPage data={currentData} name={data.getNames(path)}></TilesPage>
+          <TilesPage data={currentData} name={data.getNames(path)} path={path}></TilesPage>
        )}
       </StyledSection>
     </Layout>

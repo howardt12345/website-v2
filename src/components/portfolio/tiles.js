@@ -8,7 +8,7 @@ import { Dialog } from '@reach/dialog';
 import '@reach/dialog/styles.css';
 import { theme, mixins, media, Section, Heading, Subheading, Button } from '@styles';
 
-const { colors, fontSizes, fonts } = theme;
+const { colors, fonts } = theme;
 const _ = require('lodash');
 
 const StyledSection = styled.section`
@@ -44,17 +44,24 @@ const StyledImg = styled.img`
 `;
 
 
-const TilesPage = ({ data, name }) => {
+const TilesPage = ({ data, name, path }) => {
   const isBrowser = typeof window !== 'undefined'
   const [width, setWidth] = useState(isBrowser ? window.innerWidth : 0)
   const [showDialog, setShowDialog] = useState(false);
   const [currentImage, setCurrentImage] = useState(0);
+  const [currentPath, setCurrentPath] = useState(path);
 
   const open = () => setShowDialog(true);
   const close = () => setShowDialog(false);
 
   useEffect(() => {
     if (!isBrowser) return false
+
+    if(path !== currentPath) {
+      close();
+      setCurrentPath(path);
+      setCurrentImage(0);
+    }
 
     const handleResize = () => setWidth(window.innerWidth)
     window.addEventListener("resize", handleResize);
@@ -104,6 +111,7 @@ const TilesPage = ({ data, name }) => {
 TilesPage.prototypes = {
   data: PropTypes.array.isRequired,
   name: PropTypes.object.isRequired,
+  path: PropTypes.string.isRequired,
 }
 
 export default TilesPage;
