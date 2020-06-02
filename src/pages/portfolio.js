@@ -20,8 +20,12 @@ const PortfolioPage = ({ location }) => {
   const [data, setData] = useState({});
   const [path, setPath] = useState("");
   const [currentData, setCurrentData] = useState([]);
+  const isBrowser = typeof window !== 'undefined'
+  const [width, setWidth] = useState(isBrowser ? window.innerWidth : 0)
 
   useEffect(() => {
+    if (!isBrowser) return false
+
     async function fetchData() {
       if(isEmpty(data)) {
         let tmp = await fromFirestore();
@@ -48,13 +52,25 @@ const PortfolioPage = ({ location }) => {
     if(!_.isEmpty(data)) {
       setCurrentData(data.getPicturesQuery(path));
     }
-    document.addEventListener('contextmenu', (e) => {
+    function preventRightClick(e) {
       if (e.target.tagName === 'IMG') {
         e.preventDefault()
         e.stopPropagation()
       }
-    })
-  }, [location.hash, data, path]);
+    }
+
+    const handleResize = () => {
+      if(isBrowser) {
+        setWidth(window.innerWidth);
+      }
+    }
+    window.addEventListener("resize", handleResize);
+    document.addEventListener('contextmenu', preventRightClick);
+    return () => {
+      document.removeEventListener('contextmenu', preventRightClick);
+      window.removeEventListener("resize", handleResize);
+    }
+  });
 
   return (
     <Layout isHome={false} animateNav={false}>
@@ -64,7 +80,7 @@ const PortfolioPage = ({ location }) => {
       </Helmet>
       <StyledSection>
        {!isLoading && !isHome && !_.isEmpty(currentData) && (
-          <TilesPage data={currentData} name={data.getNames(path)}></TilesPage>
+          <TilesPage data={currentData} name={data.getNames(path)} width={width}></TilesPage>
        )}
       </StyledSection>
     </Layout>
