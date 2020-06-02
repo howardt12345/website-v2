@@ -35,13 +35,6 @@ const PortfolioPage = ({ location }) => {
       const id = location.hash.substring(1); // location.hash without the '#'
       setPath(id);
       setIsHome(false);
-      /*setTimeout(() => {
-        const el = document.getElementById(id);
-        if (el) {
-          el.scrollIntoView();
-          el.focus();
-        }
-      }, 0);*/
     } else {
       setIsHome(true);
     }
