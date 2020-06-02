@@ -44,12 +44,23 @@ const StyledImg = styled.img`
 `;
 
 
-const TilesPage = ({ data, name, width }) => {
+const TilesPage = ({ data, name }) => {
+  const isBrowser = typeof window !== 'undefined'
+  const [width, setWidth] = useState(isBrowser ? window.innerWidth : 0)
   const [showDialog, setShowDialog] = useState(false);
   const [currentImage, setCurrentImage] = useState(0);
 
   const open = () => setShowDialog(true);
   const close = () => setShowDialog(false);
+
+  useEffect(() => {
+    if (!isBrowser) return false
+
+    const handleResize = () => setWidth(window.innerWidth)
+    window.addEventListener("resize", handleResize);
+    
+    return () => window.removeEventListener("resize", handleResize);
+  });
 
   return (
     <StyledSection>
@@ -93,7 +104,6 @@ const TilesPage = ({ data, name, width }) => {
 TilesPage.prototypes = {
   data: PropTypes.array.isRequired,
   name: PropTypes.object.isRequired,
-  width: PropTypes.number.isRequired,
 }
 
 export default TilesPage;
