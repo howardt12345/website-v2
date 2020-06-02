@@ -76,18 +76,18 @@ export class ImageMasonry extends React.Component {
     this.addTiles(tiles);
   }
 
-  componentDidUpdate(nextProps) {
+  componentDidUpdate(prevProps) {
     try {
       // If any of these props changed, recalculate the tiles
-      if (nextProps.numCols !== this.props.numCols
-        || !this.areArraysEqual(nextProps.imageUrls, this.props.imageUrls)
-        || (nextProps.children || []).length !== (this.props.children || []).length
-        || !(nextProps.children || []).every((child, i) => { return nextProps.children[i].key === this.props.children[i].key })
+      if (this.props.numCols !== prevProps.numCols
+        || !this.areArraysEqual(prevProps.imageUrls, this.props.imageUrls)
+        || (prevProps.children || []).length !== (this.props.children || []).length
+        || !(prevProps.children || []).every((child, i) => { return prevProps.children[i].key === this.props.children[i].key })
       ) {
 
         // Reset the state
         let newState = {}
-        for (var i = 0; i < nextProps.numCols; i++) {
+        for (var i = 0; i < this.props.numCols; i++) {
           newState["col-" + i] = [];
         }
         this.setState(newState);
@@ -96,7 +96,7 @@ export class ImageMasonry extends React.Component {
         this.cancel();
 
         // Get tiles based on props
-        const tiles = this.getTiles(nextProps);
+        const tiles = this.getTiles(this.props);
         // Add tiles to state
         this.addTiles(tiles);
       }
