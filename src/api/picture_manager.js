@@ -3,10 +3,11 @@ import { currentTime, replaceAll, capitalize, filter } from '@utils';
 
 const _ = require('lodash');
 
+const url = "https://firebasestorage.googleapis.com/v0/b/portfolio-49b69.appspot.com/o/";
+const token = "ea925040-1fca-4eda-b1e8-0eb96567ab7e";
+
 class PictureManager {
-  constructor(url, token, menu) {
-    this.url = url;
-    this.token = token;
+  constructor(menu) {
     this.menu = menu;
   }
 
@@ -72,7 +73,7 @@ class PictureManager {
    * @return {!Array<Picture>}  The list of pictures at the given category name.
    */
   getAllPicturesAt = (category) => this.getPicturesAt(category, 'icon').slice(1);
-    /**
+    /**currentData
    * Gets all the pictures at the given category index.
    * @param {Number} index      The category to get the pictures from.
    * @return {!Array<Picture>}  The list of pictures at the given category index.
@@ -84,19 +85,19 @@ class PictureManager {
    * @param {String} category   The category to get the pictures from.
    * @return {!Array<String>}   The list of picture urls at the given category name.
    */
-  getAllUrlsAt = (category) => [...this.getAllPicturesAt(category).map((pic) => `${this.url}${replaceAll(pic.path, '/', '%2F')}%2F${replaceAll(pic.name, ' ', '%20')}?alt=media&token=${this.token}`)];
+  getAllUrlsAt = (category) => [...this.getAllPicturesAt(category).map((pic) => `${url}${replaceAll(pic.path, '/', '%2F')}%2F${replaceAll(pic.name, ' ', '%20')}?alt=media&token=${token}`)];
   /**
    * Gets all the picture urls in a given category index.
    * @param {Number} index    The category to get the pictures from.
    * @return {!Array<String>} The list of picture urls at the given category index.
    */
-  getAllUrlsFrom = (index) => [...this.getAllPicturesFrom(index).map((pic) => `${this.url}${replaceAll(pic.path, '/', '%2F')}%2F${replaceAll(pic.name, ' ', '%20')}?alt=media&token=${this.token}`)];
+  getAllUrlsFrom = (index) => [...this.getAllPicturesFrom(index).map((pic) => `${url}${replaceAll(pic.path, '/', '%2F')}%2F${replaceAll(pic.name, ' ', '%20')}?alt=media&token=${token}`)];
   /**
    * Gets all the picture urls for a given list of pictures.
    * @param {!Array<Picture>} pictures  The list of pictures to get urls for.
    * @return {!Array<String>}           The list of picture urls for the given list of pictures.
    */
-  getUrlsFor = (pictures) => [...pictures.map((pic) => `${this.url}${replaceAll(pic.path, '/', '%2F')}%2F${replaceAll(pic.name, ' ', '%20')}?alt=media&token=${this.token}`)];
+  getUrlsFor = (pictures) => [...pictures.map((pic) => `${url}${replaceAll(pic.path, '/', '%2F')}%2F${replaceAll(pic.name, ' ', '%20')}?alt=media&token=${token}`)];
 
   /**
    * Gets all the pictures in the Picture Manager
@@ -198,11 +199,43 @@ class PictureManager {
       } else {
         return [];
       }
-    } else if(query.toLowerCase().localeCompare('all') === 0) {
+    } else if(filter(query.split('/'))[0].toLowerCase().localeCompare('all') === 0) {
       return this.getAllPictures();
     }
     else {
       return [];
+    }
+  }
+
+  getNames = (query) => {
+    if(this.hasPictures(query)) {
+      let raw = filter(query.split('/'));
+      if(raw.length === 1) { 
+        return {
+          category: this.trueCategoryName(raw[0]),
+          subcategory: '',
+        };
+      } else if (raw.length === 2) {
+        return {
+          category: this.trueCategoryName(raw[0]),
+          subcategory: this.trueSubcategoryName(this.trueCategoryName(raw[0]), raw[1]),
+        };
+      } else {
+        return {
+          category: '',
+          subcategory: '',
+        };
+      }
+    } else if(filter(query.split('/'))[0].toLowerCase().localeCompare('all') === 0) {
+      return {
+        category: 'All Photos',
+        subcategory: '',
+      };
+    } else {
+      return {
+        category: '',
+        subcategory: '',
+      };
     }
   }
 }
@@ -229,7 +262,14 @@ class Picture {
   getUrl = (url, token) => `${url}${replaceAll(this.path, '/', '%2F')}%2F${replaceAll(this.name, ' ', '%20')}?alt=media&token=${token}`;
 }
 
-const fromFirestore = async (url, token) => {
+/**
+ * Gets all the picture urls for a given list of pictures.
+ * @param {!Array<Picture>} pictures  The list of pictures to get urls for.
+ * @return {!Array<String>}           The list of picture urls for the given list of pictures.
+ */
+export const getUrlsFor = (pictures) => [...pictures.map((pic) => pic.getUrl(url, token))];
+
+export const fromFirestore = async () => {
   let menu = new Map();
 
   await firebase
@@ -340,7 +380,5 @@ const fromFirestore = async (url, token) => {
 
   console.log("process done");
 
-  return new PictureManager(url, token, menu);
+  return new PictureManager(menu);
 }
-
-export default fromFirestore;
