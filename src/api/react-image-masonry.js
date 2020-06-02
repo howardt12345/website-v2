@@ -2,10 +2,6 @@ import React from 'react';
 
 //Modified from https://github.com/christikaes/react-image-masonry/blob/master/src/index.js
 
-const onClick = (index) => {
-  alert('Poked image ' + index + '! Woo!');
-};
-
 // Simple Masonry component for images
 // Expects props:
 //      imageUrls: array of image urls--this overrides any children passed in
@@ -13,6 +9,7 @@ const onClick = (index) => {
 //      [required] numCols: number of columns
 //      containerWidth: width of mansonry component, default 100%
 //      animate: whether or not to animate components fading in, default true
+//      onClick: the action to perform when clicking on an image. 
 export class ImageMasonry extends React.Component {
   constructor(props) {
     super(props);
@@ -79,7 +76,7 @@ export class ImageMasonry extends React.Component {
     this.addTiles(tiles);
   }
 
-  componentWillReceiveProps(nextProps) {
+  componentDidUpdate(nextProps) {
     try {
       // If any of these props changed, recalculate the tiles
       if (nextProps.numCols !== this.props.numCols
@@ -123,7 +120,7 @@ export class ImageMasonry extends React.Component {
           src={imageUrl}
           alt={imageUrl}
           key={"img-" + index + Date.now()}
-          onClick={() => onClick(index)}
+          onClick={(typeof this.props.onClick !== 'undefined') ? () => this.props.onClick(index) : null}
           style={{
             border: "2px solid transparent",
             boxSizing: "border-box"
