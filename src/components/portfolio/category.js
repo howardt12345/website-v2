@@ -5,7 +5,7 @@ import sr from '@utils/sr';
 import styled from 'styled-components';
 import { getUrlsFor } from '@api';
 import { theme, mixins, media, Section, Heading, Subheading, Button } from '@styles';
-import { Fade } from 'react-slideshow-image';
+import { Fade } from '@api/react-image-slideshow';
 
 const { colors, fonts, fontSizes } = theme;
 

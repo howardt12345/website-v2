@@ -29,7 +29,6 @@ const CategoriesPage = ({ data }) => {
   const isBrowser = typeof window !== 'undefined'
   const [width, setWidth] = useState(isBrowser ? window.innerWidth : 0)
 
-
   useEffect(() => {
     if (!isBrowser) return false
 
