@@ -105,8 +105,8 @@ Category.propTypes = {
 
 const StyledName = styled.h2`
   position: absolute;
-  bottom: 20px;
-  left: 36px;
+  bottom: 16px;
+  left: 30px;
   font-size: ${fontSizes.xxl};
   font-family: ${fonts.Poppins};
   color: white;
@@ -177,7 +177,6 @@ const CategoryTile = ({ name, path, pictures }) => {
                     key={pic.name}
                   />
                 </StyledImageDiv>
-                
                 <StyledName>{name}</StyledName>
               </StyledImageDiv>
             );
