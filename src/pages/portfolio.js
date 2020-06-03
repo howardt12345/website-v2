@@ -5,8 +5,8 @@ import PropTypes from 'prop-types';
 import { Helmet } from 'react-helmet';
 import { isEmpty } from "@utils";
 import { fromFirestore } from '@api';
-import { TilesPage } from '@components/portfolio';
-import { CategoriesPage } from "../components/portfolio";
+import { TilesPage, CategoriesPage, NotFoundPage } from '@components/portfolio';
+import { theme, media, Heading, Button, Main } from '@styles';
 
 const _ = require('lodash');
 
@@ -24,13 +24,16 @@ const PortfolioPage = ({ location }) => {
 
   useEffect(() => {
     async function fetchData() {
-      if(isEmpty(data)) {
+      if(isEmpty(data) && isLoading) {
         let tmp = await fromFirestore();
         setData(tmp);
         setIsLoading(false);
       }
     }
-    fetchData();
+    if(isEmpty(data) && isLoading) {
+      fetchData();
+    }
+    
 
     if (location.hash) {
       const id = location.hash.substring(1); // location.hash without the '#'
@@ -44,6 +47,7 @@ const PortfolioPage = ({ location }) => {
       }
       setIsHome(true);
     }
+    
     if(!_.isEmpty(data)) {
       setCurrentData(data.getPicturesQuery(path));
     }
@@ -70,6 +74,9 @@ const PortfolioPage = ({ location }) => {
        )}
        {!isLoading && isHome && !_.isEmpty(data) && (
          <CategoriesPage data={data} />
+       )}
+       {!isLoading && (typeof data.menu === 'undefined' || _.isEmpty(data.menu)) && (
+         <NotFoundPage />
        )}
       </StyledSection>
     </Layout>

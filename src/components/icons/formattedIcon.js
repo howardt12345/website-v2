@@ -9,6 +9,7 @@ import {
   IconInstagram,
   IconLinkedin,
   IconLocation,
+  IconNotFound,
   IconPlayStore,
   IconRedbubble,
   IconStar,
@@ -35,6 +36,8 @@ const FormattedIcon = ({ name }) => {
       return <IconLocation />;
     case 'Logo':
       return <IconLogo />;
+    case 'NotFound':
+      return <IconNotFound />;
     case 'PlayStore':
       return <IconPlayStore />;
     case 'Redbubble':

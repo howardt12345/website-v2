@@ -170,7 +170,7 @@ class PictureManager {
       }
     } else if(query.toLowerCase().localeCompare('all') === 0) {
       return true;
-    }else {
+    } else {
       return false;
     }
   }
