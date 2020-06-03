@@ -29,7 +29,7 @@ const StyledHeading = styled(Heading)`
 `;
 const StyledSubheading = styled.span`
   text-align: left;
-  align-self: baseline;
+  align-self: end;
   color: ${colors.textPrimary};
   font-family: ${fonts.Poppins};
   font-size: 54px;
@@ -72,12 +72,14 @@ const TilesPage = ({ data, name, path }) => {
   return (
     <StyledSection>
       <StyledTitleSection>
-        <StyledHeading>
-          <span>{name.category}</span>
-          <StyledSubheading>
-            {_.isEmpty(name.subcategory) || width < 600 ? '' : ':'}&nbsp;
-          </StyledSubheading>
-        </StyledHeading>
+        <Link to={'/portfolio'}>
+          <StyledHeading>
+            <span>{name.category}</span>
+            <StyledSubheading>
+              {_.isEmpty(name.subcategory) || width < 600 ? '' : ':'}&nbsp;
+            </StyledSubheading>
+          </StyledHeading>
+        </Link>
         <StyledSubheading>
           <span>{name.subcategory}</span>
         </StyledSubheading>
@@ -108,7 +110,7 @@ const TilesPage = ({ data, name, path }) => {
   );
 }
 
-TilesPage.prototypes = {
+TilesPage.propTypes = {
   data: PropTypes.array.isRequired,
   name: PropTypes.object.isRequired,
   path: PropTypes.string.isRequired,

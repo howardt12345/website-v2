@@ -72,13 +72,13 @@ class PictureManager {
    * @param {String} category   The category to get the pictures from.
    * @return {!Array<Picture>}  The list of pictures at the given category name.
    */
-  getAllPicturesAt = (category) => this.getPicturesAt(category, 'icon').slice(1);
-    /**currentData
+  getAllPicturesAt = (category) => this.getPicturesAt(category, 'icon').filter(pic => pic.width !== 0 && pic.height !== 0);
+    /**
    * Gets all the pictures at the given category index.
    * @param {Number} index      The category to get the pictures from.
    * @return {!Array<Picture>}  The list of pictures at the given category index.
    */
-  getAllPicturesFrom = (index) => this.getPicturesAt(this.getCategory(index), 'icon').slice(1);
+  getAllPicturesFrom = (index) => this.getPicturesAt(this.getCategory(index), 'icon').filter(pic => pic.width !== 0 && pic.height !== 0);
 
   /**
    * Gets all the picture urls in a given category name.
@@ -211,6 +211,13 @@ class PictureManager {
     }  
   }
 
+    /**
+   * Returns the category and subcategory name of a given query string. 
+   * By default, a trailing forward slash ('.../') or '.../all' will return '' as the subcategory.
+   * 'all' will return 'All Photos'.
+   * @param {String} query  The query string to search.
+   * @return {object}       An object with the category and subcategory names. 
+   */
   getNames = (query) => {
     try {
       if(this.hasPictures(query)) {
@@ -255,8 +262,8 @@ class Picture {
   constructor(data) {
     this.name = (typeof data.name !== 'undefined') ? data.name : '';
     this.title = (typeof data.title !== 'undefined') ? data.title : '';
-    this.width = (typeof data.w !== 'undefined') ? data.w : 1;
-    this.height = (typeof data.h !== 'undefined') ? data.h : 1;
+    this.width = (typeof data.w !== 'undefined') ? data.w : 0;
+    this.height = (typeof data.h !== 'undefined') ? data.h : 0;
     this.description = (typeof data.desc !== 'undefined') ? data.desc : '';
     this.buy = (typeof data.buy !== 'undefined') ? data.buy : '';
     this.download = (typeof data.dl !== 'undefined') ? data.dl : '';
@@ -356,19 +363,18 @@ export const fromFirestore = async () => {
                   ...image
                 }));
                 if(subcategories.length !== 0) {
-                  try {
-                    subTmp.get('Miscellaneous').push(new Picture({
-                      path: `${categoryName}`,
-                      ...image
-                    }));
-                  } catch(e) {
-                    console.log(e);
+                  if(typeof subTmp.get('Miscellaneous') === 'undefined') {
                     subTmp.set("Miscellaneous", [
                       new Picture({
                         path: `${categoryName}`,
                         ...image
                       })
                     ]);
+                  } else {
+                    subTmp.get('Miscellaneous').push(new Picture({
+                      path: `${categoryName}`,
+                      ...image
+                    }));
                   }
                 }
               }
