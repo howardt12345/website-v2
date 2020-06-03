@@ -1,13 +1,11 @@
 import React, { useEffect, useState } from "react"
-import { Link } from 'gatsby';
 import { Layout } from '@components';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
 import { Helmet } from 'react-helmet';
-import { replaceAll, isEmpty, filter } from "@utils";
-import { fromFirestore, getUrlsFor } from '@api';
+import { isEmpty } from "@utils";
+import { fromFirestore } from '@api';
 import { TilesPage } from '@components/portfolio';
-import { Button } from '@styles';
 import { CategoriesPage } from "../components/portfolio";
 
 const _ = require('lodash');
@@ -58,7 +56,7 @@ const PortfolioPage = ({ location }) => {
 
     document.addEventListener('contextmenu', preventRightClick);
     return () => document.removeEventListener('contextmenu', preventRightClick);
-  }, [location.hash, data, path, currentData, isHome]);
+  }, [isHome, isLoading, data, path, currentData, location.hash]);
 
   return (
     <Layout isHome={false} animateNav={false}>
@@ -70,7 +68,7 @@ const PortfolioPage = ({ location }) => {
        {!isLoading && !isHome && !_.isEmpty(currentData) && (
           <TilesPage data={currentData} name={data.getNames(path)} path={path}></TilesPage>
        )}
-       {!isLoading && isHome && (
+       {!isLoading && isHome && !_.isEmpty(data) && (
          <CategoriesPage data={data} />
        )}
       </StyledSection>

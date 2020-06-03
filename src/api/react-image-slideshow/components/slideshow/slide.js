@@ -65,7 +65,7 @@ class Slideshow extends Component {
         clearTimeout(this.timeout);
       }
     }
-    if (this.props.children.length != props.children.length) {
+    if (this.props.children.length !== props.children.length) {
       this.setWidth();
     }
   }

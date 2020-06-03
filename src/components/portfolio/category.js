@@ -1,10 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'gatsby';
-import sr from '@utils/sr';
 import styled from 'styled-components';
-import { getUrlsFor } from '@api';
-import { theme, mixins, media, Section, Heading, Subheading, Button } from '@styles';
+import { theme, media, Subheading } from '@styles';
 import { Fade } from '@api/react-image-slideshow';
 
 const { colors, fonts, fontSizes } = theme;
@@ -149,18 +147,6 @@ const StyledImageDiv = styled.div`
 `;
 
 const CategoryTile = ({ name, path, pictures }) => {
-  const isBrowser = typeof window !== 'undefined'
-  const [height, setHeight] = useState(isBrowser ? window.innerHeight : 0)
-
-  useEffect(() => {
-    if (!isBrowser) return false
-
-    const handleResize = () => setHeight(window.innerHeight)
-    window.addEventListener("resize", handleResize);
-    
-    return () => window.removeEventListener("resize", handleResize);
-  });
-
 
   const fadeProperties = {
     duration: 2500,

@@ -27,9 +27,7 @@ class Fade extends Component {
   }
 
   componentDidMount() {
-    if(typeof window !== 'undefined') {
-      window.addEventListener('resize', this.resizeListener);
-    }
+    window.addEventListener('resize', this.resizeListener);
     this.setWidth();
     this.play();
   }
@@ -54,7 +52,7 @@ class Fade extends Component {
         clearTimeout(this.timeout);
       }
     }
-    if (this.props.children.length != props.children.length) {
+    if (this.props.children.length !== props.children.length) {
       this.applyStyle();
       this.play();
     }
@@ -119,7 +117,7 @@ class Fade extends Component {
   }
 
   navigate({ currentTarget: { dataset } }) {
-    if (dataset.key != this.state.index) {
+    if (dataset.key !== this.state.index) {
       this.goTo(parseInt(dataset.key));
     }
   }

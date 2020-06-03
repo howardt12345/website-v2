@@ -1,12 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'gatsby';
-import sr from '@utils/sr';
 import styled from 'styled-components';
 import { ImageMasonry, getUrlsFor } from '@api';
 import { Dialog } from '@reach/dialog';
 import '@reach/dialog/styles.css';
-import { theme, mixins, media, Section, Heading, Subheading, Button } from '@styles';
+import { theme, media, Heading, Button } from '@styles';
 
 const { colors, fonts } = theme;
 const _ = require('lodash');
@@ -29,18 +28,23 @@ const StyledHeading = styled(Heading)`
 `;
 const StyledSubheading = styled.span`
   text-align: left;
-  align-self: end;
+  align-self: flex-end;
   color: ${colors.textPrimary};
   font-family: ${fonts.Poppins};
   font-size: 54px;
   font-weight: 400;
+  margin-bottom: 0px;
   ${media.desktop`font-size: 54px;`};
   ${media.tablet`font-size: 40px;`};
   ${media.phablet`font-size: 28px;`};
   ${media.phone`font-size: 28px;`};
+  ${media.tablet`align-self: start;`};
 `;
 const StyledImg = styled.img`
   padding-bottom: 1rem;
+`;
+const StyledDialog = styled(Dialog)`
+  width: 75vw;
 `;
 
 
@@ -67,7 +71,7 @@ const TilesPage = ({ data, name, path }) => {
     window.addEventListener("resize", handleResize);
     
     return () => window.removeEventListener("resize", handleResize);
-  });
+  }, [isBrowser, path, currentPath, width]);
 
   return (
     <StyledSection>
@@ -97,7 +101,7 @@ const TilesPage = ({ data, name, path }) => {
         }}
       >
       </ImageMasonry>
-      <Dialog isOpen={showDialog} onDismiss={close} aria-label="Image">
+      <StyledDialog isOpen={showDialog} onDismiss={close} aria-label="Image">
         <StyledImg 
           src={data[currentImage].getUrl()}
           alt={data[currentImage].getUrl()}
@@ -105,7 +109,7 @@ const TilesPage = ({ data, name, path }) => {
         <Button onClick={close}>
           Close
         </Button>
-      </Dialog>
+      </StyledDialog>
     </StyledSection>
   );
 }

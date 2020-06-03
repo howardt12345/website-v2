@@ -61,7 +61,7 @@ class Zoom extends Component {
         clearTimeout(this.timeout);
       }
     }
-    if (this.props.children.length != props.children.length) {
+    if (this.props.children.length !== props.children.length) {
       this.applyStyle();
       this.play();
     }
@@ -124,7 +124,7 @@ class Zoom extends Component {
   }
 
   navigate({ currentTarget: { dataset } }) {
-    if (dataset.key != this.state.index) {
+    if (dataset.key !== this.state.index) {
       this.goTo(parseInt(dataset.key));
     }
   }

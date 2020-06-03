@@ -1,14 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
-import { Link } from 'gatsby';
-import sr from '@utils/sr';
 import styled from 'styled-components';
-import { getUrlsFor } from '@api';
-import { theme, mixins, media, Section, Heading, Subheading, Button } from '@styles';
+import { media } from '@styles';
 import { Category } from './category';
-import HorizontalScroll from 'react-scroll-horizontal'
 
-const { colors, fonts } = theme;
 
 const Categories = styled.div`
   display: flex;
@@ -35,8 +30,6 @@ const CategoriesPage = ({ data }) => {
     const handleResize = () => setWidth(window.innerWidth)
     const horizontalScroll = (e) => {
       if(width > 768) {
-        e.preventDefault();
-        e.stopPropagation()
         document.getElementById('scroll_container').scrollLeft += e.deltaY;
       }
     }
@@ -48,14 +41,16 @@ const CategoriesPage = ({ data }) => {
       window.removeEventListener('wheel', horizontalScroll);
       window.removeEventListener("resize", handleResize);
     }
-  });
+  }, [width, isBrowser]);
 
   return (
    (width > 768) 
    ? (
     <Categories id='scroll_container'>
-      {data && (
-        data.getCategories().map(c => {
+      {data && (width > 0) && (
+        data.getCategories()
+        .filter(c => data.getAllPicturesAt(c).length !== 0)
+        .map(c => {
           return (
             <Category category={c} data={data} isVisible={true} key={c}/>
           )
@@ -64,8 +59,10 @@ const CategoriesPage = ({ data }) => {
     </Categories>
   ) : (
      <CategoriesMobile>
-      {data && (
-        data.getCategories().map(c => {
+      {data && (width > 0) && (
+        data.getCategories()
+        .filter(c => data.getAllPicturesAt(c).length !== 0)
+        .map(c => {
           return (
             <Category category={c} data={data} isVisible={true} key={c}/>
           )
