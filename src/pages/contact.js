@@ -63,6 +63,7 @@ const StyledSubmitContainer = styled.div`
   align-items: center;
   position: relative;
   flex-direction: column;
+  margin-top: 20px;
 `;
 const StyledSubmitButton = styled.button`
   ${mixins.bigButton};
