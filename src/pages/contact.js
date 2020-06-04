@@ -165,6 +165,7 @@ class ContactPage extends Component {
       body: '',
       verified: false,
     });
+    this.captcha.reset();
   }
 
   render() {
@@ -217,7 +218,11 @@ class ContactPage extends Component {
                 />
               </StyledLabel>
               <StyledSubmitContainer>
-                <Reaptcha sitekey={recaptchaKey} onVerify={this.onVerify} />
+                <Reaptcha
+                  ref={e => (this.captcha = e)}
+                  sitekey={recaptchaKey} 
+                  onVerify={this.onVerify} 
+                />
                 <StyledSubmitButton type='submit' disabled={!this.state.verified}>
                   Submit
                 </StyledSubmitButton>
