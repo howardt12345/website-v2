@@ -71,19 +71,17 @@ const StyledDetailsBar = styled.div`
   align-items: center;
 `;
 const StyledIcon = styled.div`
-  padding-right: 4px;
+  padding-right: 6px;
   svg {
     width: 15px;
   }
   color: ${colors.textSecondary};
-  margin-bottom: 10px;
+  margin-bottom: 14px;
 `;
 
 const Jobs = ({ data }) => {
   const revealContainer = useRef(null);
   useEffect(() => sr.reveal(revealContainer.current, srConfig()), []);
-
-
 
   return (
     <StyledContainer id="jobs" ref={revealContainer}>

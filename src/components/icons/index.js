@@ -1,4 +1,5 @@
 export { default as IconDribbble } from './dribbble';
+export { default as IconEmail } from './email';
 export { default as IconExternal } from './external';
 export { default as IconFolder } from './folder';
 export { default as IconFork } from './fork';

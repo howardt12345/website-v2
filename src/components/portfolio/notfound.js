@@ -59,7 +59,8 @@ const StyledSubtitle = styled.h2`
   ${media.bigDesktop`font-size: 48px;`};
   ${media.phablet`font-size: 28px;`};
 `;
-const StyledHomeButton = styled(Button)`
+const StyledButton = styled.a`
+  ${mixins.bigButton};
   margin-top: 20px;
 `;
 
@@ -78,7 +79,7 @@ const NotFoundPage = () => {
           <StyledMainContainer className="fillHeight">
             <FormattedIcon name="NotFound" />
             <StyledSubtitle>Data Not Found</StyledSubtitle>
-            <StyledHomeButton onClick={() => window.location.reload()}>Refresh</StyledHomeButton>
+            <StyledButton href="/portfolio">Return to Portfolio</StyledButton>
           </StyledMainContainer>
         </CSSTransition>
       )}

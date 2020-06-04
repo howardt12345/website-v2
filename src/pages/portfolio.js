@@ -6,7 +6,6 @@ import { Helmet } from 'react-helmet';
 import { isEmpty } from "@utils";
 import { fromFirestore } from '@api';
 import { TilesPage, CategoriesPage, NotFoundPage } from '@components/portfolio';
-import { theme, media, Heading, Button, Main } from '@styles';
 
 const _ = require('lodash');
 
@@ -61,13 +60,13 @@ const PortfolioPage = ({ location }) => {
         <link rel="canonical" href="https://howardt12345.com/portfolio" />
       </Helmet>
       <StyledSection>
-       {!isLoading && !isHome && !_.isEmpty(data) && (
+       {!isLoading && !isHome && !_.isEmpty(data) && !_.isEmpty(data.getPicturesQuery(path)) && (
           <TilesPage data={data.getPicturesQuery(path)} name={data.getNames(path)} path={path}></TilesPage>
        )}
        {!isLoading && isHome && !_.isEmpty(data) && (
          <CategoriesPage data={data} />
        )}
-       {!isLoading && (typeof data.menu === 'undefined' || _.isEmpty(data.menu)) && (
+       {!isLoading && (typeof data.menu === 'undefined' || _.isEmpty(data.menu) || _.isEmpty(data.getPicturesQuery(path))) && (
          <NotFoundPage />
        )}
       </StyledSection>
