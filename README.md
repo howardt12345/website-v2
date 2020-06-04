@@ -22,7 +22,7 @@
 
 ## About the website
 
-This website was made as my first project working with web technologies. The foundation of this website was built by analysing and modifying <a href="https://github.com/bchiang7/v4" target="_blank" rel="nofollow noopener noreferrer">Brittiany Chiang's website v4</a> to fit my needs for this website. 
+This website was made as my first project working with web technologies. The foundation of this website was built by analysing and modifying <a href="https://github.com/bchiang7/v4" target="_blank" rel="nofollow noopener noreferrer">Brittiany Chiang's website v4</a> to fit my needs for this website. The Portfolio page uses Cloud Firestore as its database, and the Picture Manager class was ported from Dart from <a href="https://github.com/howardt12345/website-v1" target="_blank" rel="nofollow noopener noreferrer">website v1</a> to ensure backwards compatibility. It should be enough for a small amount of traffic, however I may end up using a JSON based system in the future if need be. The Contact page form writes to Cloud Firestore, where I'm able to reply using the website manager. 
 
 ## Installation & Setup
 
