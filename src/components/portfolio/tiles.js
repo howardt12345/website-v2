@@ -45,6 +45,7 @@ const StyledImg = styled.img`
 `;
 const StyledDialog = styled(Dialog)`
   width: 75vw;
+  ${media.tablet`width: 100vw;`};
 `;
 
 
@@ -67,7 +68,11 @@ const TilesPage = ({ data, name, path }) => {
       setCurrentImage(0);
     }
 
-    const handleResize = () => setWidth(window.innerWidth)
+    const handleResize = () => {
+      if(typeof window !== 'undefined') {
+        setWidth(window.innerWidth);
+      }
+    }
     window.addEventListener("resize", handleResize);
     
     return () => window.removeEventListener("resize", handleResize);
