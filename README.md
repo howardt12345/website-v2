@@ -47,18 +47,17 @@ This website was made as my first project working with web technologies. The fou
   
 ## Building and Running for Production:   
 
-  1. Generate a full static production build
+1. Generate a full static production build
 
    ```sh
    gatsby build
    ```
 
-1. Preview the site as it will appear once deployed
+2. Preview the site as it will appear once deployed
 
    ```sh
    gatsby serve
    ```
-   
    The preview site should now be running at `http://localhost:9000`.
 
 ## Color Reference:
