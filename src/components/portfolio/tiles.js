@@ -93,7 +93,6 @@ const TilesPage = ({ data, name, path }) => {
         containerWidth={'100%'}
         forceOrder={true}
         animate={true}
-        className={name.category +'/'+ name.subcategory}
         imageUrls={getUrlsFor(data)}
         onClick={(index) => {
           setCurrentImage(index);

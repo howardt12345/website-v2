@@ -20,7 +20,6 @@ const PortfolioPage = ({ location }) => {
   const [isLoading, setIsLoading] = useState(true);
   const [data, setData] = useState({});
   const [path, setPath] = useState("");
-  const [currentData, setCurrentData] = useState([]);
 
   useEffect(() => {
     async function fetchData() {
@@ -33,23 +32,16 @@ const PortfolioPage = ({ location }) => {
     if(isEmpty(data) && isLoading) {
       fetchData();
     }
-    
 
     if (location.hash) {
       const id = location.hash.substring(1); // location.hash without the '#'
       setPath(id);
-      setCurrentData([]);
       setIsHome(false);
     } else {
       setPath('');
       if(!isHome) {
-        setCurrentData([]);
       }
       setIsHome(true);
-    }
-    
-    if(!_.isEmpty(data)) {
-      setCurrentData(data.getPicturesQuery(path));
     }
     function preventRightClick(e) {
       if (e.target.tagName === 'IMG') {
@@ -60,7 +52,7 @@ const PortfolioPage = ({ location }) => {
 
     document.addEventListener('contextmenu', preventRightClick);
     return () => document.removeEventListener('contextmenu', preventRightClick);
-  }, [isHome, isLoading, data, path, currentData, location.hash]);
+  }, [isHome, isLoading, data, path, location.hash]);
 
   return (
     <Layout isHome={false} animateNav={false}>
@@ -69,8 +61,8 @@ const PortfolioPage = ({ location }) => {
         <link rel="canonical" href="https://howardt12345.com/portfolio" />
       </Helmet>
       <StyledSection>
-       {!isLoading && !isHome && !_.isEmpty(currentData) && (
-          <TilesPage data={currentData} name={data.getNames(path)} path={path}></TilesPage>
+       {!isLoading && !isHome && !_.isEmpty(data) && (
+          <TilesPage data={data.getPicturesQuery(path)} name={data.getNames(path)} path={path}></TilesPage>
        )}
        {!isLoading && isHome && !_.isEmpty(data) && (
          <CategoriesPage data={data} />
