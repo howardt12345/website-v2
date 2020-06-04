@@ -1,16 +1,38 @@
 import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
-import { media } from '@styles';
+import { media, theme } from '@styles';
 import { Category } from './category';
-
+const { colors } = theme;
 
 const Categories = styled.div`
   display: flex;
   flex-direction: row;
   overflow-x: scroll;
+  margin-bottom: 6px;
+  &:hover {
+    margin-bottom: 0px;
+    scrollbar-width: thin;
+  }
   &::-webkit-scrollbar {
     display: none;
+    height: 6px;
+    width: 4px;
+    border: 1px solid ${colors.textSecondary};
+  }
+  &:hover::-webkit-scrollbar {
+      display: block;
+  }
+  &::-webkit-scrollbar-track {
+    background: ${colors.background};
+  }
+  &::-webkit-scrollbar-thumb {
+    background-color: ${colors.textSecondary};
+    border-radius: 20px;
+  }
+  & {
+    scrollbar-width: none;
+    scrollbar-color: ${colors.textSecondary} ${colors.background};
   }
 `;
 const CategoriesMobile = styled.div`
