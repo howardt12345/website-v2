@@ -1,8 +1,9 @@
 import React, { Component, createRef } from "react";
-import { Link, graphql } from 'gatsby';
+import { graphql } from 'gatsby';
 import { Helmet } from 'react-helmet';
 import { Layout, MapContainer } from '@components';
-import { email, location, insta, instalink, recaptchaKey, googleMapsKey, lat, lng } from '@config';
+import Img from 'gatsby-image';
+import { email, location, insta, instalink, recaptchaKey } from '@config';
 import PropTypes from 'prop-types';
 import { FormattedIcon } from '@components/icons';
 import styled from 'styled-components';
@@ -10,7 +11,6 @@ import firebase from "gatsby-plugin-firebase";
 import { theme, mixins, media, Section, Button, Heading, FlexContainer } from '@styles';
 import { currentTime, replaceAll } from '@utils';
 import Reaptcha from 'reaptcha';
-import { Map, InfoWindow, Marker, GoogleApiWrapper } from 'google-maps-react';
 
 const { colors, fontSizes, fonts } = theme;
 const _ = require('lodash');
@@ -107,11 +107,9 @@ const StyledIcon = styled.div`
   color: ${colors.textPrimary};
   margin-bottom: 14px;
 `;
-const StyledMapsContainer = styled.div`
-  width: 30vw;
-  height: 20vw;
+const StyledMapImg = styled(Img)`
+  width: 25vw;
   ${media.tablet`width: 100%;`};
-  ${media.tablet`height: 40vw;`};
 `;
 
 const validate = (values) => {
@@ -206,11 +204,13 @@ class ContactPage extends Component {
 
   render() {
     const { title, subtitle } = this.props.data.contact.edges[0].node.frontmatter;
+    const staticMap = this.props.data.staticMap;
     return (
       <Layout isHome={false} animateNav={false}>
         <Helmet>
           <title>Contact | Howard Tseng</title>
           <link rel="canonical" href="https://howardt12345.com/contact" />
+          
         </Helmet>
         <StyledContainer>
           <Heading>{title}</Heading>
@@ -295,9 +295,7 @@ class ContactPage extends Component {
                 </StyledIcon>
                 <span>{location}</span>
               </StyledInfoText>
-              <StyledMapsContainer>
-                <MapContainer />
-              </StyledMapsContainer>
+              <StyledMapImg fluid={staticMap.childFile.childImageSharp.fluid} alt="Map" />
             </StyledInfo>
           </FlexContainer>
         </StyledContainer>
@@ -314,6 +312,15 @@ export default ContactPage;
 
 export const pageQuery = graphql`
 {
+  staticMap {
+    childFile {
+      childImageSharp {
+        fluid { # or fixed
+          ...GatsbyImageSharpFluid
+        }
+      }
+    }
+  }
   contact: allMarkdownRemark(filter: { fileAbsolutePath: { regex: "/contact/" } }) {
     edges {
       node {

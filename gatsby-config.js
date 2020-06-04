@@ -142,5 +142,12 @@ module.exports = {
         }
       }
     },
+    {
+      resolve: `gatsby-source-googlemaps-static`,
+      options: {
+          key: config.googleMapsKey,
+          center: config.location,
+      },
+    },
   ],
 }
