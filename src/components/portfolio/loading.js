@@ -1,8 +1,11 @@
 import React, { useState, useEffect } from 'react';
+import { Link } from 'gatsby';
 import { CSSTransition, TransitionGroup } from 'react-transition-group';
 import styled from 'styled-components';
 import { FormattedIcon } from '@components/icons';
-import { theme, mixins, media } from '@styles';
+import { theme, mixins, media, Main, Button } from '@styles';
+import CircularProgress from '@material-ui/core/CircularProgress';
+import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
 const { colors, fonts, navDelay } = theme;
 
 const StyledMainContainer = styled.main`
@@ -42,19 +45,25 @@ const StyledMainContainer = styled.main`
     padding-bottom: 0;
   `};
 `;
+
 const StyledSubtitle = styled.h2`
   font-size: 3vw;
   font-weight: 400;
   font-family: ${fonts.Raleway};
+  margin-top: 20px;
   ${media.bigDesktop`font-size: 48px;`};
   ${media.phablet`font-size: 28px;`};
 `;
-const StyledButton = styled.a`
-  ${mixins.bigButton};
-  margin-top: 20px;
-`;
 
-const NotFoundPage = () => {
+const muitheme = createMuiTheme({
+  palette: {
+    primary: {
+      main: colors.accent
+    },
+  },
+});
+
+const LoadingPage = () => {
   const [isMounted, setIsMounted] = useState(false);
 
   useEffect(() => {
@@ -63,18 +72,13 @@ const NotFoundPage = () => {
   }, []);
 
   return (
-    <TransitionGroup component={null}>
-      {isMounted && (
-        <CSSTransition timeout={500} classNames="fade">
-          <StyledMainContainer className="fillHeight">
-            <FormattedIcon name="NotFound" />
-            <StyledSubtitle>Data Not Found</StyledSubtitle>
-            <StyledButton href="/portfolio">Return to Portfolio</StyledButton>
-          </StyledMainContainer>
-        </CSSTransition>
-      )}
-    </TransitionGroup>
+    <StyledMainContainer className="fillHeight">
+      <ThemeProvider theme={muitheme}>
+        <CircularProgress color='primary'/>
+      </ThemeProvider>
+      <StyledSubtitle>Loading...</StyledSubtitle>
+    </StyledMainContainer>
   )
 }
 
-export default NotFoundPage;
+export default LoadingPage;

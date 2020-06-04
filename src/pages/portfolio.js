@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 import { Helmet } from 'react-helmet';
 import { isEmpty } from "@utils";
 import { fromFirestore } from '@api';
-import { TilesPage, CategoriesPage, NotFoundPage } from '@components/portfolio';
+import { TilesPage, CategoriesPage, NotFoundPage, LoadingPage } from '@components/portfolio';
 
 const _ = require('lodash');
 
@@ -59,6 +59,9 @@ const PortfolioPage = ({ location }) => {
        )}
        {!isLoading && (typeof data.menu === 'undefined' || _.isEmpty(data.menu) || (!isHome && _.isEmpty(data.getPicturesQuery(path)))) && (
          <NotFoundPage />
+       )}
+       {isLoading && (
+         <LoadingPage />
        )}
       </StyledSection>
     </Layout>
