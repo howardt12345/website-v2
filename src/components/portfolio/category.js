@@ -70,14 +70,14 @@ export const Category = ({ category, data, isVisible }) => {
       </CategoryLineSection>
       <CategoryTilesSection>
         {data && (
-          data.getSubcategoriesAt(category).map(s => {
+          data.getSubcategoriesAt(category).map((s, i) => {
             if(s === 'icon') {
               return (
                 <CategoryTile 
                   name={"All"} 
                   path={`/portfolio/#${category}/`}
                   pictures={data.getAllPicturesAt(category)}
-                  key={`/portfolio/#${category}/`}
+                  key={`/portfolio/#${category}/${i}`}
                 />
               );
             } else {
@@ -86,7 +86,7 @@ export const Category = ({ category, data, isVisible }) => {
                   name={s} 
                   path={`/portfolio/#${category}/${s}`}
                   pictures={data.getPicturesAt(category, s)}
-                  key={`/portfolio/#${category}/${s}`}
+                  key={`/portfolio/#${category}/${s}${i}`}
                 />
               );
             }
@@ -160,21 +160,21 @@ const CategoryTile = ({ name, path, pictures }) => {
       <StyledImageDiv className={"slide-container-"+name}>
         <Fade {...fadeProperties}>
           {pictures && 
-          [...pictures.map(pic => {
+          [...pictures.map((pic, i) => {
             return (
-              <StyledImageDiv className={'each-fade'}>
-                <StyledImageDiv className={'image-container'}>
+              <StyledImageDiv className={'each-fade'} key={'each-fade-' + i}>
+                <StyledImageDiv className={'image-container'} key={'image-container-' + i}>
                   {(pic.height !== 5 && pic.width !== 4) && (
                     <StyledBackgroundImage    
                       src={pic.getUrl()}
                       alt={pic.getUrl()}
-                      key={pic.name + '-bg'}
+                      key={pic.name + '-bg' + i}
                     />
                   )}
                   <StyledImage 
                     src={pic.getUrl()}
                     alt={pic.getUrl()}
-                    key={pic.name}
+                    key={pic.name + i}
                   />
                 </StyledImageDiv>
                 <StyledName>{name}</StyledName>
