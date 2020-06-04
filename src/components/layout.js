@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { StaticQuery, graphql } from 'gatsby';
 import PropTypes from 'prop-types';
 import { Head, /*Loader,  Social, Email,*/ Nav, Footer } from '@components';
@@ -18,6 +18,20 @@ const StyledContent = styled.div`
 `;
 
 const Layout = ({ children, isHome, animateNav }) => {
+
+  useEffect(() => {
+    
+    function preventRightClick(e) {
+      if (e.target.tagName === 'IMG') {
+        e.preventDefault()
+        e.stopPropagation()
+      }
+    }
+
+    document.addEventListener('contextmenu', preventRightClick);
+    return () => document.removeEventListener('contextmenu', preventRightClick);
+  });
+
   return (
     <StaticQuery
       query={graphql`

@@ -42,15 +42,6 @@ const PortfolioPage = ({ location }) => {
       }
       setIsHome(true);
     }
-    function preventRightClick(e) {
-      if (e.target.tagName === 'IMG') {
-        e.preventDefault()
-        e.stopPropagation()
-      }
-    }
-
-    document.addEventListener('contextmenu', preventRightClick);
-    return () => document.removeEventListener('contextmenu', preventRightClick);
   }, [isHome, isLoading, data, path, location.hash]);
 
   return (
