@@ -2,13 +2,14 @@ import React, { Component } from "react";
 import { Link, graphql } from 'gatsby';
 import { Helmet } from 'react-helmet';
 import { Layout } from '@components';
-import { email, location, insta, instalink } from '@config';
+import { email, location, insta, instalink, recaptchaKey } from '@config';
 import PropTypes from 'prop-types';
 import { FormattedIcon } from '@components/icons';
 import styled from 'styled-components';
 import firebase from "gatsby-plugin-firebase";
 import { theme, mixins, media, Section, Button, Heading, FlexContainer } from '@styles';
 import { currentTime } from '@utils';
+import Reaptcha from 'reaptcha';
 const { colors, fontSizes, fonts } = theme;
 const _ = require('lodash');
 
@@ -106,7 +107,14 @@ class ContactPage extends Component {
     email: '',
     subject: '',
     body: '',
+    verified: false,
   }
+
+  onVerify = recaptchaResponse => {
+    this.setState({
+      verified: true
+    });
+  };
 
   handleInputChange = event => {
     const target = event.target
@@ -154,6 +162,7 @@ class ContactPage extends Component {
       email: '',
       subject: '',
       body: '',
+      verified: false,
     });
   }
 
@@ -207,7 +216,8 @@ class ContactPage extends Component {
                 />
               </StyledLabel>
               <StyledSubmitContainer>
-                <StyledSubmitButton type='submit'>
+                <Reaptcha sitekey={recaptchaKey} onVerify={this.onVerify} />
+                <StyledSubmitButton type='submit' disabled={!this.state.verified}>
                   Submit
                 </StyledSubmitButton>
               </StyledSubmitContainer>

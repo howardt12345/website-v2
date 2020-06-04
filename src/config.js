@@ -6,6 +6,7 @@ module.exports = {
   siteLanguage: "en_US",
   googleVerification: "Y1H6DvIHTlzQB6yi1I0UZOWIA5LFG6aFN7TodKgaJaI",
   googleMapsKey: 'AIzaSyCFHFzyeZZhepypQ_IypfDKiSxRLQA97GE',
+  recaptchaKey: '6LcbdQAVAAAAAAEfsgM9_6CmD_rvFmCYmKo8MNk0',
   name: "Howard Tseng",
   firstName: "Howard",
   location: "Toronto, ON, CA",
