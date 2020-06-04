@@ -1,12 +1,12 @@
 <div align="center">
-  <img alt="Logo" src="https://raw.githubusercontent.com/howardt12345/website-v2/blob/master/src/images/logo.png" width="100" />
+  <img alt="Logo" src="https://raw.githubusercontent.com/howardt12345/website-v2/master/src/images/logo.png" width="100" />
 </div>
 <h1 align="center">
   howardt12345.com - v2
 </h1>
 </h1>
 <p align="center">
-  The second iteration of <a href="https://howardt12345.com" target="_blank">howardt12345.com</a>, built with <a href="https://www.gatsbyjs.org/" target="_blank">Gatsby</a> and hosted with <a href="https://www.netlify.com/" target="_blank">Netlify</a>
+  The second iteration of <a href="https://howardt12345.com" target="_blank">howardt12345.com</a>, designed in <a href="https://www.figma.com/design/" target="_blank">Figma</a>, built with <a href="https://www.gatsbyjs.org/" target="_blank">Gatsby</a>, and hosted with <a href="https://www.netlify.com/" target="_blank">Netlify</a>
 </p>
 <p align="center">
   Previous iterations:
@@ -18,8 +18,56 @@
   </a>
 </p>
 
-![demo](https://raw.githubusercontent.com/howardt12345/website-v2/blob/master/src/images/og.png)
+![demo](https://raw.githubusercontent.com/howardt12345/website-v2/master/src/images/og.png)
 
 ## About the website
 
-This website was made as my first project working with web technologies. The foundation of this website was built by analysing and modifying <a href="https://github.com/bchiang7/v4" target="_blank" rel="nofollow noopener noreferrer">Brittiany Chiang's website v4</a>, and building extensively off of that. 
+This website was made as my first project working with web technologies. The foundation of this website was built by analysing and modifying <a href="https://github.com/bchiang7/v4" target="_blank" rel="nofollow noopener noreferrer">Brittiany Chiang's website v4</a> to fit my needs for this website. 
+
+## Installation & Setup
+
+1. Installing the Gatsby CLI:
+
+   ```sh
+   npm install -g gatsby-cli
+   ```
+
+2. Install dependencies:
+
+   ```sh
+   npm install
+   ```
+
+3. Start the development server:
+
+   ```sh
+   gatsby develop
+   ```
+   The site is now running at `http://localhost:8000`!
+  
+## Building and Running for Production:   
+
+  1. Generate a full static production build
+
+   ```sh
+   gatsby build
+   ```
+
+1. Preview the site as it will appear once deployed
+
+   ```sh
+   gatsby serve
+   ```
+   
+   The preview site should now be running at `http://localhost:9000`.
+
+## Color Reference:
+
+| Color                | Hex                                                                |
+| -------------------- | ------------------------------------------------------------------ |
+| background           | ![#FFFFFF](https://via.placeholder.com/10/FFFFFF?text=+) `#FFFFFF` |
+| background_secondary | ![#EAEAEA](https://via.placeholder.com/10/EAEAEA?text=+) `#EAEAEA` |
+| accent               | ![#2196F3](https://via.placeholder.com/10/2196F3?text=+) `#2196F3` |
+| textPrimary          | ![#000000](https://via.placeholder.com/10/000000?text=+) `#000000` |
+| textSecondary        | ![#7A7A7A](https://via.placeholder.com/10/7A7A7A?text=+) `#7A7A7A` |
+| textBody             | ![#0C0C0C](https://via.placeholder.com/10/0C0C0C?text=+) `#0C0C0C` |
