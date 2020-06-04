@@ -61,12 +61,12 @@ const PortfolioPage = ({ location }) => {
       </Helmet>
       <StyledSection>
        {!isLoading && !isHome && !_.isEmpty(data) && !_.isEmpty(data.getPicturesQuery(path)) && (
-          <TilesPage data={data.getPicturesQuery(path)} name={data.getNames(path)} path={path}></TilesPage>
+          <TilesPage data={data.getPicturesQuery(path) ?? []} name={data.getNames(path)} path={path}></TilesPage>
        )}
        {!isLoading && isHome && !_.isEmpty(data) && (
          <CategoriesPage data={data} />
        )}
-       {!isLoading && (typeof data.menu === 'undefined' || _.isEmpty(data.menu) || _.isEmpty(data.getPicturesQuery(path))) && (
+       {!isLoading && (typeof data.menu === 'undefined' || _.isEmpty(data.menu) || (!isHome && _.isEmpty(data.getPicturesQuery(path)))) && (
          <NotFoundPage />
        )}
       </StyledSection>
