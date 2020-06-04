@@ -1,14 +1,14 @@
-import React, { Component, createRef } from "react";
+import React, { Component } from "react";
 import { graphql } from 'gatsby';
 import { Helmet } from 'react-helmet';
-import { Layout, MapContainer } from '@components';
+import { Layout } from '@components';
 import Img from 'gatsby-image';
 import { email, location, insta, instalink, recaptchaKey } from '@config';
 import PropTypes from 'prop-types';
 import { FormattedIcon } from '@components/icons';
 import styled from 'styled-components';
 import firebase from "gatsby-plugin-firebase";
-import { theme, mixins, media, Section, Button, Heading, FlexContainer } from '@styles';
+import { theme, mixins, media, Section, Heading, FlexContainer } from '@styles';
 import { currentTime, replaceAll } from '@utils';
 import Reaptcha from 'reaptcha';
 
@@ -164,7 +164,6 @@ class ContactPage extends Component {
       return;
     }
     event.preventDefault();
-    let now = new Date();
     if(formSubmissions) {
       try {
         firebase

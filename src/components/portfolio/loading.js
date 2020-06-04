@@ -1,12 +1,9 @@
-import React, { useState, useEffect } from 'react';
-import { Link } from 'gatsby';
-import { CSSTransition, TransitionGroup } from 'react-transition-group';
+import React from 'react';
 import styled from 'styled-components';
-import { FormattedIcon } from '@components/icons';
-import { theme, mixins, media, Main, Button } from '@styles';
+import { theme, media } from '@styles';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
-const { colors, fonts, navDelay } = theme;
+const { colors, fonts } = theme;
 
 const StyledMainContainer = styled.main`
   display: flex;
@@ -64,13 +61,6 @@ const muitheme = createMuiTheme({
 });
 
 const LoadingPage = () => {
-  const [isMounted, setIsMounted] = useState(false);
-
-  useEffect(() => {
-    const timeout = setTimeout(() => setIsMounted(true), navDelay);
-    return () => clearTimeout(timeout);
-  }, []);
-
   return (
     <StyledMainContainer className="fillHeight">
       <ThemeProvider theme={muitheme}>

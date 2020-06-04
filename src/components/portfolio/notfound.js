@@ -3,7 +3,7 @@ import { CSSTransition, TransitionGroup } from 'react-transition-group';
 import styled from 'styled-components';
 import { FormattedIcon } from '@components/icons';
 import { theme, mixins, media } from '@styles';
-const { colors, fonts, navDelay } = theme;
+const { fonts, navDelay } = theme;
 
 const StyledMainContainer = styled.main`
   display: flex;
