@@ -18,7 +18,7 @@
   </a>
 </p>
 
-![og](https://raw.githubusercontent.com/howardt12345/website-v2/blob/master/src/images/og.png)
+![demo](https://raw.githubusercontent.com/howardt12345/website-v2/blob/master/src/images/og.png)
 
 ## About the website
 
