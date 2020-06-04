@@ -31,6 +31,7 @@ const CategorySection = styled.div`
   flex-direction: column;
   ${media.tablet`margin-right: 0px`};
   margin-right: 100px;
+  margin-bottom: 4px;
 `;
 const CategoryTitleSection = styled.div`
   overflow-x: visible;
