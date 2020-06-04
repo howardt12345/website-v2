@@ -102,6 +102,8 @@ const validate = (values) => {
   return errors;
 }
 
+const formSubmissions = false;
+
 class ContactPage extends Component {
   state = {
     name: '',
@@ -133,31 +135,34 @@ class ContactPage extends Component {
       return;
     }
     event.preventDefault();
-    /* let now = new Date();
-    try {
-      firebase
-      .firestore()
-      .collection("messages")
-      .add({
-        name: this.state.name,
-        email: this.state.email,
-        subject: this.state.subject,
-        body: this.state.body,
-        date: currentTime(),
-        replied: false,
-        archived: false,
-      })
-      .then(() => {
-        alert(`Message has been sent! Thank you ${this.state.name}!`);
-      }).catch(e => {
+    let now = new Date();
+    if(formSubmissions) {
+      try {
+        firebase
+        .firestore()
+        .collection("messages")
+        .add({
+          name: this.state.name,
+          email: this.state.email,
+          subject: this.state.subject,
+          body: this.state.body,
+          date: currentTime(),
+          replied: false,
+          archived: false,
+        })
+        .then(() => {
+          alert(`Message has been sent! Thank you ${this.state.name}!`);
+        }).catch(e => {
+          console.log("error");
+          alert(`An unexpected error has occured.`);
+        });
+      } catch (error) {
         console.log("error");
         alert(`An unexpected error has occured.`);
-      });
-    } catch (error) {
-      console.log("error");
-      alert(`An unexpected error has occured.`);
-    } */
-    alert("Form submission is currently disabled. Please try again later.");
+      }
+    } else {
+      alert("Form submission is currently disabled. Please try again later.");
+    }
     this.setState({
       name: '',
       email: '',
