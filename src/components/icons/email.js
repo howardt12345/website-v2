@@ -5,8 +5,7 @@ const IconEmail = () => (
   width="980.000000pt" height="690.000000pt" viewBox="0 0 980.000000 690.000000"
   preserveAspectRatio="xMidYMid meet">
     <title>Email</title>
-    <g transform="translate(0.000000,690.000000) scale(0.100000,-0.100000)"
-  fill="#000000" stroke="none">
+    <g transform="translate(0.000000,690.000000) scale(0.100000,-0.100000)" stroke="none">
   <path d="M1005 6880 c-171 -6 -198 -9 -268 -33 -161 -56 -279 -129 -404 -250
   -133 -129 -231 -289 -288 -467 -25 -79 -27 -104 -35 -350 -5 -146 -9 -1310
   -10 -2586 l0 -2322 34 -93 c75 -207 147 -328 268 -449 119 -119 234 -192 428

@@ -2,20 +2,39 @@ import { hex2rgba } from '@utils';
 
 
 const ACCENT = '#2196F3';
+const ACCENT_dark = '#64ffda';
 const DARK_BG = '#EAEAEA';
+const DARK_BG_dark = '#151515';
 const BG = '#FFFFFF';
+const BG_dark = '#000000';
+
+
+const colors_light = {
+  background: BG,
+  background_secondary: DARK_BG,
+  accent: ACCENT,
+  textPrimary: '#000000',
+  textSecondary: '#7A7A7A',
+  textBody: '#0C0C0C',
+  translucent_accent: hex2rgba(ACCENT, 0.07),
+  shadow_bg: hex2rgba(DARK_BG, 0.7),
+};
+
+const colors_dark = {
+  background: BG_dark,
+  background_secondary: DARK_BG_dark,
+  accent: ACCENT_dark,
+  textPrimary: '#FFFFFF',
+  textSecondary: '#858585',
+  textBody: '#F3F3F3',
+  translucent_accent: hex2rgba(ACCENT, 0.07),
+  shadow_bg: hex2rgba(DARK_BG_dark, 0.7),
+}
+
+const dark_mode = false;
 
 const theme = {
-  colors: {
-    background: BG,
-    background_secondary: DARK_BG,
-    accent: ACCENT,
-    textPrimary: '#000000',
-    textSecondary: '#7A7A7A',
-    textBody: '#0C0C0C',
-    translucent_accent: hex2rgba(ACCENT, 0.07),
-    shadow_bg: hex2rgba(DARK_BG, 0.7),
-  },
+  colors: !dark_mode ? colors_light : colors_dark,
 
   fonts: {
     Poppins: "Poppins",

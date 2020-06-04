@@ -66,7 +66,7 @@ const Line = styled.hr`
   width: 800px;
   ${media.bigDesktop`width: 800px;`};
   ${media.desktop`width: 80vw;`};
-  border: 2px solid black;
+  border: 2px solid ${colors.textPrimary};
 `;
 const StyledNavLink = styled.div`
   width: 800px;
