@@ -1,11 +1,13 @@
 import React from 'react';
+import { theme } from '@styles';
+const { colors } = theme; 
 
 const IconLogo = () => (
 <svg version="1.0" xmlns="http://www.w3.org/2000/svg"
     width="2048.000000pt" height="2048.000000pt" viewBox="0 0 2048.000000 2048.000000"
     preserveAspectRatio="xMidYMid meet">
     <g transform="translate(0.000000,2048.000000) scale(0.100000,-0.100000)"
-    fill="#000000" stroke="none">
+    fill={`${colors.textPrimary}`} stroke="none">
         <path d="M9675 19599 c-1524 -95 -2982 -547 -4290 -1332 -890 -534 -1715
         -1244 -2381 -2047 -485 -586 -856 -1158 -1195 -1843 -563 -1138 -880 -2338
         -959 -3627 -13 -213 -13 -867 0 -1080 94 -1547 542 -2996 1333 -4315 534 -890
