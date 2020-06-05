@@ -6,7 +6,7 @@ const _ = require('lodash');
 const url = "https://firebasestorage.googleapis.com/v0/b/portfolio-49b69.appspot.com/o/";
 const token = "ea925040-1fca-4eda-b1e8-0eb96567ab7e";
 
-class PictureManager {
+class PortfolioManager {
   constructor(menu) {
     this.menu = menu;
   }
@@ -397,5 +397,5 @@ export const fromFirestore = async () => {
 
   console.log("Picture Manager initialized.");
 
-  return new PictureManager(menu);
+  return new PortfolioManager(menu);
 }
