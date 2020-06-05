@@ -1,7 +1,7 @@
 //Archive page taken and modified from https://github.com/bchiang7/v4
 
 import React, { useRef, useEffect } from 'react';
-import { graphql } from 'gatsby';
+import { graphql, Link } from 'gatsby';
 import { Helmet } from 'react-helmet';
 import PropTypes from 'prop-types';
 import sr from '@utils/sr';
@@ -9,14 +9,31 @@ import { srConfig } from '@config';
 import { Layout } from '@components';
 import { FormattedIcon } from '@components/icons';
 import styled from 'styled-components';
-import { theme, mixins, media, Main, Heading } from '@styles';
+import { theme, mixins, media, Heading, Section } from '@styles';
 const { colors, fonts, fontSizes } = theme;
 
-const StyledMainContainer = styled(Main)``;
+const StyledContainer = styled(Section)`
+  ${mixins.flexCenter};
+  flex-direction: column;
+  align-items: flex-start;
+  padding-bottom: 50px;
+  width: 80vw;
+`;
+const StyledProjectsLink = styled(Link)`
+  ${mixins.inlineLink};
+  text-align: center;
+  margin: 0 auto;
+  font-family: ${fonts.Raleway};
+  font-size: ${fontSizes.sm};
+  &:after {
+    bottom: 0.1em;
+  }
+`;
+
 const StyledTableContainer = styled.div`
-  margin: 100px -20px;
+  margin: 40px -20px;
   ${media.tablet`
-    margin: 100px -10px;
+    margin: 40px -10px;
   `};
 `;
 const StyledTable = styled.table`
@@ -94,7 +111,7 @@ const StyledTable = styled.table`
   }
 `;
 
-const ArchivePage = ({ location, data }) => {
+const ArchivePage = ({ data }) => {
   const projects = data.allMarkdownRemark.edges;
 
   const revealTitle = useRef(null);
@@ -107,17 +124,19 @@ const ArchivePage = ({ location, data }) => {
   }, []);
 
   return (
-    <Layout location={location}>
+    <Layout animateNav={false} isHome={false}>
       <Helmet>
         <title>Archive | Howard Tseng</title>
         <link rel="canonical" href="https://howardt12345.com/archive" />
       </Helmet>
-
-      <StyledMainContainer>
+      <StyledContainer>
         <header ref={revealTitle}>
           <Heading>Archive</Heading>
-          <p className="subtitle">A big list of things I’ve worked on</p>
+          <p className="subtitle">A list of things I’ve worked on in the past</p>
         </header>
+        <StyledProjectsLink to="/projects">
+          back to projects
+        </StyledProjectsLink>
 
         <StyledTableContainer ref={revealTable}>
           <StyledTable>
@@ -214,12 +233,11 @@ const ArchivePage = ({ location, data }) => {
             </tbody>
           </StyledTable>
         </StyledTableContainer>
-      </StyledMainContainer>
+      </StyledContainer>
     </Layout>
   );
 };
 ArchivePage.propTypes = {
-  location: PropTypes.object.isRequired,
   data: PropTypes.object.isRequired,
 };
 
