@@ -27,7 +27,7 @@ const colors_dark = {
   textPrimary: '#FFFFFF',
   textSecondary: '#858585',
   textBody: '#F3F3F3',
-  translucent_accent: hex2rgba(ACCENT, 0.07),
+  translucent_accent: hex2rgba(ACCENT_dark, 0.07),
   shadow_bg: hex2rgba(DARK_BG_dark, 0.7),
 }
 
