@@ -62,6 +62,7 @@ This website was made as my first project working with web technologies. The fou
 
 ## Color Reference:
 
+Light Mode:
 | Color                | Hex                                                                |
 | -------------------- | ------------------------------------------------------------------ |
 | background           | ![#FFFFFF](https://via.placeholder.com/10/FFFFFF?text=+) `#FFFFFF` |
@@ -70,3 +71,13 @@ This website was made as my first project working with web technologies. The fou
 | textPrimary          | ![#000000](https://via.placeholder.com/10/000000?text=+) `#000000` |
 | textSecondary        | ![#7A7A7A](https://via.placeholder.com/10/7A7A7A?text=+) `#7A7A7A` |
 | textBody             | ![#0C0C0C](https://via.placeholder.com/10/0C0C0C?text=+) `#0C0C0C` |
+
+Dark Mode:
+| Color                | Hex                                                                |
+| -------------------- | ------------------------------------------------------------------ |
+| background           | ![#000000](https://via.placeholder.com/10/000000?text=+) `#000000` |
+| background_secondary | ![#151515](https://via.placeholder.com/10/151515?text=+) `#151515` |
+| accent               | ![#64ffda](https://via.placeholder.com/10/64ffda?text=+) `#64ffda` |
+| textPrimary          | ![#FFFFFF](https://via.placeholder.com/10/FFFFFF?text=+) `#FFFFFF` |
+| textSecondary        | ![#858585](https://via.placeholder.com/10/858585?text=+) `#858585` |
+| textBody             | ![#F3F3F3](https://via.placeholder.com/10/F3F3F3?text=+) `#F3F3F3` |
