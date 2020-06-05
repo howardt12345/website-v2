@@ -44,7 +44,7 @@ const StyledMainContainer = styled.main`
 `;
 
 const StyledSubtitle = styled.h2`
-  font-size: 3vw;
+  font-size: 2vw;
   font-weight: 400;
   font-family: ${fonts.Raleway};
   margin-top: 20px;
