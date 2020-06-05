@@ -90,7 +90,7 @@ const StyledAvatarLink = styled.a`
 `;
 const SkillsContainer = styled.ul`
   display: grid;
-  grid-template-columns: repeat(2, minmax(140px, 200px));
+  grid-template-columns: repeat(3, minmax(140px, 200px));
   overflow: hidden;
   padding: 0;
   margin: 20px 0 0 0;
@@ -130,15 +130,19 @@ const About = ({ data }) => {
   const revealContainer = useRef(null);
   useEffect(() => sr.reveal(revealContainer.current, srConfig()), []);
 
+  const showSkills = false;
+
   return (
     <StyledContainer id="about" ref={revealContainer}>
       <Heading>{title}</Heading>
       <FlexContainer>
         <StyledContent>
           <div dangerouslySetInnerHTML={{ __html: html }} />
-          <SkillsContainer>
-            {skills && skills.map((skill, i) => <Skill key={i}>{skill}</Skill>)}
-          </SkillsContainer>
+          {showSkills && (
+            <SkillsContainer>
+              {skills && skills.map((skill, i) => <Skill key={i}>{skill}</Skill>)}
+            </SkillsContainer>
+          )}
         </StyledContent>
         <StyledPic>
           <StyledAvatarLink 
