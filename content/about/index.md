@@ -5,12 +5,12 @@ skills:
   - Java
   - Python
   - Flutter
+  - HTML/CSS
   - React
-  - Node.js
-  - Solidworks
+  - Firebase
 ---
-Consectetur ad velit dolor dolore veniam reprehenderit incididunt qui laboris esse esse excepteur et. Veniam laborum ipsum excepteur labore commodo laboris nisi aliquip. Aliqua id deserunt veniam dolor irure. Aliquip esse veniam et mollit velit adipisicing. Labore nulla officia do in consectetur qui veniam minim minim anim fugiat. 
+Hey! I'm Howard, a freelance photographer and front-end developer based in Toronto, Ontario. I'm also currently a second-year Computer Science student at the University of Ottawa.
 
-Dolor labore ipsum reprehenderit exercitation velit veniam voluptate velit culpa enim. Cillum exercitation officia est quis. Enim laboris sunt ipsum magna pariatur amet sint amet. Do minim eiusmod excepteur anim nulla ipsum qui id. Esse aliqua non voluptate cupidatat reprehenderit dolore velit commodo sint tempor duis sit.
+I've been doing photography since 2012, when my dad gave me a small point-and-shoot. Ever since then, I've been quite passionate about photography, and currently work as a freelance photographer in event and portrait photography.
 
-Here are a few technologies I've been working with recently:
+I've been programming for around 4 years, and I'm proficient in a plethora of languages such as Java, Python, and C#. I've been using Flutter since its beta in early 2018, and have been developing mobile applications primarily with Flutter. I'm currently working on my web development and UX design skills, having designed this website with Figma, creating this website using Gatsby and using Firebase Firestore to create a backend for my portfolio. 
