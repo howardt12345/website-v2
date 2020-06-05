@@ -31,7 +31,7 @@ const colors_dark = {
   shadow_bg: hex2rgba(DARK_BG_dark, 0.7),
 }
 
-const dark_mode = false;
+const dark_mode = true;
 
 const theme = {
   colors: !dark_mode ? colors_light : colors_dark,
