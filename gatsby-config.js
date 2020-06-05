@@ -145,8 +145,15 @@ module.exports = {
     {
       resolve: `gatsby-source-googlemaps-static`,
       options: {
-          key: config.googleMapsKey,
-          center: config.location,
+        key: config.googleMapsKey,
+        center: config.location,
+        zoom: 10,
+      },
+    },
+    {
+      resolve: `gatsby-plugin-google-analytics`,
+      options: {
+        trackingId: config.googleAnalyticsID,
       },
     },
   ],

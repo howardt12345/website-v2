@@ -5,6 +5,7 @@ module.exports = {
   siteUrl: "https://howardt12345.com",
   siteLanguage: "en_US",
   googleVerification: "Y1H6DvIHTlzQB6yi1I0UZOWIA5LFG6aFN7TodKgaJaI",
+  googleAnalyticsID: 'UA-57746409-1',
   googleMapsKey: 'AIzaSyCFHFzyeZZhepypQ_IypfDKiSxRLQA97GE',
   recaptchaKey: '6LcbdQAVAAAAAAEfsgM9_6CmD_rvFmCYmKo8MNk0',
   name: "Howard Tseng",
