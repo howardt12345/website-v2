@@ -60,8 +60,9 @@ const StyledButton = styled.a`
   margin-left: 10px;
 `;
 const StyledDialog = styled(Dialog)`
-  width: 75vw;
+  width: 60vw;
   ${media.tablet`width: 100vw;`};
+  background-color: ${colors.background}
 `;
 
 
