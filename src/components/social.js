@@ -1,10 +1,9 @@
 import React from 'react';
 import { socialMedia } from '@config';
-import { FormattedIcon } from '@components/icons';
+import { IconButton } from '@components';
 import styled from 'styled-components';
 import { theme } from '@styles';
 const { colors } = theme;
-
 
 const StyledList = styled.ul`
   height: 40px;
@@ -28,23 +27,16 @@ const StyledLink = styled.a`
   }
 `;
 
-
 const Social = () => (
   <StyledList>
     {socialMedia &&
       socialMedia.map(({ url, name }, i) => (
       <li key={i}>
-        <StyledLink
-          href={url}
-          target="_blank"
-          rel="nofollow noopener noreferrer"
-          aria-label={name}>
-          <FormattedIcon name={name} />
-        </StyledLink>
+        <IconButton name={name} url={url} />
       </li>
     ))}
   </StyledList>
 );
   
-  
+
 export default Social;
