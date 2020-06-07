@@ -175,6 +175,7 @@ class ContactPage extends Component {
           subject: this.state.subject,
           body: this.state.body,
           date: currentTime(),
+          read: false,
           replied: false,
           archived: false,
         })
