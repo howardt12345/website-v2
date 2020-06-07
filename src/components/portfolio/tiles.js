@@ -5,7 +5,9 @@ import styled from 'styled-components';
 import { ImageMasonry, getUrlsFor } from '@api';
 import { Dialog } from '@reach/dialog';
 import '@reach/dialog/styles.css';
-import { theme, media, Heading, Button } from '@styles';
+import Zoom from 'react-medium-image-zoom'
+import 'react-medium-image-zoom/dist/styles.css'
+import { theme, media, mixins, Heading, Button } from '@styles';
 
 const { colors, fonts } = theme;
 const _ = require('lodash');
@@ -40,8 +42,22 @@ const StyledSubheading = styled.span`
   ${media.phone`font-size: 28px;`};
   ${media.tablet`align-self: start;`};
 `;
-const StyledImg = styled.img`
+const StyledDialogButtons = styled.div`
+  ${mixins.flexBetween}
+`;
+const StyledImgActions = styled.div`
+  justify-content: end;
+`;
+const StyledImgContainer = styled.div`
+  align-items: center;
+  justify-content: center;
   padding-bottom: 1rem;
+`;
+const StyledImg = styled.img`
+`;
+const StyledButton = styled.a`
+  ${mixins.bigButton}
+  margin-left: 10px;
 `;
 const StyledDialog = styled(Dialog)`
   width: 75vw;
@@ -106,13 +122,35 @@ const TilesPage = ({ data, name, path }) => {
       >
       </ImageMasonry>
       <StyledDialog isOpen={showDialog} onDismiss={close} aria-label="Image">
-        <StyledImg 
-          src={data[currentImage].getUrl()}
-          alt={data[currentImage].getUrl()}
-        />
-        <Button onClick={close}>
-          Close
-        </Button>
+        <StyledImgContainer>
+          <Zoom>
+            <StyledImg 
+              src={data[currentImage].getUrl()}
+              alt={data[currentImage].getUrl()}
+            />
+          </Zoom>
+        </StyledImgContainer>
+        <StyledDialogButtons>
+          <Button onClick={close}>
+            Close
+          </Button>
+          <StyledImgActions>
+            {(data[currentImage].buy.length > 0) && (
+              <StyledButton 
+                href={data[currentImage].buy}
+                target="_blank"
+                rel="nofollow noopener noreferrer"
+              >Buy</StyledButton>
+            )}
+            {(data[currentImage].download.length > 0) && (
+              <StyledButton 
+                href={data[currentImage].download}
+                target="_blank"
+                rel="nofollow noopener noreferrer"
+              >Download</StyledButton>
+            )}
+          </StyledImgActions>
+        </StyledDialogButtons>
       </StyledDialog>
     </StyledSection>
   );
