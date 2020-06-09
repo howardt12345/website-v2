@@ -132,6 +132,7 @@ const validate = (values) => {
 }
 
 const formSubmissions = false;
+const recaptcha = true;
 
 class ContactPage extends Component {
   state = {
@@ -199,7 +200,7 @@ class ContactPage extends Component {
       body: '',
       verified: false,
     });
-    this.captcha.reset();
+    if (recaptcha) this.captcha.reset();
   }
 
   render() {
@@ -254,12 +255,14 @@ class ContactPage extends Component {
                 />
               </StyledLabel>
               <StyledSubmitContainer>
-                <Reaptcha
-                  ref={e => (this.captcha = e)}
-                  sitekey={recaptchaKey} 
-                  onVerify={this.onVerify} 
-                />
-                <StyledSubmitButton type='submit' disabled={!this.state.verified}>
+                {recaptcha && (
+                  <Reaptcha
+                    ref={e => (this.captcha = e)}
+                    sitekey={recaptchaKey} 
+                    onVerify={this.onVerify} 
+                  />
+                )}
+                <StyledSubmitButton type='submit' disabled={!this.state.verified && recaptcha}>
                   Submit
                 </StyledSubmitButton>
               </StyledSubmitContainer>
