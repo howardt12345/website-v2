@@ -191,13 +191,13 @@ const GlobalStyle = createGlobalStyle`
     color: ${colors.accent};
   }
   .overline {
-    color: ${colors.green};
+    color: ${colors.accent};
     font-family: ${fonts.Raleway};
     font-size: ${fontSizes.md};
     font-weight: normal;
   }
   .subtitle {
-    color: ${colors.green};
+    color: ${colors.accent};
     margin: 0 0 20px 0;
     font-size: ${fontSizes.md};
     font-family: ${fonts.Poppins};
