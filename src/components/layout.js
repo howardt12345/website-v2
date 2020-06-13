@@ -56,7 +56,7 @@ const Layout = ({ children, isHome, animateNav }) => {
               {children}
               <Footer />
             </div>
-            </StyledContent>
+          </StyledContent>
         </div>
       )}
     />
