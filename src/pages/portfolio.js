@@ -3,6 +3,7 @@ import { Layout } from '@components';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
 import { Helmet } from 'react-helmet';
+import firebase from "gatsby-plugin-firebase";
 import { isEmpty } from "@utils";
 import { fromFirestore } from '@api';
 import { TilesPage, CategoriesPage, NotFoundPage, LoadingPage } from '@components/portfolio';
@@ -19,16 +20,26 @@ const PortfolioPage = ({ location }) => {
   const [isLoading, setIsLoading] = useState(true);
   const [data, setData] = useState({});
   const [path, setPath] = useState("");
+  const [fetching, setFetching] = useState(false);
 
   useEffect(() => {
     async function fetchData() {
-      if(isEmpty(data) && isLoading) {
-        let tmp = await fromFirestore();
-        setData(tmp);
+      try {
+        await firebase.auth().signInAnonymously()
+        .then(async () => {
+          console.log("signed in");
+          let tmp = await fromFirestore();
+          setData(tmp);
+          setIsLoading(false);
+          firebase.auth().currentUser.delete();
+        });
+      } catch(e) {
+        console.log(e);
         setIsLoading(false);
       }
     }
-    if(isEmpty(data) && isLoading) {
+    if(isEmpty(data) && isLoading && !fetching) {
+      setFetching(true);
       fetchData();
     }
 
@@ -42,7 +53,7 @@ const PortfolioPage = ({ location }) => {
       }
       setIsHome(true);
     }
-  }, [isHome, isLoading, data, path, location.hash]);
+  }, [isHome, isLoading, data, path, location.hash, fetching]);
 
   return (
     <Layout isHome={false} animateNav={false}>

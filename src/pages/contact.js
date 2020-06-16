@@ -131,8 +131,8 @@ const validate = (values) => {
   return errors;
 }
 
-const formSubmissions = false;
-const recaptcha = true;
+const formSubmissions = true;
+const recaptcha = false;
 
 class ContactPage extends Component {
   state = {
@@ -158,7 +158,7 @@ class ContactPage extends Component {
     })
   }
 
-  handleSubmit = event => {
+  handleSubmit = async (event) => {
     let errors = validate(this.state);
     if(!_.isEmpty(errors)) {
       alert(Object.values(errors).map(v => "Error: " + v).join("\n"));
@@ -167,22 +167,30 @@ class ContactPage extends Component {
     event.preventDefault();
     if(formSubmissions) {
       try {
-        firebase
-        .firestore()
-        .collection("messages")
-        .add({
-          name: this.state.name,
-          email: this.state.email,
-          subject: this.state.subject,
-          body: this.state.body,
-          date: currentTime(),
-          read: false,
-          replied: false,
-          archived: false,
+        await firebase.auth().signInAnonymously()
+        .then(async () => {
+          await firebase
+          .firestore()
+          .collection("messages")
+          .add({
+            name: this.state.name,
+            email: this.state.email,
+            subject: this.state.subject,
+            body: this.state.body,
+            date: currentTime(),
+            read: false,
+            replied: false,
+            archived: false,
+          })
+          .then(() => {
+            alert(`Message has been sent! Thank you ${this.state.name}!`);
+            firebase.auth().currentUser.delete();
+          }).catch(e => {
+            console.log("error");
+            alert(`An unexpected error has occured.`);
+          });
         })
-        .then(() => {
-          alert(`Message has been sent! Thank you ${this.state.name}!`);
-        }).catch(e => {
+        .catch(e => {
           console.log("error");
           alert(`An unexpected error has occured.`);
         });
