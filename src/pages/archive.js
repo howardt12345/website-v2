@@ -124,7 +124,7 @@ const ArchivePage = ({ data }) => {
   }, []);
 
   return (
-    <Layout animateNav={false} isHome={false}>
+    <Layout animateNav={false} isHome={false} footer={true}>
       <Helmet>
         <title>Archive | Howard Tseng</title>
         <link rel="canonical" href="https://howardt12345.com/archive" />
@@ -135,7 +135,7 @@ const ArchivePage = ({ data }) => {
           <p className="subtitle">A list of things I’ve worked on in the past</p>
         </header>
         <StyledProjectsLink to="/projects">
-          back to projects
+          Back to Projects
         </StyledProjectsLink>
 
         <StyledTableContainer ref={revealTable}>

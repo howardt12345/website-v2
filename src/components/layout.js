@@ -17,7 +17,7 @@ const StyledContent = styled.div`
   min-height: 100vh;
 `;
 
-const Layout = ({ children, isHome, animateNav }) => {
+const Layout = ({ children, isHome, animateNav, footer }) => {
 
   useEffect(() => {
     
@@ -54,7 +54,7 @@ const Layout = ({ children, isHome, animateNav }) => {
             {!isHome ? <Nav animate={animateNav} /> : <br/>}
             <div id="content">
               {children}
-              <Footer />
+              {footer && (<Footer />)}
             </div>
           </StyledContent>
         </div>
@@ -67,6 +67,7 @@ Layout.propTypes = {
   children: PropTypes.node.isRequired,
   isHome: PropTypes.bool.isRequired,
   animateNav: PropTypes.bool.isRequired,
+  footer: PropTypes.bool.isRequired,
 };
 
 export default Layout;

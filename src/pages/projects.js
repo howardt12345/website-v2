@@ -140,7 +140,7 @@ const ProjectsPage = ({ data }) => {
   const projectsToShow = showMore ? projects : firstSix;
 
   return (
-    <Layout isHome={false} animateNav={false}>      
+    <Layout isHome={false} animateNav={false} footer={true}>      
       <Helmet>
         <title>Projects | Howard Tseng</title>
         <link rel="canonical" href="https://howardt12345.com/projects" />

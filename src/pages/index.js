@@ -165,7 +165,7 @@ const HomePage = ({ data }) => {
   };
 
   return (
-    <Layout isHome={true} animateNav={false}>
+    <Layout isHome={true} animateNav={false} footer={true}>
       <StyledContainer className="fillHeight">
         {isMounted && (
           <motion.div

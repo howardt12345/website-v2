@@ -56,7 +56,7 @@ const PortfolioPage = ({ location }) => {
   }, [isHome, isLoading, data, path, location.hash, fetching]);
 
   return (
-    <Layout isHome={false} animateNav={false}>
+    <Layout isHome={false} animateNav={false} footer={true}>
       <Helmet>
         <title>Portfolio | Howard Tseng</title>
         <link rel="canonical" href="https://howardt12345.com/portfolio" />

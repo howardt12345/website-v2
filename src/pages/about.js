@@ -6,7 +6,7 @@ import { Layout, About, Jobs } from '@components';
 
 const AboutPage = ({ data }) => {  
   return (
-    <Layout animateNav={false} isHome={false}>
+    <Layout animateNav={false} isHome={false} footer={true}>
       <Helmet>
         <title>About | Howard Tseng</title>
         <link rel="canonical" href="https://howardt12345.com/about" />

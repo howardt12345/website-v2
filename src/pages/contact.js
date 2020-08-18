@@ -215,7 +215,7 @@ class ContactPage extends Component {
     const { title, subtitle } = this.props.data.contact.edges[0].node.frontmatter;
     const staticMap = this.props.data.staticMap;
     return (
-      <Layout isHome={false} animateNav={false}>
+      <Layout isHome={false} animateNav={false} footer={true}>
         <Helmet>
           <title>Contact | Howard Tseng</title>
           <link rel="canonical" href="https://howardt12345.com/contact" />
