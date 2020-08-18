@@ -40,7 +40,7 @@ const NotFoundPage = () => {
   }, []);
 
   return (
-    <Layout isHome={false} animateNav={true}>
+    <Layout isHome={false} animateNav={true} footer={true}>
       <TransitionGroup component={null}>
         {isMounted && (
           <CSSTransition timeout={500} classNames="fade">
