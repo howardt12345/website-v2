@@ -98,7 +98,7 @@ const TilesPage = ({ data, name, path }) => {
   return (
     <StyledSection>
       <StyledTitleSection>
-        <Link to={'/portfolio'}>
+        <Link to={'/photography'}>
           <StyledHeading>
             <span>{name.category}</span>
             <StyledSubheading>

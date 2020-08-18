@@ -76,18 +76,18 @@ export const Category = ({ category, data, isVisible }) => {
               return (
                 <CategoryTile 
                   name={"All"} 
-                  path={`/portfolio/#${category}/`}
+                  path={`/photography/#${category}/`}
                   pictures={data.getAllPicturesAt(category)}
-                  key={`/portfolio/#${category}/${i}`}
+                  key={`/photography/#${category}/${i}`}
                 />
               );
             } else {
               return (
                 <CategoryTile 
                   name={s} 
-                  path={`/portfolio/#${category}/${s}`}
+                  path={`/photography/#${category}/${s}`}
                   pictures={data.getPicturesAt(category, s)}
-                  key={`/portfolio/#${category}/${s}${i}`}
+                  key={`/photography/#${category}/${s}${i}`}
                 />
               );
             }
@@ -114,8 +114,8 @@ const StyledName = styled.h2`
 `;
 const StyledCategoryTile = styled(Link)`
   position: relative;
-  height: 50vh;
-  width: 40vh;
+  height: calc(100vh - 256px);
+  width: calc((100vh - 256px) * 0.8);
   margin-left: 20px;
   ${media.tablet`margin-bottom: 20px`};
   ${media.tablet`margin-left: 0px`};
@@ -141,8 +141,8 @@ const StyledImage = styled.img`
   margin: auto;
 `;
 const StyledImageDiv = styled.div`
-  height: 50vh;
-  width: 40vh;
+  height: calc(100vh - 256px);
+  width: calc((100vh - 256px) * 0.8);
   ${media.tablet`height: 112.5vw`};
   ${media.tablet`width: 90vw`};
 `;

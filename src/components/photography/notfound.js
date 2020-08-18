@@ -47,11 +47,15 @@ const StyledSubtitle = styled.h2`
   font-weight: 400;
   font-family: ${fonts.Raleway};
   ${media.bigDesktop`font-size: 48px;`};
+  ${media.tablet`font-size: 38px;`};
   ${media.phablet`font-size: 28px;`};
 `;
 const StyledButton = styled.a`
   ${mixins.bigButton};
   margin-top: 20px;
+`;
+const NotFoundIcon = styled.div`
+  height: 40vh;
 `;
 
 const NotFoundPage = () => {
@@ -67,7 +71,9 @@ const NotFoundPage = () => {
       {isMounted && (
         <CSSTransition timeout={500} classNames="fade">
           <StyledMainContainer className="fillHeight">
-            <FormattedIcon name="NotFound" />
+            <NotFoundIcon>
+              <FormattedIcon name="NotFound" />
+            </NotFoundIcon>
             <StyledSubtitle>Data Not Found</StyledSubtitle>
             <StyledButton href="/portfolio">Return to Portfolio</StyledButton>
           </StyledMainContainer>

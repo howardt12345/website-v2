@@ -6,7 +6,7 @@ import { Helmet } from 'react-helmet';
 import firebase from "gatsby-plugin-firebase";
 import { isEmpty } from "@utils";
 import { fromFirestore } from '@api';
-import { TilesPage, CategoriesPage, NotFoundPage, LoadingPage } from '@components/portfolio';
+import { TilesPage, CategoriesPage, NotFoundPage, LoadingPage } from '@components/photography';
 
 const _ = require('lodash');
 
@@ -56,7 +56,7 @@ const PortfolioPage = ({ location }) => {
   }, [isHome, isLoading, data, path, location.hash, fetching]);
 
   return (
-    <Layout isHome={false} animateNav={false} footer={true}>
+    <Layout isHome={false} animateNav={false} footer={!isHome}>
       <Helmet>
         <title>Portfolio | Howard Tseng</title>
         <link rel="canonical" href="https://howardt12345.com/portfolio" />
