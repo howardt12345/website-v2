@@ -114,8 +114,8 @@ const StyledName = styled.h2`
 `;
 const StyledCategoryTile = styled(Link)`
   position: relative;
-  height: calc(100vh - 256px);
-  width: calc((100vh - 256px) * 0.8);
+  height: 60vh;
+  width:  48vh;
   margin-left: 20px;
   ${media.tablet`margin-bottom: 20px`};
   ${media.tablet`margin-left: 0px`};
@@ -141,8 +141,8 @@ const StyledImage = styled.img`
   margin: auto;
 `;
 const StyledImageDiv = styled.div`
-  height: calc(100vh - 256px);
-  width: calc((100vh - 256px) * 0.8);
+  height: 60vh;
+  width:  48vh;
   ${media.tablet`height: 112.5vw`};
   ${media.tablet`width: 90vw`};
 `;
