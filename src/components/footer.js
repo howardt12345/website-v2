@@ -7,7 +7,7 @@ const { colors, fontSizes, fonts } = theme;
 const StyledContainer = styled.footer`
   ${mixins.flexCenter};
   flex-direction: column;
-  padding: 15px;
+  padding: 8px;
   text-align: center;
   height: auto;
   min-height: 70px;
@@ -19,7 +19,7 @@ const StyledMetadata = styled.div`
 `;
 const StyledGitHubLink = styled.a`
   color: ${colors.textSecondary};
-  padding: 10px;
+  padding: 8px;
 `;
 
 const Footer = () => {
