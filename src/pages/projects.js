@@ -146,7 +146,7 @@ const ProjectsPage = ({ data }) => {
         <link rel="canonical" href="https://howardt12345.com/projects" />
       </Helmet>
       <StyledContainer>
-        <Heading ref={revealTitle}>Projects</Heading>
+        <Heading /*ref={revealTitle}*/>Projects</Heading>
         <StyledArchiveLink to="/archive" ref={revealArchiveLink}>
           view the archive
         </StyledArchiveLink>
