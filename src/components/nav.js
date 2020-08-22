@@ -45,6 +45,8 @@ const StyledTitle = styled.h2`
   color: ${colors.textPrimary};
   font-family: ${fonts.Poppins};
   font-weight: normal;
+  padding: 0;
+  margin: 0;
   display: block;
   ${media.tablet`display: none;`};
 `;
@@ -148,7 +150,7 @@ const StyledList = styled.ol`
   list-style: none;
 `;
 const StyledListItem = styled.li`
-  margin: 0 10px;
+  margin: 0 8px;
   position: relative;
   font-size: ${fontSizes.lg};
 `;
