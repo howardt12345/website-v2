@@ -113,7 +113,7 @@ const HomePage = ({ data }) => {
       window.removeEventListener("resize", handleResize);
       clearTimeout(timeout);
     }
-  }, []);
+  }, [width, isBrowser, isMounted]);
 
   const { frontmatter } = data.home.edges[0].node;
 
