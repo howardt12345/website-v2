@@ -66,7 +66,7 @@ const CategoriesPage = ({ data }) => {
   }, [width, isBrowser]);
 
   return (
-   (width > 768) 
+   (width >= 768) 
    ? (
     <Categories id='scroll_container'>
       {data && (width > 0) && (
