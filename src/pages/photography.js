@@ -59,7 +59,7 @@ const PortfolioPage = ({ location }) => {
     <Layout isHome={false} animateNav={false} footer={!isHome}>
       <Helmet>
         <title>Portfolio | Howard Tseng</title>
-        <link rel="canonical" href="https://howardt12345.com/portfolio" />
+        <link rel="canonical" href="https://howardt12345.com/photography" />
       </Helmet>
       <StyledSection>
        {!isLoading && !isHome && !_.isEmpty(data) && !_.isEmpty(data.getPicturesQuery(path)) && (
