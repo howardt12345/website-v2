@@ -16,9 +16,24 @@ import {
   IconStar,
   IconLogo,
 } from '@components/icons';
+import { 
+  MdAccountCircle,
+  MdPhotoCamera,
+  MdFolderOpen,
+  MdContactMail,
+} from "react-icons/md";
+
 
 const FormattedIcon = ({ name }) => {
   switch (name) {
+    case 'About':
+      return <MdAccountCircle />;
+    case 'Photography':
+      return <MdPhotoCamera />;
+    case 'Projects':
+      return <MdFolderOpen />;
+    case 'Contact':
+      return <MdContactMail />;
     case 'Dribbble':
       return <IconDribbble />;
     case 'Email':
