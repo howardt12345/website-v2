@@ -16,6 +16,9 @@ const StyledSection = styled.section`
 `;
 
 const PortfolioPage = ({ location }) => {
+  const isBrowser = typeof window !== 'undefined'
+  const [width, setWidth] = useState(isBrowser ? window.innerWidth : 0)
+
   const [isHome, setIsHome] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
   const [data, setData] = useState({});
@@ -23,6 +26,10 @@ const PortfolioPage = ({ location }) => {
   const [fetching, setFetching] = useState(false);
 
   useEffect(() => {
+    if (!isBrowser) return false
+
+    const handleResize = () => setWidth(window.innerWidth)
+
     async function fetchData() {
       try {
         await firebase.auth().signInAnonymously()
@@ -53,10 +60,16 @@ const PortfolioPage = ({ location }) => {
       }
       setIsHome(true);
     }
-  }, [isHome, isLoading, data, path, location.hash, fetching]);
+
+    window.addEventListener("resize", handleResize);
+    
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    }
+  }, [isHome, isLoading, data, path, location.hash, fetching, width, isBrowser]);
 
   return (
-    <Layout isHome={false} animateNav={false} footer={!isHome}>
+    <Layout isHome={false} animateNav={false} footer={!isHome || width < 768}>
       <Helmet>
         <title>Portfolio | Howard Tseng</title>
         <link rel="canonical" href="https://howardt12345.com/photography" />
