@@ -6,6 +6,7 @@ import { theme, mixins, media, Main } from '@styles';
 import { Layout } from '@components';
 import { motion } from "framer-motion"
 import { navLinks } from '@config';
+import { IconButton } from '@components';
 
 const { colors, fontSizes, fonts, navDelay } = theme;
 
@@ -44,8 +45,8 @@ const StyledTitle = styled.h1`
   ${media.thone`text-align: center;`}
   ${media.desktop`font-size: 114px;`};
   ${media.tablet`font-size: 92px;`};
-  ${media.phablet`font-size: 64px;`};
-  ${media.phablet`font-size: 56px;`};
+  ${media.phablet`font-size: 68px;`};
+  ${media.phone`font-size: 56px;`};
 `;
 const StyledSubtitle = styled.h2`
   width: 800px;
@@ -68,13 +69,14 @@ const Line = styled.hr`
   ${media.desktop`width: 80vw;`};
   border: 2px solid ${colors.textPrimary};
 `;
-const StyledNavLink = styled.div`
+const StyledNavLinks = styled.div`
   width: 800px;
   ${media.bigDesktop`width: 800px;`};
   ${media.desktop`width: 80vw;`};
   align-items: center;
 `;
 const StyledNavList = styled.ol`
+  height: 40px;
   ${mixins.flexCenter};
   padding: 0;
   margin: 0;
@@ -91,12 +93,26 @@ const StyledNavListLink = styled(Link)`
 
 
 const HomePage = ({ data }) => {
+  const isBrowser = typeof window !== 'undefined'
+  const [width, setWidth] = useState(isBrowser ? window.innerWidth : 0)
   
   const [isMounted, setIsMounted] = useState(false);
 
   useEffect(() => {
+    if (!isBrowser) return false;
+
+    const handleResize = () => {
+      if(typeof window !== 'undefined') {
+        setWidth(window.innerWidth);
+      }
+    }
+    window.addEventListener("resize", handleResize);
+
     const timeout = setTimeout(() => setIsMounted(true), navDelay);
-    return () => clearTimeout(timeout);
+    return () => {
+      window.removeEventListener("resize", handleResize);
+      clearTimeout(timeout);
+    }
   }, []);
 
   const { frontmatter } = data.home.edges[0].node;
@@ -200,7 +216,7 @@ const HomePage = ({ data }) => {
             <StyledSubtitle>{<div dangerouslySetInnerHTML={{ __html: frontmatter.subtitle }} />}</StyledSubtitle>
           </motion.div>
         )}
-        <StyledNavLink>
+        <StyledNavLinks>
           <StyledNavList>
             {isMounted &&
               navLinks &&
@@ -212,14 +228,19 @@ const HomePage = ({ data }) => {
                   animate="visible"
                   variants={navVariants}
                 >
-                  <StyledNavListItem>
-                    <StyledNavListLink to={url}>{name}</StyledNavListLink>
-                  </StyledNavListItem>
+                  {(width >= 600) && (
+                    <StyledNavListItem>
+                      <StyledNavListLink to={url}>{name}</StyledNavListLink>
+                    </StyledNavListItem>
+                  )}
+                  {(width < 600) && (
+                    <IconButton name={name} url={url} />
+                  )}
                 </motion.div>
               ))
             }
           </StyledNavList>
-        </StyledNavLink>
+        </StyledNavLinks>
       </StyledContainer>
     </Layout>
   )
