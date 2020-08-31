@@ -62,7 +62,7 @@ const StyledButton = styled.a`
 const StyledDialog = styled(Dialog)`
   width: 60vw;
   ${media.tablet`width: 100vw;`};
-  background-color: ${colors.background}
+  background-color: ${colors.background};
 `;
 
 
