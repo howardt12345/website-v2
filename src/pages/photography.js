@@ -33,12 +33,12 @@ const PortfolioPage = ({ location }) => {
     async function fetchData() {
       try {
         await firebase.auth().signInAnonymously()
-        .then(async () => {
-          console.log("signed in");
-          let tmp = await fromFirestore();
-          setData(tmp);
-          setIsLoading(false);
-          firebase.auth().currentUser.delete();
+        console.log("signed in");
+        let tmp = await fromFirestore();
+        setData(tmp);
+        setIsLoading(false);
+        firebase.auth().currentUser.delete().then(() => {
+          console.log('anonymous account deleted');
         });
       } catch(e) {
         console.log(e);
