@@ -176,7 +176,7 @@ class ContactPage extends Component {
             name: this.state.name,
             email: this.state.email,
             subject: this.state.subject,
-            body: this.state.body,
+            body: encodeURIComponent(this.state.body),
             date: currentTime(),
             read: false,
             replied: false,
