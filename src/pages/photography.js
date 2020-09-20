@@ -76,7 +76,7 @@ const PortfolioPage = ({ location }) => {
       </Helmet>
       <StyledSection>
        {!isLoading && !isHome && !_.isEmpty(data) && !_.isEmpty(data.getPicturesQuery(path)) && (
-          <TilesPage data={data.getPicturesQuery(path) ?? []} name={data.getNames(path)} path={path}></TilesPage>
+          <TilesPage data={data.getPicturesQuery(path) ?? []} name={data.getNames(path)} path={path} />
        )}
        {!isLoading && isHome && !_.isEmpty(data) && (
          <CategoriesPage data={data} />
