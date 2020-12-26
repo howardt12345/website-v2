@@ -15,7 +15,7 @@ const StyledSection = styled.section`
   padding: 100px 0 0px;
 `;
 
-const PortfolioPage = ({ location }) => {
+const PhotographyPage = ({ location }) => {
   const isBrowser = typeof window !== 'undefined'
   const [width, setWidth] = useState(isBrowser ? window.innerWidth : 0)
 
@@ -92,8 +92,8 @@ const PortfolioPage = ({ location }) => {
   );
 }
 
-PortfolioPage.propTypes = {
+PhotographyPage.propTypes = {
   location: PropTypes.object.isRequired,
 };
 
-export default PortfolioPage;
+export default PhotographyPage;

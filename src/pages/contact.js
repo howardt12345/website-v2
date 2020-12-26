@@ -107,10 +107,6 @@ const StyledIcon = styled.div`
   color: ${colors.textPrimary};
   margin-bottom: 14px;
 `;
-const StyledMapImg = styled(Img)`
-  width: 25vw;
-  ${media.tablet`width: 100%;`};
-`;
 
 const validate = (values) => {
   let errors = {};
@@ -213,7 +209,6 @@ class ContactPage extends Component {
 
   render() {
     const { title, subtitle } = this.props.data.contact.edges[0].node.frontmatter;
-    const staticMap = this.props.data.staticMap;
     return (
       <Layout isHome={false} animateNav={false} footer={true}>
         <Helmet>
@@ -306,7 +301,6 @@ class ContactPage extends Component {
                 </StyledIcon>
                 <span>{location}</span>
               </StyledInfoText>
-              <StyledMapImg fluid={staticMap.childFile.childImageSharp.fluid} alt="Map" />
             </StyledInfo>
           </FlexContainer>
         </StyledContainer>
@@ -323,15 +317,6 @@ export default ContactPage;
 
 export const pageQuery = graphql`
 {
-  staticMap {
-    childFile {
-      childImageSharp {
-        fluid { # or fixed
-          ...GatsbyImageSharpFluid
-        }
-      }
-    }
-  }
   contact: allMarkdownRemark(filter: { fileAbsolutePath: { regex: "/contact/" } }) {
     edges {
       node {
