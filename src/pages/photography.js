@@ -26,8 +26,8 @@ const StyledHeading = styled(Heading)`
 
 class Picture {
   constructor(key, value) {
-    this.name = key;
-    this.date = value;
+    this.date = key;
+    this.name = value;
   }
 
   getUrl = () => `${url}photo%2F${replaceAll(this.name, ' ', '%20')}?alt=media&token=${token}`;
