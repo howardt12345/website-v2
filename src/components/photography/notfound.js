@@ -75,7 +75,7 @@ const NotFoundPage = () => {
               <FormattedIcon name="NotFound" />
             </NotFoundIcon>
             <StyledSubtitle>Data Not Found</StyledSubtitle>
-            <StyledButton href="/portfolio">Return to Portfolio</StyledButton>
+            <StyledButton href="/photography">Return to Photography</StyledButton>
           </StyledMainContainer>
         </CSSTransition>
       )}

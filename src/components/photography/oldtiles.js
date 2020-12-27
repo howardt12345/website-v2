@@ -26,9 +26,27 @@ const StyledTitleSection = styled.div`
 `;
 const StyledHeading = styled(Heading)`
   align-self: baseline;
+  line-height: 0.75;
+`;
+const StyledSubheading = styled.span`
+  text-align: left;
+  align-self: flex-end;
+  color: ${colors.textPrimary};
+  font-family: ${fonts.Poppins};
+  font-size: 54px;
+  font-weight: 400;
+  margin-bottom: 0px;
+  ${media.desktop`font-size: 54px;`};
+  ${media.tablet`font-size: 40px;`};
+  ${media.phablet`font-size: 28px;`};
+  ${media.phone`font-size: 28px;`};
+  ${media.tablet`align-self: start;`};
 `;
 const StyledDialogButtons = styled.div`
   ${mixins.flexBetween}
+`;
+const StyledImgActions = styled.div`
+  justify-content: end;
 `;
 const StyledImgContainer = styled.div`
   align-items: center;
@@ -37,6 +55,10 @@ const StyledImgContainer = styled.div`
 `;
 const StyledImg = styled.img`
 `;
+const StyledButton = styled.a`
+  ${mixins.bigButton}
+  margin-left: 10px;
+`;
 const StyledDialog = styled(Dialog)`
   width: 60vw;
   ${media.tablet`width: 100vw;`};
@@ -44,17 +66,24 @@ const StyledDialog = styled(Dialog)`
 `;
 
 
-const TilesPage = ({ data }) => {
+const OldTilesPage = ({ data, name, path }) => {
   const isBrowser = typeof window !== 'undefined'
   const [width, setWidth] = useState(isBrowser ? window.innerWidth : 0)
   const [showDialog, setShowDialog] = useState(false);
   const [currentImage, setCurrentImage] = useState(0);
+  const [currentPath, setCurrentPath] = useState(path);
 
   const open = () => setShowDialog(true);
   const close = () => setShowDialog(false);
 
   useEffect(() => {
-    if (!isBrowser) return false;
+    if (!isBrowser) return false
+
+    if(path !== currentPath) {
+      close();
+      setCurrentPath(path);
+      setCurrentImage(0);
+    }
 
     const handleResize = () => {
       if(typeof window !== 'undefined' && window !== null) {
@@ -68,17 +97,25 @@ const TilesPage = ({ data }) => {
     window.addEventListener("resize", handleResize);
     
     return () => window.removeEventListener("resize", handleResize);
-  }, [isBrowser, width]);
+  }, [isBrowser, path, currentPath, width]);
 
   return (
     <StyledSection>
       <StyledTitleSection>
-        <StyledHeading>
-        <span>{"Photography"}</span>
-        </StyledHeading>
+        <Link to={'/photography'}>
+          <StyledHeading>
+            <span>{name.category}</span>
+            <StyledSubheading>
+              {_.isEmpty(name.subcategory) || width < 600 ? '' : ':'}&nbsp;
+            </StyledSubheading>
+          </StyledHeading>
+        </Link>
+        <StyledSubheading>
+          <span>{name.subcategory}</span>
+        </StyledSubheading>
       </StyledTitleSection>
       <ImageMasonry 
-        numCols={Math.ceil(width/600)}
+        numCols={Math.ceil(width/450)}
         containerWidth={'100%'}
         forceOrder={true}
         animate={true}
@@ -102,14 +139,32 @@ const TilesPage = ({ data }) => {
           <Button onClick={close}>
             Close
           </Button>
+          <StyledImgActions>
+            {(data[currentImage].buy.length > 0) && (
+              <StyledButton 
+                href={data[currentImage].buy}
+                target="_blank"
+                rel="nofollow noopener noreferrer"
+              >Buy</StyledButton>
+            )}
+            {(data[currentImage].download.length > 0) && (
+              <StyledButton 
+                href={data[currentImage].download}
+                target="_blank"
+                rel="nofollow noopener noreferrer"
+              >Download</StyledButton>
+            )}
+          </StyledImgActions>
         </StyledDialogButtons>
       </StyledDialog>
     </StyledSection>
   );
 }
 
-TilesPage.propTypes = {
+OldTilesPage.propTypes = {
   data: PropTypes.array.isRequired,
+  name: PropTypes.object.isRequired,
+  path: PropTypes.string.isRequired,
 }
 
-export default TilesPage;
+export default OldTilesPage;

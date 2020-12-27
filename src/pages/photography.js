@@ -1,34 +1,64 @@
-import React, { useEffect, useState } from "react"
-import { Layout } from '@components';
-import styled from 'styled-components';
-import PropTypes from 'prop-types';
-import { Helmet } from 'react-helmet';
+import React, { useEffect, useState }  from 'react';
 import firebase from "gatsby-plugin-firebase";
-import { isEmpty } from "@utils";
-import { fromFirestore } from '@api';
-import { TilesPage, CategoriesPage, NotFoundPage, LoadingPage } from '@components/photography';
+import styled from 'styled-components';
+import { Helmet } from 'react-helmet';
+import { graphql } from 'gatsby';
+import PropTypes from 'prop-types';
+import { isEmpty, replaceAll } from "@utils";
+import { Layout } from '@components';
+import { LoadingPage, TilesPage } from '@components/photography';
+import { media, mixins, Heading, Section } from '@styles';
 
 const _ = require('lodash');
+
+const url = "https://firebasestorage.googleapis.com/v0/b/portfolio-49b69.appspot.com/o/";
+const token = "ea925040-1fca-4eda-b1e8-0eb96567ab7e";
 
 const StyledSection = styled.section`
   margin: auto 0;
   padding: 100px 0 0px;
 `;
 
-const PhotographyPage = ({ location }) => {
-  const isBrowser = typeof window !== 'undefined'
-  const [width, setWidth] = useState(isBrowser ? window.innerWidth : 0)
+const StyledHeading = styled(Heading)`
+  align-self: baseline;
+  line-height: 0.75;
+`;
 
-  const [isHome, setIsHome] = useState(false);
+class Picture {
+  constructor(key, value) {
+    this.name = key;
+    this.date = value;
+  }
+
+  getUrl = () => `${url}photo%2F${replaceAll(this.name, ' ', '%20')}?alt=media&token=${token}`;
+}
+
+const fromFirestore = async () => {
+  var list = [];
+
+  await firebase.firestore()
+  .collection("photo")
+  .doc("all")
+  .get().then(response => {
+      const data = response.data();
+      const map = data.photos;
+      for(const [key, value] of Object.entries(map)) {
+        list.push(new Picture(key, value));
+        console.log(key, value);
+      }
+  });
+
+  return list;
+}
+
+const PhotographyPage = () => {
+
   const [isLoading, setIsLoading] = useState(true);
-  const [data, setData] = useState({});
-  const [path, setPath] = useState("");
   const [fetching, setFetching] = useState(false);
+  const [data, setData] = useState({});
+
 
   useEffect(() => {
-    if (!isBrowser) return false
-
-    const handleResize = () => setWidth(window.innerWidth)
 
     async function fetchData() {
       try {
@@ -45,55 +75,32 @@ const PhotographyPage = ({ location }) => {
         setIsLoading(false);
       }
     }
+
     if(isEmpty(data) && isLoading && !fetching) {
       setFetching(true);
       fetchData();
     }
 
-    if (location.hash) {
-      const id = location.hash.substring(1); // location.hash without the '#'
-      setPath(id);
-      setIsHome(false);
-    } else {
-      setPath('');
-      if(!isHome) {
-      }
-      setIsHome(true);
-    }
+  }, [isLoading, fetching, data]);
 
-    window.addEventListener("resize", handleResize);
-    
-    return () => {
-      window.removeEventListener("resize", handleResize);
-    }
-  }, [isHome, isLoading, data, path, location.hash, fetching, width, isBrowser]);
 
   return (
-    <Layout isHome={false} animateNav={false} footer={!isHome || width < 768}>
+    <Layout animateNav={false} isHome={false} footer={true}>
       <Helmet>
-        <title>Portfolio | Howard Tseng</title>
+        <title>Photography | Howard Tseng</title>
         <link rel="canonical" href="https://howardt12345.com/photography" />
       </Helmet>
+
       <StyledSection>
-       {!isLoading && !isHome && !_.isEmpty(data) && !_.isEmpty(data.getPicturesQuery(path)) && (
-          <TilesPage data={data.getPicturesQuery(path) ?? []} name={data.getNames(path)} path={path} />
-       )}
-       {!isLoading && isHome && !_.isEmpty(data) && (
-         <CategoriesPage data={data} />
-       )}
-       {!isLoading && (typeof data.menu === 'undefined' || _.isEmpty(data.menu) || (!isHome && _.isEmpty(data.getPicturesQuery(path)))) && (
-         <NotFoundPage />
-       )}
-       {isLoading && (
-         <LoadingPage />
-       )}
+        {!isLoading && !_.isEmpty(data) && !_.isEmpty(data) && (
+          <TilesPage data={data ?? []} />
+        )}
+        {isLoading && (
+          <LoadingPage />
+        )}
       </StyledSection>
     </Layout>
   );
 }
-
-PhotographyPage.propTypes = {
-  location: PropTypes.object.isRequired,
-};
 
 export default PhotographyPage;
