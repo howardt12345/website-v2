@@ -41,7 +41,6 @@ const fromFirestore = async () => {
       const map = data.photos;
       for(const [key, value] of Object.entries(map)) {
         list.push(new Picture(key, value));
-        console.log(key, value);
       }
   });
 

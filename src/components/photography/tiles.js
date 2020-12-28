@@ -27,6 +27,11 @@ const StyledTitleSection = styled.div`
 const StyledHeading = styled(Heading)`
   align-self: baseline;
 `;
+const StyledDialog = styled(Dialog)`
+  width: 60vw;
+  ${media.tablet`width: 100vw;`};
+  background-color: ${colors.background};
+`;
 const StyledDialogButtons = styled.div`
   ${mixins.flexBetween}
 `;
@@ -44,13 +49,6 @@ const TilesPage = ({ data }) => {
 
   const open = () => setShowDialog(true);
   const close = () => setShowDialog(false);
-
-  
-  const StyledDialog = styled(Dialog)`
-    width: ${(data[currentImage].width/data[currentImage].height)*40 > 100 ? 100 : (data[currentImage].width/data[currentImage].height)*40}vw;
-    ${media.tablet`width: 100vw;`};
-    background-color: ${colors.background};
-  `;
 
   useEffect(() => {
     if (!isBrowser) return false;
