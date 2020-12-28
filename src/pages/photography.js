@@ -19,15 +19,12 @@ const StyledSection = styled.section`
   padding: 100px 0 0px;
 `;
 
-const StyledHeading = styled(Heading)`
-  align-self: baseline;
-  line-height: 0.75;
-`;
-
 class Picture {
   constructor(key, value) {
     this.date = key;
     this.name = value.split('"')[1];
+    this.width = parseInt(value.split(",")[1]);
+    this.height = parseInt(value.split(",")[2]);
   }
 
   getUrl = () => `${url}photo%2F${replaceAll(this.name, ' ', '%20')}?alt=media&token=${token}`;

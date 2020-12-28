@@ -9,7 +9,7 @@ import Zoom from 'react-medium-image-zoom'
 import 'react-medium-image-zoom/dist/styles.css'
 import { theme, media, mixins, Heading, Button } from '@styles';
 
-const { colors, fonts } = theme;
+const { colors } = theme;
 const _ = require('lodash');
 
 const StyledSection = styled.section`
@@ -35,14 +35,6 @@ const StyledImgContainer = styled.div`
   justify-content: center;
   padding-bottom: 1rem;
 `;
-const StyledImg = styled.img`
-`;
-const StyledDialog = styled(Dialog)`
-  width: 60vw;
-  ${media.tablet`width: 100vw;`};
-  background-color: ${colors.background};
-`;
-
 
 const TilesPage = ({ data }) => {
   const isBrowser = typeof window !== 'undefined'
@@ -52,6 +44,13 @@ const TilesPage = ({ data }) => {
 
   const open = () => setShowDialog(true);
   const close = () => setShowDialog(false);
+
+  
+  const StyledDialog = styled(Dialog)`
+    width: ${(data[currentImage].width/data[currentImage].height)*40 >= 100 ? 100 : (data[currentImage].width/data[currentImage].height)*40}vw;
+    ${media.tablet`width: 100vw;`};
+    background-color: ${colors.background};
+  `;
 
   useEffect(() => {
     if (!isBrowser) return false;
@@ -92,7 +91,7 @@ const TilesPage = ({ data }) => {
       <StyledDialog isOpen={showDialog} onDismiss={close} aria-label="Image">
         <StyledImgContainer>
           <Zoom>
-            <StyledImg 
+            <img 
               src={data[currentImage].getUrl()}
               alt={data[currentImage].getUrl()}
             />
