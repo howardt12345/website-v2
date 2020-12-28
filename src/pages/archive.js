@@ -115,10 +115,12 @@ const ArchivePage = ({ data }) => {
   const projects = data.allMarkdownRemark.edges;
 
   const revealTitle = useRef(null);
+  const revealProjectsLink = useRef(null);
   const revealTable = useRef(null);
   const revealProjects = useRef([]);
   useEffect(() => {
     sr.reveal(revealTitle.current, srConfig());
+    sr.reveal(revealProjectsLink.current, srConfig());
     sr.reveal(revealTable.current, srConfig());
     revealProjects.current.forEach((ref, i) => sr.reveal(ref, srConfig(i * 10)));
   }, []);
@@ -134,9 +136,11 @@ const ArchivePage = ({ data }) => {
           <Heading>Archive</Heading>
           <p className="subtitle">A list of things I’ve worked on in the past</p>
         </header>
-        <StyledProjectsLink to="/projects">
-          Back to Projects
-        </StyledProjectsLink>
+        <div ref={revealProjectsLink}>
+          <StyledProjectsLink to="/projects">
+            Back to Projects
+          </StyledProjectsLink>
+        </div>
 
         <StyledTableContainer ref={revealTable}>
           <StyledTable>

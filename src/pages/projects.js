@@ -126,11 +126,13 @@ const ProjectsPage = ({ data }) => {
   const [showMore, setShowMore] = useState(false);
   const revealTitle = useRef(null);
   const revealArchiveLink = useRef(null);
+  const revealTable = useRef(null);
   const revealProjects = useRef([]);
 
   useEffect(() => {
     sr.reveal(revealTitle.current, srConfig());
     sr.reveal(revealArchiveLink.current, srConfig());
+    sr.reveal(revealTable.current, srConfig());
     revealProjects.current.forEach((ref, i) => sr.reveal(ref, srConfig(i * 100)));
   }, []);
 
@@ -146,12 +148,14 @@ const ProjectsPage = ({ data }) => {
         <link rel="canonical" href="https://howardt12345.com/projects" />
       </Helmet>
       <StyledContainer>
-        <Heading /*ref={revealTitle}*/>Projects</Heading>
-        <StyledArchiveLink to="/archive" ref={revealArchiveLink}>
-          view the archive
-        </StyledArchiveLink>
+        <Heading ref={revealTitle}>Projects</Heading>
+        <div ref={revealArchiveLink}>
+          <StyledArchiveLink to="/archive">
+            View the archive
+          </StyledArchiveLink>
+        </div>
 
-        <StyledGrid>
+        <StyledGrid ref={revealTable}>
           <TransitionGroup className="projects">
             {projectsToShow &&
               projectsToShow.map(({ node }, i) => {
