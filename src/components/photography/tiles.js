@@ -47,7 +47,7 @@ const TilesPage = ({ data }) => {
 
   
   const StyledDialog = styled(Dialog)`
-    width: ${(data[currentImage].width/data[currentImage].height)*40 >= 100 ? 100 : (data[currentImage].width/data[currentImage].height)*40}vw;
+    width: ${(data[currentImage].width/data[currentImage].height)*40 > 100 ? 100 : (data[currentImage].width/data[currentImage].height)*40}vw;
     ${media.tablet`width: 100vw;`};
     background-color: ${colors.background};
   `;
