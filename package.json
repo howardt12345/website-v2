@@ -46,6 +46,7 @@
     "react-icons": "^3.11.0",
     "react-medium-image-zoom": "^4.3.1",
     "react-scroll-horizontal": "^1.6.4",
+    "react-sizeme": "^2.6.12",
     "react-slick": "^0.26.1",
     "react-transition-group": "^4.4.1",
     "react-typography": "^0.16.19",

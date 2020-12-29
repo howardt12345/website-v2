@@ -8,6 +8,7 @@ import '@reach/dialog/styles.css';
 import Zoom from 'react-medium-image-zoom'
 import 'react-medium-image-zoom/dist/styles.css'
 import { theme, media, mixins, Heading, Button } from '@styles';
+import sizeMe from 'react-sizeme';
 
 const { colors } = theme;
 const _ = require('lodash');
@@ -28,7 +29,7 @@ const StyledHeading = styled(Heading)`
   align-self: baseline;
 `;
 const StyledDialog = styled(Dialog)`
-  width: 60vw;
+  width: ${props => ((props.width/props.height)*40 > 100 ? 100 : (props.width/props.height)*40)}vw;
   ${media.tablet`width: 100vw;`};
   background-color: ${colors.background};
 `;
@@ -41,31 +42,12 @@ const StyledImgContainer = styled.div`
   padding-bottom: 1rem;
 `;
 
-const TilesPage = ({ data }) => {
-  const isBrowser = typeof window !== 'undefined'
-  const [width, setWidth] = useState(isBrowser ? window.innerWidth : 0)
+const TilesPage = ({ data, size }) => {
   const [showDialog, setShowDialog] = useState(false);
   const [currentImage, setCurrentImage] = useState(0);
 
   const open = () => setShowDialog(true);
   const close = () => setShowDialog(false);
-
-  useEffect(() => {
-    if (!isBrowser) return false;
-
-    const handleResize = () => {
-      if(typeof window !== 'undefined' && window !== null) {
-        try {
-          setWidth(window.innerWidth);
-        } catch(e) {
-          console.log(e);
-        }
-      }
-    }
-    window.addEventListener("resize", handleResize);
-    
-    return () => window.removeEventListener("resize", handleResize);
-  }, [isBrowser, width]);
 
   return (
     <StyledSection>
@@ -75,7 +57,7 @@ const TilesPage = ({ data }) => {
         </StyledHeading>
       </StyledTitleSection>
       <ImageMasonry 
-        numCols={Math.ceil(width/600)}
+        numCols={Math.ceil(size.width/600)}
         containerWidth={'100%'}
         forceOrder={true}
         animate={true}
@@ -86,7 +68,7 @@ const TilesPage = ({ data }) => {
         }}
       >
       </ImageMasonry>
-      <StyledDialog isOpen={showDialog} onDismiss={close} aria-label="Image">
+      <StyledDialog width={data[currentImage].width} height={data[currentImage].height} isOpen={showDialog} onDismiss={close} aria-label="Image">
         <StyledImgContainer>
           <Zoom>
             <img 
@@ -109,4 +91,4 @@ TilesPage.propTypes = {
   data: PropTypes.array.isRequired,
 }
 
-export default TilesPage;
+export default sizeMe()(TilesPage);
