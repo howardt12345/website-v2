@@ -56,33 +56,37 @@ const TilesPage = ({ data, size }) => {
         <span>{"Photography"}</span>
         </StyledHeading>
       </StyledTitleSection>
-      <ImageMasonry 
-        numCols={Math.ceil(size.width/600)}
-        containerWidth={'100%'}
-        forceOrder={true}
-        animate={true}
-        imageUrls={getUrlsFor(data)}
-        onClick={(index) => {
-          setCurrentImage(index);
-          open();
-        }}
-      >
-      </ImageMasonry>
-      <StyledDialog width={data[currentImage].width} height={data[currentImage].height} isOpen={showDialog} onDismiss={close} aria-label="Image">
-        <StyledImgContainer>
-          <Zoom>
-            <img 
-              src={data[currentImage].getUrl()}
-              alt={data[currentImage].getUrl()}
-            />
-          </Zoom>
-        </StyledImgContainer>
-        <StyledDialogButtons>
-          <Button onClick={close}>
-            Close
-          </Button>
-        </StyledDialogButtons>
-      </StyledDialog>
+      {!_.isEmpty(data) && (
+        <div>
+          <ImageMasonry 
+            numCols={Math.ceil(size.width/600)}
+            containerWidth={'100%'}
+            forceOrder={true}
+            animate={true}
+            imageUrls={getUrlsFor(data)}
+            onClick={(index) => {
+              setCurrentImage(index);
+              open();
+            }}
+          >
+          </ImageMasonry>
+          <StyledDialog width={data[currentImage].width} height={data[currentImage].height} isOpen={showDialog} onDismiss={close} aria-label="Image">
+            <StyledImgContainer>
+              <Zoom>
+                <img 
+                  src={data[currentImage].getUrl()}
+                  alt={data[currentImage].getUrl()}
+                />
+              </Zoom>
+            </StyledImgContainer>
+            <StyledDialogButtons>
+              <Button onClick={close}>
+                Close
+              </Button>
+            </StyledDialogButtons>
+          </StyledDialog>
+        </div>
+      )}
     </StyledSection>
   );
 }

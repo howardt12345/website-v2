@@ -88,7 +88,7 @@ const PhotographyPage = () => {
       </Helmet>
 
       <StyledSection>
-        {!isLoading && !_.isEmpty(data) && !_.isEmpty(data) && (
+        {!isLoading && (
           <TilesPage data={data ?? []} />
         )}
         {isLoading && (
