@@ -38,7 +38,7 @@ export class ImageMasonry extends React.Component {
           className="react-image-masonry-col"
           key={"col-" + i}
         >{Object.values(this.state["col-" + i])}</div>
-      )
+      );
     }
 
     const styles = `

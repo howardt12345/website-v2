@@ -56,20 +56,16 @@ const TilesPage = ({ data, size }) => {
         <span>{"Photography"}</span>
         </StyledHeading>
       </StyledTitleSection>
-      {!_.isEmpty(data) && (
+      {!_.isEmpty(data) && size && (
         <div>
           <ImageMasonry 
             numCols={Math.ceil(size.width/600)}
-            containerWidth={'100%'}
-            forceOrder={true}
-            animate={true}
             imageUrls={getUrlsFor(data)}
             onClick={(index) => {
               setCurrentImage(index);
               open();
             }}
-          >
-          </ImageMasonry>
+          />
           <StyledDialog width={data[currentImage].width} height={data[currentImage].height} isOpen={showDialog} onDismiss={close} aria-label="Image">
             <StyledImgContainer>
               <Zoom>
