@@ -31,7 +31,7 @@ const Footer = () => {
           href="https://github.com/howardt12345/website-v2"
           target="_blank"
           rel="nofollow noopener noreferrer">
-          <div>© 2020 Howard Tseng</div>
+          <div>{`© ${new Date().getFullYear()} Howard Tseng`}</div>
         </StyledGitHubLink>
       </StyledMetadata>
     </StyledContainer>
