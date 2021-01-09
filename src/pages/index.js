@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link, graphql } from 'gatsby';
 import PropTypes from 'prop-types';
-import styled from 'styled-components';
+import styled, { ThemeProvider } from 'styled-components';
 import { theme, mixins, media, Main } from '@styles';
 import { Layout } from '@components';
 import { motion } from "framer-motion"
