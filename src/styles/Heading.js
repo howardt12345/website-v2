@@ -1,12 +1,12 @@
 import styled from 'styled-components';
-import theme from './theme';
+import { theme } from './theme';
 import media from './media';
-const { colors, fonts } = theme;
+const { fonts } = theme;
 
 
 const Heading = styled.h1`
   text-align: left;
-  color: ${colors.textPrimary};
+  color: ${({ theme }) => theme.textPrimary};
   font-family: ${fonts.Poppins};
   font-size: 96px;
   font-weight: 400;

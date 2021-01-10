@@ -1,9 +1,11 @@
 import React from 'react';
 import styled from 'styled-components';
 import { theme, media } from '@styles';
+import { useTheme } from '@api/hooks';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
-const { colors, fonts } = theme;
+
+const { fonts } = theme;
 
 const StyledMainContainer = styled.main`
   display: flex;
@@ -52,15 +54,18 @@ const StyledSubtitle = styled.h2`
   ${media.phablet`font-size: 28px;`};
 `;
 
-const muitheme = createMuiTheme({
-  palette: {
-    primary: {
-      main: colors.accent
-    },
-  },
-});
-
 const LoadingPage = () => {
+  
+  const [theme] = useTheme();
+
+  const muitheme = createMuiTheme({
+    palette: {
+      primary: {
+        main: theme.accent
+      },
+    },
+  });
+
   return (
     <StyledMainContainer className="fillHeight">
       <ThemeProvider theme={muitheme}>

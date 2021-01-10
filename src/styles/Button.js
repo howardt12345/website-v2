@@ -1,11 +1,11 @@
 import styled from 'styled-components';
-import theme from './theme';
-const { colors, fontSizes, fonts } = theme;
+import { theme } from './theme';
+const { fontSizes, fonts } = theme;
 
 const Button = styled.button`
-  color: ${colors.accent};
+  color: ${({ theme }) => theme.accent};
   background-color: transparent;
-  border: 1px solid ${colors.accent};
+  border: 1px solid ${({ theme }) => theme.accent};
   border-radius: ${theme.borderRadius};
   font-size: ${fontSizes.smish};
   font-family: ${fonts.Raleway};
@@ -17,7 +17,7 @@ const Button = styled.button`
   &:hover,
   &:focus,
   &:active {
-    background-color: ${colors.translucent_accent};
+    background-color: ${({ theme }) => theme.translucent_accent};
     outline: none;
   }
   &:after {

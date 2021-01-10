@@ -7,7 +7,8 @@ import sr from '@utils/sr';
 import { srConfig, instalink } from '@config';
 import styled from 'styled-components';
 import { theme, mixins, media, Section, Heading, FlexContainer } from '@styles';
-const { colors, fontSizes, fonts } = theme;
+
+const { fontSizes, fonts } = theme;
 
 const StyledContainer = styled(Section)`
   padding-bottom: 50px;
@@ -49,7 +50,7 @@ const StyledAvatarLink = styled.a`
   width: 100%;
   position: relative;
   border-radius: ${theme.borderRadius};
-  background-color: ${colors.accent};
+  background-color: ${({ theme }) => theme.accent};
   margin-left: -20px;
   &:hover,
   &:focus {
@@ -78,11 +79,11 @@ const StyledAvatarLink = styled.a`
     left: 0;
     right: 0;
     bottom: 0;
-    background-color: ${colors.background};
+    background-color: ${({ theme }) => theme.background};
     mix-blend-mode: screen;
   }
   &:after {
-    border: 2px solid ${colors.accent};
+    border: 2px solid ${({ theme }) => theme.accent};
     top: 20px;
     left: 20px;
     z-index: -1;
@@ -102,12 +103,12 @@ const Skill = styled.li`
   padding-left: 20px;
   font-family: ${fonts.Raleway};
   font-size: ${fontSizes.sm};
-  color: ${colors.textPrimary};
+  color: ${({ theme }) => theme.textPrimary};
   &:before {
     content: '▹';
     position: absolute;
     left: 0;
-    color: ${colors.accent};
+    color: ${({ theme }) => theme.accent};
     font-size: ${fontSizes.md};
     line-height: 12px;
   }

@@ -1,14 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import { Link, graphql } from 'gatsby';
 import PropTypes from 'prop-types';
-import styled, { ThemeProvider } from 'styled-components';
+import styled from 'styled-components';
 import { theme, mixins, media, Main } from '@styles';
 import { Layout } from '@components';
 import { motion } from "framer-motion"
 import { navLinks } from '@config';
 import { IconButton } from '@components';
 
-const { colors, fontSizes, fonts, navDelay } = theme;
+const { fontSizes, fonts, navDelay } = theme;
 
 const StyledContainer = styled(Main)`
   ${mixins.flexCenter};
@@ -20,13 +20,12 @@ const StyledTitleBox = styled.div`
   ${media.bigDesktop`width: 800px;`};
   ${media.desktop`width: 80vw;`};
 `;
-
 const StyledOverline = styled.h2`
   text-align: left;
   font-size: 36px;
   font-weight: 400;
   font-family: ${fonts.Poppins};
-  color: ${colors.textPrimary};
+  color: ${({ theme }) => theme.textPrimary};
   line-height: 1;
   ${media.bigDesktop`font-size: 36px;`};
   ${media.bigDesktop`text-align: left;`}
@@ -35,7 +34,7 @@ const StyledOverline = styled.h2`
 `;
 const StyledTitle = styled.h1`
   text-align: left;
-  color: ${colors.textPrimary};
+  color: ${({ theme }) => theme.textPrimary};
   font-family: ${fonts.Poppins};
   font-size: 114px;
   line-height: 0.75;
@@ -56,7 +55,7 @@ const StyledSubtitle = styled.h2`
   font-size: 36px;
   font-weight: 400;
   font-family: ${fonts.Poppins};
-  color: ${colors.textPrimary};
+  color: ${({ theme }) => theme.textPrimary};
   line-height: 1;
   ${media.bigDesktop`font-size: 36px;`};
   ${media.bigDesktop`text-align: right;`}
@@ -65,9 +64,10 @@ const StyledSubtitle = styled.h2`
 `;
 const Line = styled.hr`
   width: 800px;
+  height: 6px;
   ${media.bigDesktop`width: 800px;`};
   ${media.desktop`width: 80vw;`};
-  border: 2px solid ${colors.textPrimary};
+  background-color: ${({ theme }) => theme.textPrimary};
 `;
 const StyledNavLinks = styled.div`
   width: 800px;

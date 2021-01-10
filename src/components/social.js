@@ -2,8 +2,6 @@ import React from 'react';
 import { socialMedia } from '@config';
 import { IconButton } from '@components';
 import styled from 'styled-components';
-import { theme } from '@styles';
-const { colors } = theme;
 
 const StyledList = styled.ul`
   height: 40px;
@@ -13,18 +11,7 @@ const StyledList = styled.ul`
   padding: 0;
   margin: 0;
   list-style: none;
-  color: ${colors.textPrimary};
-`;
-const StyledLink = styled.a`
-  padding: 12px;
-  &:hover,
-  &:focus {
-    transform: translateY(-3px);
-  }
-  svg {
-    width: 24px;
-    height: 24px;
-  }
+  color: ${({ theme }) => theme.textPrimary};
 `;
 
 const Social = () => (

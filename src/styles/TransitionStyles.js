@@ -1,5 +1,5 @@
 import { css } from 'styled-components';
-import theme from './theme';
+import { theme } from './theme';
 
 // https://reactcommunity.org/react-transition-group/css-transition
 

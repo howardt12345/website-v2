@@ -1,5 +1,5 @@
 export { default as GlobalStyle } from './Global';
-export { default as theme } from './theme';
+export { theme, theme_light, theme_dark } from './theme';
 export { default as mixins } from './mixins';
 export { default as media } from './media';
 export { default as Main } from './Main';

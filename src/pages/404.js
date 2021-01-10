@@ -4,14 +4,15 @@ import { CSSTransition, TransitionGroup } from 'react-transition-group';
 import { Layout } from '@components';
 import styled from 'styled-components';
 import { theme, mixins, media, Main } from '@styles';
-const { colors, fonts, navDelay } = theme;
+
+const { fonts, navDelay } = theme;
 
 const StyledMainContainer = styled(Main)`
   ${mixins.flexCenter};
   flex-direction: column;
 `;
 const StyledTitle = styled.h1`
-  color: ${colors.textPrimary};
+  color: ${({ theme }) => theme.textPrimary};
   font-family: ${fonts.Poppins};
   font-size: 12vw;
   line-height: 1;

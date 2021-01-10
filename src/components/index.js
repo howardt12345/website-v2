@@ -8,3 +8,4 @@ export { default as Head } from './head';
 export { default as About } from './about';
 export { default as Jobs } from './jobs';
 export { default as IconButton } from './iconbutton';
+export { default as ToggleButton } from './toggle_button';

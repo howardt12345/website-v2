@@ -2,12 +2,9 @@ import React, { useEffect, useState }  from 'react';
 import firebase from "gatsby-plugin-firebase";
 import styled from 'styled-components';
 import { Helmet } from 'react-helmet';
-import { graphql } from 'gatsby';
-import PropTypes from 'prop-types';
 import { isEmpty, replaceAll } from "@utils";
 import { Layout } from '@components';
 import { LoadingPage, TilesPage } from '@components/photography';
-import { media, mixins, Heading, Section } from '@styles';
 
 const _ = require('lodash');
 

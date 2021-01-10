@@ -12,7 +12,7 @@ import { theme, mixins, media, Section, Heading, FlexContainer } from '@styles';
 import { currentTime, replaceAll } from '@utils';
 import Reaptcha from 'reaptcha';
 
-const { colors, fontSizes, fonts } = theme;
+const { fontSizes, fonts } = theme;
 const _ = require('lodash');
 
 const StyledContainer = styled(Section)`
@@ -41,10 +41,10 @@ const StyledInput = styled.input`
   padding: 12px 10px;
   margin: 8px 0;
   box-sizing: border-box;
-  border: 1px solid ${colors.textSecondary};
+  border: 1px solid ${({ theme }) => theme.textSecondary};
   border-radius: 4px;
   &:focus {
-    border: 3px solid solid ${colors.textPrimary};
+    border: 3px solid solid ${({ theme }) => theme.textPrimary};
   }
 `;
 const StyledTextArea = styled.textarea`
@@ -52,10 +52,10 @@ const StyledTextArea = styled.textarea`
   height: 150px;
   padding: 12px 10px;
   box-sizing: border-box;
-  border: 1px solid ${colors.textSecondary};
+  border: 1px solid ${({ theme }) => theme.textSecondary};
   border-radius: 4px;
   &:focus {
-    border: 3px solid solid ${colors.textPrimary};
+    border: 3px solid solid ${({ theme }) => theme.textPrimary};
   }
   resize: none;
 `;
@@ -93,7 +93,7 @@ const StyledInfoText = styled.a`
   font-size: ${fontSizes.md};
   font-weight: normal;
   letter-spacing: 0.05em;
-  color: ${colors.textPrimary};
+  color: ${({ theme }) => theme.textPrimary};
   margin-bottom: 0px;
   svg {
     width: 15px;
@@ -104,7 +104,7 @@ const StyledIcon = styled.div`
   svg {
     width: 15px;
   }
-  color: ${colors.textPrimary};
+  color: ${({ theme }) => theme.textPrimary};
   margin-bottom: 14px;
 `;
 

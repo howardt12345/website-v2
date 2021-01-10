@@ -7,9 +7,10 @@ import { Dialog } from '@reach/dialog';
 import '@reach/dialog/styles.css';
 import Zoom from 'react-medium-image-zoom'
 import 'react-medium-image-zoom/dist/styles.css'
+
 import { theme, media, mixins, Heading, Button } from '@styles';
 
-const { colors, fonts } = theme;
+const { fonts } = theme;
 const _ = require('lodash');
 
 const StyledSection = styled.section`
@@ -31,7 +32,7 @@ const StyledHeading = styled(Heading)`
 const StyledSubheading = styled.span`
   text-align: left;
   align-self: flex-end;
-  color: ${colors.textPrimary};
+  color: ${({ theme }) => theme.textPrimary};
   font-family: ${fonts.Poppins};
   font-size: 54px;
   font-weight: 400;
@@ -62,7 +63,7 @@ const StyledButton = styled.a`
 const StyledDialog = styled(Dialog)`
   width: 60vw;
   ${media.tablet`width: 100vw;`};
-  background-color: ${colors.background};
+  background-color: ${({ theme }) => theme.background};
 `;
 
 

@@ -5,7 +5,8 @@ import { srConfig } from '@config';
 import { FormattedIcon } from '@components/icons';
 import styled from 'styled-components';
 import { theme, mixins, media, Section, Subheading } from '@styles';
-const { colors, fontSizes, fonts } = theme;
+
+const { fontSizes, fonts } = theme;
 
 const StyledContainer = styled(Section)`
   padding-top: 0px;
@@ -29,14 +30,14 @@ const StyledTabContent = styled.div`
   }
 `;
 const StyledJobTitle = styled.h4`
-  color: ${colors.textPrimary};
+  color: ${({ theme }) => theme.textPrimary};
   font-family: ${fonts.Poppins};
   font-size: ${fontSizes.xxl};
   font-weight: 400;
   margin-bottom: 5px;
 `;
 const StyledCompany = styled.span`
-  color: ${colors.accent};
+  color: ${({ theme }) => theme.accent};
   font-family: ${fonts.Poppins};
 `;
 const StyledJobRange = styled.h5`
@@ -45,7 +46,7 @@ const StyledJobRange = styled.h5`
   font-size: ${fontSizes.md};
   font-weight: normal;
   letter-spacing: 0.05em;
-  color: ${colors.textSecondary};
+  color: ${({ theme }) => theme.textSecondary};
   margin-bottom: 10px;
   svg {
     width: 15px;
@@ -59,7 +60,7 @@ const StyledLocation = styled.h5`
   font-size: ${fontSizes.md};
   font-weight: normal;
   letter-spacing: 0.05em;
-  color: ${colors.textSecondary};
+  color: ${({ theme }) => theme.textSecondary};
   margin-bottom: 0px;
   svg {
     width: 15px;
@@ -75,7 +76,7 @@ const StyledIcon = styled.div`
   svg {
     width: 15px;
   }
-  color: ${colors.textSecondary};
+  color: ${({ theme }) => theme.textSecondary};
   margin-bottom: 14px;
 `;
 

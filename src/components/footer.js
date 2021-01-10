@@ -2,7 +2,7 @@ import React from 'react';
 import { Social } from '@components'; 
 import styled from 'styled-components';
 import { theme, mixins } from '@styles';
-const { colors, fontSizes, fonts } = theme;
+const { fontSizes, fonts } = theme;
 
 const StyledContainer = styled.footer`
   ${mixins.flexCenter};
@@ -18,7 +18,7 @@ const StyledMetadata = styled.div`
   line-height: 1;
 `;
 const StyledGitHubLink = styled.a`
-  color: ${colors.textSecondary};
+  color: ${({ theme }) => theme.textSecondary};
   padding: 8px;
 `;
 

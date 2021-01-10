@@ -4,7 +4,8 @@ import PropTypes from 'prop-types';
 import { navLinks } from '@config';
 import styled from 'styled-components';
 import { theme, mixins, media } from '@styles';
-const { colors, fontSizes, fonts } = theme;
+
+const { fontSizes, fonts } = theme;
 
 const StyledContainer = styled.div`
   position: fixed;
@@ -24,7 +25,7 @@ const StyledContainer = styled.div`
 const Sidebar = styled.aside`
   ${mixins.flexCenter};
   flex-direction: column;
-  background-color: ${colors.background};
+  background-color: ${({ theme }) => theme.background};
   padding: 50px;
   width: 50vw;
   height: 100%;
@@ -32,7 +33,7 @@ const Sidebar = styled.aside`
   right: 0;
   margin-left: auto;
   font-family: ${fonts.Raleway};
-  box-shadow: -10px 0px 30px -15px ${colors.translucent_bg};
+  box-shadow: -10px 0px 30px -15px ${({ theme }) => theme.translucent_bg};
   ${media.thone`padding: 25px;`};
   ${media.phablet`width: 75vw;`};
   ${media.tiny`padding: 10px;`};
@@ -42,7 +43,7 @@ const NavLinks = styled.nav`
   width: 100%;
   flex-direction: column;
   text-align: center;
-  color: ${colors.textSecondary};
+  color: ${({ theme }) => theme.textSecondary};
 `;
 const NavList = styled.ol`
   padding: 0;

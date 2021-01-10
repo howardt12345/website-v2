@@ -1,11 +1,12 @@
 import { createGlobalStyle } from 'styled-components';
-import theme from './theme';
+import { theme as themeValues } from './theme';
 import media from './media';
 import mixins from './mixins';
 import FontFaces from './fonts';
 import TransitionStyles from './TransitionStyles';
 import PrismStyles from './PrismStyles';
-const { colors, fontSizes, fonts } = theme;
+
+const { fontSizes, fonts } = themeValues;
 
 const GlobalStyle = createGlobalStyle`
   ${FontFaces};
@@ -25,8 +26,8 @@ const GlobalStyle = createGlobalStyle`
     overflow-x: hidden;
     -moz-osx-font-smoothing: grayscale;
     -webkit-font-smoothing: antialiased;
-    background-color: ${colors.background};
-    color: ${colors.textPrimary};
+    background-color: ${({ theme }) => theme.background};
+    color: ${({ theme }) => theme.textPrimary};
     line-height: 1.3;
     font-family: ${fonts.Poppins};
     font-size: ${fontSizes.xl};
@@ -38,7 +39,7 @@ const GlobalStyle = createGlobalStyle`
       overflow: hidden;
       #root > #content > * {
         filter: blur(5px) brightness(0.7);
-        transition: ${theme.transition};
+        transition: ${themeValues.transition};
         pointer-events: none;
         user-select: none;
       }
@@ -57,7 +58,7 @@ const GlobalStyle = createGlobalStyle`
   h5,
   h6 {
     font-weight: 600;
-    color: ${colors.textSecondary};
+    color: ${({ theme }) => theme.textSecondary};
     margin: 0 0 10px 0;
   }
   h1 {
@@ -99,11 +100,11 @@ const GlobalStyle = createGlobalStyle`
     text-decoration-skip-ink: auto;
     color: inherit;
     position: relative;
-    transition: ${theme.transition};
+    transition: ${themeValues.transition};
     cursor: pointer;
     &:hover,
     &:focus {
-      color: ${colors.accent};
+      color: ${({ theme }) => theme.accent};
     }
   }
   button {
@@ -112,7 +113,7 @@ const GlobalStyle = createGlobalStyle`
     border-radius: 0;
     &:focus,
     &:active {
-      outline-color: ${colors.accent};
+      outline-color: ${({ theme }) => theme.accent};
     }
   }
   input, textarea {
@@ -136,10 +137,10 @@ const GlobalStyle = createGlobalStyle`
       ${mixins.inlineLink};
     }
     & > code {
-      background-color: ${colors.background};
-      color: ${colors.background};
+      background-color: ${({ theme }) => theme.background};
+      color: ${({ theme }) => theme.background};
       font-size: ${fontSizes.sm};
-      border-radius: ${theme.borderRadius};
+      border-radius: ${themeValues.borderRadius};
       padding: 0.3em 0.5em;
     }
   }
@@ -157,13 +158,13 @@ const GlobalStyle = createGlobalStyle`
           content: '▹';
           position: absolute;
           left: 0;
-          color: ${colors.accent};
+          color: ${({ theme }) => theme.accent};
         }
       }
     }
   }
   blockquote {
-    border-left-color: ${colors.accent};
+    border-left-color: ${({ theme }) => theme.accent};
     border-left-style: solid;
     border-left-width: 1px;
     margin-left: 0px;
@@ -175,7 +176,7 @@ const GlobalStyle = createGlobalStyle`
     }
   }
   hr {
-    background-color: ${colors.background};
+    background-color: ${({ theme }) => theme.background};
     height: 1px;
     border-width: 0px;
     border-style: initial;
@@ -188,16 +189,16 @@ const GlobalStyle = createGlobalStyle`
     font-size: ${fontSizes.md};
   }
   #logo {
-    color: ${colors.accent};
+    color: ${({ theme }) => theme.accent};
   }
   .overline {
-    color: ${colors.accent};
+    color: ${({ theme }) => theme.accent};
     font-family: ${fonts.Raleway};
     font-size: ${fontSizes.md};
     font-weight: normal;
   }
   .subtitle {
-    color: ${colors.accent};
+    color: ${({ theme }) => theme.accent};
     margin: 0 0 20px 0;
     font-size: ${fontSizes.md};
     font-family: ${fonts.Poppins};
@@ -214,7 +215,7 @@ const GlobalStyle = createGlobalStyle`
     display: flex;
     align-items: center;
     margin-bottom: 50px;
-    color: ${colors.accent};
+    color: ${({ theme }) => theme.accent};
     .arrow {
       display: block;
       margin-right: 10px;

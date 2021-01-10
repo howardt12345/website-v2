@@ -10,7 +10,8 @@ import { Layout } from '@components';
 import { FormattedIcon } from '@components/icons';
 import styled from 'styled-components';
 import { theme, mixins, media, Heading, Section } from '@styles';
-const { colors, fonts, fontSizes } = theme;
+
+const { fonts, fontSizes } = theme;
 
 const StyledContainer = styled(Section)`
   ${mixins.flexCenter};
@@ -48,7 +49,7 @@ const StyledTable = styled.table`
     transition: ${theme.transition};
     &:hover,
     &:focus {
-      background-color: ${colors.background_secondary};
+      background-color: ${({ theme }) => theme.background_secondary};
     }
   }
   th,
@@ -72,7 +73,7 @@ const StyledTable = styled.table`
     }
     &.title {
       padding-top: 15px;
-      color: ${colors.textSecondary};
+      color: ${({ theme }) => theme.textSecondary};
       font-size: ${fontSizes.xl};
       font-weight: 700;
     }
@@ -80,7 +81,7 @@ const StyledTable = styled.table`
       width: 15%;
       padding-top: 15px;
       font-size: ${fontSizes.lg};
-      color: ${colors.textSecondary};
+      color: ${({ theme }) => theme.textSecondary};
     }
     &.tech {
       font-size: ${fontSizes.smish};

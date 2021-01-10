@@ -8,14 +8,15 @@ import { Menu } from '@components';
 import { IconLogo } from '@components/icons';
 import styled from 'styled-components';
 import { theme, mixins, media } from '@styles';
-const { colors, fontSizes, fonts, loaderDelay } = theme;
+
+const { fontSizes, fonts, loaderDelay } = theme;
 
 const StyledContainer = styled.header`
   ${mixins.flexBetween};
   position: fixed;
   top: 0;
   padding: 0px 50px;
-  background-color: ${colors.background};
+  background-color: ${({ theme }) => theme.background};
   transition: ${theme.transition};
   z-index: 11;
   filter: none !important;
@@ -24,7 +25,7 @@ const StyledContainer = styled.header`
   width: 100%;
   height: ${props => (props.scrollDirection === 'none' ? theme.navHeight : theme.navScrollHeight)};
   box-shadow: ${props =>
-    props.scrollDirection === 'up' ? `0 10px 30px -10px ${colors.translucent_bg}` : 'none'};
+    props.scrollDirection === 'up' ? `0 10px 30px -10px ${({ theme }) => theme.translucent_bg}` : 'none'};
   transform: translateY(
     ${props => (props.scrollDirection === 'down' ? `-${theme.navScrollHeight}` : '0px')}
   );
@@ -35,14 +36,14 @@ const StyledNav = styled.nav`
   ${mixins.flexBetween};
   position: relative;
   width: 100%;
-  color: ${colors.textSecondary};
+  color: ${({ theme }) => theme.textSecondary};
   font-family: ${fonts.Raleway};
   counter-reset: item 0;
   z-index: 12;
 `;
 const StyledTitle = styled.h2`
   font-size: ${fontSizes.xxl};
-  color: ${colors.textPrimary};
+  color: ${({ theme }) => theme.textPrimary};
   font-family: ${fonts.Poppins};
   font-weight: normal;
   padding: 0;
@@ -51,22 +52,23 @@ const StyledTitle = styled.h2`
   ${media.tablet`display: none;`};
 `;
 const StyledLogo = styled.div`
-  color: ${colors.accent};
+  color: ${({ theme }) => theme.accent};
+  fill: ${({ theme }) => theme.accent};
   ${mixins.flexCenter};
   a {
     display: none;
     ${media.tablet`display: block;`};
-    color: ${colors.accent};
+    fill: ${({ theme }) => theme.accent};
     width: 42px;
     height: 42px;
     &:hover,
     &:focus {
       svg {
-        fill: ${colors.translucent_accent};
+        fill: ${({ theme }) => theme.translucent_accent};
       }
     }
     svg {
-      fill: none;
+      fill: ${({ theme }) => theme.accent};
       transition: ${theme.transition};
       user-select: none;
     }
@@ -95,7 +97,7 @@ const StyledHamburgerBox = styled.div`
   height: 24px;
 `;
 const StyledHamburgerInner = styled.div`
-  background-color: ${colors.accent};
+  background-color: ${({ theme }) => theme.accent};
   position: absolute;
   width: ${theme.hamburgerWidth}px;
   height: 2px;
@@ -114,7 +116,7 @@ const StyledHamburgerInner = styled.div`
   &:after {
     content: '';
     display: block;
-    background-color: ${colors.accent};
+    background-color: ${({ theme }) => theme.accent};
     position: absolute;
     left: auto;
     right: 0;

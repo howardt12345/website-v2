@@ -1,9 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
-import { media, theme } from '@styles';
+import { media } from '@styles';
 import { Category } from './category';
-const { colors } = theme;
 
 const Categories = styled.div`
   display: flex;
@@ -18,21 +17,21 @@ const Categories = styled.div`
     display: none;
     height: 6px;
     width: 4px;
-    border: 1px solid ${colors.textSecondary};
+    border: 1px solid ${({ theme }) => theme.textSecondary};
   }
   &:hover::-webkit-scrollbar {
       display: block;
   }
   &::-webkit-scrollbar-track {
-    background: ${colors.background};
+    background: ${({ theme }) => theme.background};
   }
   &::-webkit-scrollbar-thumb {
-    background-color: ${colors.textSecondary};
+    background-color: ${({ theme }) => theme.textSecondary};
     border-radius: 20px;
   }
   & {
     scrollbar-width: none;
-    scrollbar-color: ${colors.textSecondary} ${colors.background};
+    scrollbar-color: ${({ theme }) => theme.textSecondary} ${({ theme }) => theme.background};
   }
 `;
 const CategoriesMobile = styled.div`

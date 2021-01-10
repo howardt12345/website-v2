@@ -9,7 +9,7 @@ const BG = '#FFFFFF';
 const BG_dark = '#121212';
 
 
-const colors_light = {
+export const theme_light = {
   background: BG,
   background_secondary: DARK_BG,
   accent: ACCENT,
@@ -20,7 +20,7 @@ const colors_light = {
   shadow_bg: hex2rgba(DARK_BG, 0.7),
 };
 
-const colors_dark = {
+export const theme_dark = {
   background: BG_dark,
   background_secondary: DARK_BG_dark,
   accent: ACCENT_dark,
@@ -31,10 +31,7 @@ const colors_dark = {
   shadow_bg: hex2rgba(DARK_BG_dark, 0.7),
 }
 
-const dark_mode = true;
-
-const theme = {
-  colors: !dark_mode ? colors_light : colors_dark,
+export const theme = {
 
   fonts: {
     Poppins: "Poppins",
@@ -73,5 +70,3 @@ const theme = {
   navDelay: 1000,
   loaderDelay: 2000,
 };
-
-export default theme;

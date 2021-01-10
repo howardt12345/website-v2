@@ -7,10 +7,9 @@ import { Dialog } from '@reach/dialog';
 import '@reach/dialog/styles.css';
 import Zoom from 'react-medium-image-zoom'
 import 'react-medium-image-zoom/dist/styles.css'
-import { theme, media, mixins, Heading, Button } from '@styles';
+import { media, mixins, Heading, Button } from '@styles';
 import sizeMe from 'react-sizeme';
 
-const { colors } = theme;
 const _ = require('lodash');
 
 const StyledSection = styled.section`
@@ -31,7 +30,7 @@ const StyledHeading = styled(Heading)`
 const StyledDialog = styled(Dialog)`
   width: ${props => ((props.width/props.height)*40 > 100 ? 100 : (props.width/props.height)*40)}vw;
   ${media.tablet`width: 100vw;`};
-  background-color: ${colors.background};
+  background-color: ${({ theme }) => theme.background};
 `;
 const StyledDialogButtons = styled.div`
   ${mixins.flexBetween}

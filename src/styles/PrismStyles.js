@@ -1,6 +1,7 @@
 import { css } from 'styled-components';
-import theme from './theme';
-const { colors, fontSizes, fonts } = theme;
+import { theme } from './theme';
+
+const { fontSizes, fonts } = theme;
 
 const prismColors = {
   bg: `#112340`,
@@ -81,7 +82,7 @@ const PrismStyles = css`
   .gatsby-highlight-code-line {
     display: block;
     background-color: ${prismColors.lineHighlight};
-    border-left: 2px solid ${colors.accent};
+    border-left: 2px solid ${({ theme }) => theme.accent};
     padding-left: calc(1em + 2px);
     padding-right: 1em;
     margin-right: -1.35em;
@@ -89,8 +90,8 @@ const PrismStyles = css`
   }
   /* Language badges */
   .gatsby-highlight pre[class*='language-']::before {
-    background: ${colors.background};
-    color: ${colors.textPrimary};
+    background: ${({ theme }) => theme.background};
+    color: ${({ theme }) => theme.textPrimary};
     font-size: ${fontSizes.xs};
     font-family: ${fonts.Raleway};
     line-height: 1.5;

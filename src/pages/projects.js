@@ -11,7 +11,8 @@ import { Layout } from '@components';
 import { FormattedIcon } from '@components/icons';
 import styled from 'styled-components';
 import { theme, mixins, media, Section, Button, Heading } from '@styles';
-const { colors, fontSizes, fonts } = theme;
+
+const { fontSizes, fonts } = theme;
 
 const StyledContainer = styled(Section)`
   ${mixins.flexCenter};
@@ -50,7 +51,7 @@ const StyledProjectInner = styled.div`
   height: 100%;
   border-radius: ${theme.borderRadius};
   transition: ${theme.transition};
-  background-color: ${colors.background_secondary};
+  background-color: ${({ theme }) => theme.background_secondary};
 `;
 const StyledProject = styled.div`
   transition: ${theme.transition};
@@ -68,7 +69,7 @@ const StyledProjectHeader = styled.div`
   margin-bottom: 30px;
 `;
 const StyledFolder = styled.div`
-  color: ${colors.accent};
+  color: ${({ theme }) => theme.accent};
   svg {
     width: 40px;
     height: 40px;
@@ -76,7 +77,7 @@ const StyledFolder = styled.div`
 `;
 const StyledProjectLinks = styled.div`
   margin-right: -10px;
-  color: ${colors.textSecondary};
+  color: ${({ theme }) => theme.textSecondary};
 `;
 const StyledIconLink = styled.a`
   position: relative;
@@ -90,11 +91,11 @@ const StyledIconLink = styled.a`
 const StyledProjectName = styled.h5`
   margin: 0 0 10px;
   font-size: ${fontSizes.xxl};
-  color: ${colors.textPrimary};
+  color: ${({ theme }) => theme.textPrimary};
 `;
 const StyledProjectDescription = styled.div`
   font-size: 17px;
-  color: ${colors.textSecondary};
+  color: ${({ theme }) => theme.textSecondary};
   a {
     ${mixins.inlineLink};
   }
@@ -110,7 +111,7 @@ const StyledTechList = styled.ul`
   li {
     font-family: ${fonts.Raleway};
     font-size: ${fontSizes.xs};
-    color: ${colors.textSecondary};
+    color: ${({ theme }) => theme.textSecondary};
     line-height: 1.75;
     margin-right: 15px;
     &:last-of-type {

@@ -1,7 +1,7 @@
 import { css } from 'styled-components';
-import theme from './theme';
+import { theme } from './theme';
 import media from './media';
-const { colors, fontSizes, fonts } = theme;
+const { fontSizes, fonts } = theme;
 
 const mixins = {
   flexCenter: css`
@@ -31,7 +31,7 @@ const mixins = {
     &:hover,
     &:active,
     &:focus {
-      color: ${colors.accent};
+      color: ${({ theme }) => theme.accent};
       outline: 0;
     }
   `,
@@ -43,17 +43,17 @@ const mixins = {
     position: relative;
     transition: ${theme.transition};
     cursor: pointer;
-    color: ${colors.accent};
+    color: ${({ theme }) => theme.accent};
     &:hover,
     &:focus,
     &:active {
-      color: ${colors.accent};
+      color: ${({ theme }) => theme.accent};
       outline: 0;
       &:after {
         width: 100%;
       }
       & > * {
-        color: ${colors.accent} !important;
+        color: ${({ theme }) => theme.accent} !important;
         transition: ${theme.transition};
       }
     }
@@ -64,16 +64,16 @@ const mixins = {
       height: 1px;
       position: relative;
       bottom: 0.37em;
-      background-color: ${colors.accent};
+      background-color: ${({ theme }) => theme.accent};
       transition: ${theme.transition};
       opacity: 0.5;
     }
   `,
 
   smallButton: css`
-    color: ${colors.accent};
+    color: ${({ theme }) => theme.accent};
     background-color: transparent;
-    border: 1px solid ${colors.accent};
+    border: 1px solid ${({ theme }) => theme.accent};
     border-radius: ${theme.borderRadius};
     padding: 0.75rem 1rem;
     font-size: ${fontSizes.smish};
@@ -85,7 +85,7 @@ const mixins = {
     &:hover,
     &:focus,
     &:active {
-      background-color: ${colors.translucent_accent};
+      background-color: ${({ theme }) => theme.translucent_accent};
     }
     &:after {
       display: none !important;
@@ -93,9 +93,9 @@ const mixins = {
   `,
 
   bigButton: css`
-    color: ${colors.accent};
+    color: ${({ theme }) => theme.accent};
     background-color: transparent;
-    border: 1px solid ${colors.accent};
+    border: 1px solid ${({ theme }) => theme.accent};
     border-radius: ${theme.borderRadius};
     padding: 1rem 1.75rem;
     font-size: ${fontSizes.sm};
@@ -107,7 +107,7 @@ const mixins = {
     &:hover,
     &:focus,
     &:active {
-      background-color: ${colors.translucent_accent};
+      background-color: ${({ theme }) => theme.translucent_accent};
     }
     &:after {
       display: none !important;
@@ -122,11 +122,11 @@ const mixins = {
   `,
 
   boxShadow: css`
-    box-shadow: 0 10px 30px -15px ${colors.shadow_bg};
+    box-shadow: 0 10px 30px -15px ${({ theme }) => theme.shadow_bg};
     transition: ${theme.transition};
     &:hover,
     &:focus {
-      box-shadow: 0 20px 30px -15px ${colors.shadow_bg};
+      box-shadow: 0 20px 30px -15px ${({ theme }) => theme.shadow_bg};
     }
   `,
 
@@ -143,7 +143,7 @@ const mixins = {
         content: '▹';
         position: absolute;
         left: 0;
-        color: ${colors.accent};
+        color: ${({ theme }) => theme.accent};
       }
     }
   `,

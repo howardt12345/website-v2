@@ -5,26 +5,26 @@ import styled from 'styled-components';
 import { theme, media, Subheading } from '@styles';
 import { Fade } from '@api/react-image-slideshow';
 
-const { colors, fonts, fontSizes } = theme;
+const { fonts, fontSizes } = theme;
 
 const LineVisible = styled.hr`
   width: 100%;
-  border: 2px solid ${colors.textPrimary};
+  border: 2px solid ${({ theme }) => theme.textPrimary};
   margin-left: 20px;
   ${media.tablet`margin-left: 0px`};
 `;
 const LineHidden = styled.hr`
   width: 100%;
-  border: 2px solid ${colors.textSecondary};
+  border: 2px solid ${({ theme }) => theme.textSecondary};
   margin-left: 20px;
   ${media.tablet`margin-left: 0px`};
 `;
 const CategoryNameVisible = styled(Subheading)`
-  color: ${colors.textPrimary};
+  color: ${({ theme }) => theme.textPrimary};
   line-height: 1;
 `;
 const CategoryNameHidden= styled(Subheading)`
-  color: ${colors.textSecondary};
+  color: ${({ theme }) => theme.textSecondary};
   line-height: 1;
 `;
 const CategorySection = styled.div`
