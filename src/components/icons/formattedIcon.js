@@ -21,8 +21,21 @@ import {
   MdPhotoCamera,
   MdFolderOpen,
   MdContactMail,
+  MdEmail,
+  MdLocationOn,
 } from "react-icons/md";
-
+import {
+  FaDribbble,
+  FaExternalLinkAlt,
+  FaGithub,
+  FaGooglePlay,
+  FaInstagram,
+  FaRegFolder,
+  FaStar,
+} from "react-icons/fa";
+import { CgGitFork } from 'react-icons/cg' 
+import { ImLinkedin } from 'react-icons/im';
+import { SiRedbubble } from 'react-icons/si'; 
 
 const FormattedIcon = ({ name }) => {
   switch (name) {
@@ -35,35 +48,35 @@ const FormattedIcon = ({ name }) => {
     case 'Contact':
       return <MdContactMail />;
     case 'Dribbble':
-      return <IconDribbble />;
+      return <FaDribbble />;
     case 'Email':
-      return <IconEmail />;
+      return <MdEmail />;
     case 'External':
-      return <IconExternal />;
+      return <FaExternalLinkAlt />;
     case 'Folder':
-      return <IconFolder />;
+      return <FaRegFolder />;
     case 'Fork':
-      return <IconFork />;
+      return <CgGitFork />;
     case 'GitHub':
-      return <IconGitHub />;
+      return <FaGithub />;
     case 'Instagram':
-      return <IconInstagram />;
+      return <FaInstagram />;
     case 'Linkedin':
-      return <IconLinkedin />;
+      return <ImLinkedin />;
     case 'Location':
-      return <IconLocation />;
+      return <MdLocationOn />;
     case 'Logo':
       return <IconLogo />;
     case 'NotFound':
       return <IconNotFound />;
     case 'PlayStore':
-      return <IconPlayStore />;
+      return <FaGooglePlay />;
     case 'Redbubble':
-      return <IconRedbubble />;
+      return <SiRedbubble />;
     case 'Star':
-      return <IconStar />;
+      return <FaStar />;
     default:
-      return <IconExternal />;
+      return <FaExternalLinkAlt />;
   }
 };
 
