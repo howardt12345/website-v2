@@ -1,6 +1,3 @@
-import { hex2rgba } from '@utils';
-
-
 const ACCENT = '#2196F3';
 const ACCENT_dark = '#64ffda';
 const DARK_BG = '#EAEAEA';
@@ -8,27 +5,28 @@ const DARK_BG_dark = '#151515';
 const BG = '#FFFFFF';
 const BG_dark = '#121212';
 
-
 export const theme_light = {
+  name: 'light',
   background: BG,
   background_secondary: DARK_BG,
   accent: ACCENT,
   textPrimary: '#000000',
   textSecondary: '#7A7A7A',
   textBody: '#0C0C0C',
-  translucent_accent: hex2rgba(ACCENT, 0.07),
-  shadow_bg: hex2rgba(DARK_BG, 0.7),
+  translucent_accent: 'rgba(33, 150, 243, 0.07)',
+  shadow_bg: 'rgba(234, 234, 234, 0.07)',
 };
 
 export const theme_dark = {
+  name: 'dark',
   background: BG_dark,
   background_secondary: DARK_BG_dark,
   accent: ACCENT_dark,
   textPrimary: '#FFFFFF',
   textSecondary: '#858585',
   textBody: '#F3F3F3',
-  translucent_accent: hex2rgba(ACCENT_dark, 0.07),
-  shadow_bg: hex2rgba(DARK_BG_dark, 0.7),
+  translucent_accent: 'rgba(100, 255, 218, 0.07)',
+  shadow_bg: 'rgba(21, 21, 21, 0.07)',
 }
 
 export const theme = {

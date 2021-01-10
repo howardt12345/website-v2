@@ -2,9 +2,8 @@ import React, { useEffect } from 'react';
 import { StaticQuery, graphql } from 'gatsby';
 import PropTypes from 'prop-types';
 import { Head, Nav, Footer } from '@components';
-import styled, { ThemeProvider } from 'styled-components';
+import styled from 'styled-components';
 import { GlobalStyle } from '@styles';
-import { useTheme } from '@api/hooks';
 
 // https://medium.com/@chrisfitkin/how-to-smooth-scroll-links-in-gatsby-3dc445299558
 if (typeof window !== 'undefined') {
@@ -19,10 +18,8 @@ const StyledContent = styled.div`
 `;
 
 const Layout = ({ children, isHome, animateNav, footer }) => {
-  const [theme] = useTheme();
 
   useEffect(() => {
-    
     function preventRightClick(e) {
       if (e.target.tagName === 'IMG') {
         e.preventDefault()
@@ -49,17 +46,15 @@ const Layout = ({ children, isHome, animateNav, footer }) => {
       `}
       render={({ site }) => (
         <div id="root">
-          <ThemeProvider theme={theme}>
-            <Head metadata={site.siteMetadata} />
-            <GlobalStyle />
-            <StyledContent>
-              {!isHome ? <Nav animate={animateNav} /> : <br/>}
-              <div id="content">
-                {children}
-                {footer && (<Footer />)}
-              </div>
-            </StyledContent>
-          </ThemeProvider>
+          <Head metadata={site.siteMetadata} />
+          <GlobalStyle />
+          <StyledContent>
+            {!isHome ? <Nav animate={animateNav} /> : <br />}
+            <div id="content">
+              {children}
+              {footer && (<Footer />)}
+            </div>
+          </StyledContent>
         </div>
       )}
     />

@@ -6,7 +6,7 @@ import { theme, mixins, media, Main } from '@styles';
 import { Layout } from '@components';
 import { motion } from "framer-motion"
 import { navLinks } from '@config';
-import { IconButton } from '@components';
+import { IconButton, ToggleButton } from '@components';
 
 const { fontSizes, fonts, navDelay } = theme;
 
@@ -95,14 +95,14 @@ const StyledNavListLink = styled(Link)`
 const HomePage = ({ data }) => {
   const isBrowser = typeof window !== 'undefined'
   const [width, setWidth] = useState(isBrowser ? window.innerWidth : 0)
-  
+
   const [isMounted, setIsMounted] = useState(false);
 
   useEffect(() => {
     if (!isBrowser) return false;
 
     const handleResize = () => {
-      if(typeof window !== 'undefined') {
+      if (typeof window !== 'undefined') {
         setWidth(window.innerWidth);
       }
     }
@@ -126,13 +126,12 @@ const HomePage = ({ data }) => {
       opacity: 1,
       y: 0,
       transition: {
-        ease: "easeOut", 
+        ease: "easeOut",
         duration: 0.5,
         delay: 0.5
       }
     }
   };
-
   const subtitleVariants = {
     hidden: {
       opacity: 0,
@@ -142,13 +141,12 @@ const HomePage = ({ data }) => {
       opacity: 1,
       y: 0,
       transition: {
-        ease: "easeOut", 
+        ease: "easeOut",
         duration: 0.5,
-        delay: 0.75, 
+        delay: 0.75,
       }
     }
   };
-
   const lineVariants = {
     hidden: {
       opacity: 0,
@@ -158,12 +156,11 @@ const HomePage = ({ data }) => {
       opacity: 1,
       scale: 1,
       transition: {
-        ease: "easeOut", 
-        duration: 0.5 
+        ease: "easeOut",
+        duration: 0.5
       }
     }
   };
-
   const navVariants = {
     hidden: {
       opacity: 0,
@@ -173,12 +170,27 @@ const HomePage = ({ data }) => {
       opacity: 1,
       y: 0,
       transition: {
-        ease: "easeOut", 
+        ease: "easeOut",
         duration: 0.5,
         delay: i * 0.1 + 1
       }
     })
   };
+  const toggleVariants = {
+    hidden: {
+      opacity: 0,
+      y: -10,
+    },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        ease: "easeOut",
+        duration: 0.5,
+        delay: 2.5
+      }
+    }
+  }
 
   return (
     <Layout isHome={true} animateNav={false} footer={true}>
@@ -241,6 +253,15 @@ const HomePage = ({ data }) => {
             }
           </StyledNavList>
         </StyledNavLinks>
+
+        <motion.div
+          key="toggle_button"
+          initial="hidden"
+          animate="visible"
+          variants={toggleVariants}
+        >
+          <ToggleButton />
+        </motion.div>
       </StyledContainer>
     </Layout>
   )

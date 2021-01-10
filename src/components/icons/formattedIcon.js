@@ -1,28 +1,15 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { IconLogo, IconNotFound } from '@components/icons';
 import {
-  IconDribbble,
-  IconEmail,
-  IconExternal,
-  IconFolder,
-  IconFork,
-  IconGitHub,
-  IconInstagram,
-  IconLinkedin,
-  IconLocation,
-  IconNotFound,
-  IconPlayStore,
-  IconRedbubble,
-  IconStar,
-  IconLogo,
-} from '@components/icons';
-import { 
   MdAccountCircle,
-  MdPhotoCamera,
-  MdFolderOpen,
+  MdBrightness3,
+  MdBrightness7,
   MdContactMail,
   MdEmail,
+  MdFolderOpen,
   MdLocationOn,
+  MdPhotoCamera,
 } from "react-icons/md";
 import {
   FaDribbble,
@@ -33,9 +20,9 @@ import {
   FaRegFolder,
   FaStar,
 } from "react-icons/fa";
-import { CgGitFork } from 'react-icons/cg' 
+import { CgGitFork } from 'react-icons/cg'
 import { ImLinkedin } from 'react-icons/im';
-import { SiRedbubble } from 'react-icons/si'; 
+import { SiRedbubble } from 'react-icons/si';
 
 const FormattedIcon = ({ name }) => {
   switch (name) {
@@ -47,6 +34,8 @@ const FormattedIcon = ({ name }) => {
       return <MdFolderOpen />;
     case 'Contact':
       return <MdContactMail />;
+    case "dark":
+      return <MdBrightness7 />;
     case 'Dribbble':
       return <FaDribbble />;
     case 'Email':
@@ -61,6 +50,8 @@ const FormattedIcon = ({ name }) => {
       return <FaGithub />;
     case 'Instagram':
       return <FaInstagram />;
+    case "light":
+      return <MdBrightness3 />;
     case 'Linkedin':
       return <ImLinkedin />;
     case 'Location':

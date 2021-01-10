@@ -1,7 +1,6 @@
 import React from 'react';
-import styled from 'styled-components';
+import styled, { withTheme } from 'styled-components';
 import { theme, media } from '@styles';
-import { useTheme } from '@api/hooks';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
 
@@ -54,14 +53,12 @@ const StyledSubtitle = styled.h2`
   ${media.phablet`font-size: 28px;`};
 `;
 
-const LoadingPage = () => {
-  
-  const [theme] = useTheme();
+const LoadingPage = withTheme((props) => {
 
   const muitheme = createMuiTheme({
     palette: {
       primary: {
-        main: theme.accent
+        main: props.theme.accent
       },
     },
   });
@@ -74,6 +71,6 @@ const LoadingPage = () => {
       <StyledSubtitle>Loading...</StyledSubtitle>
     </StyledMainContainer>
   )
-}
+})
 
 export default LoadingPage;

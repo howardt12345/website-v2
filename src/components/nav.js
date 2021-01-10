@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import { CSSTransition, TransitionGroup } from 'react-transition-group';
 import { throttle } from '@utils';
 import { navLinks, navHeight, siteTitle } from '@config';
-import { Menu } from '@components';
+import { Menu, ToggleButton } from '@components';
 import { IconLogo } from '@components/icons';
 import styled from 'styled-components';
 import { theme, mixins, media } from '@styles';
@@ -266,6 +266,8 @@ class Nav extends Component {
             </CSSTransition>
           )}
         </TransitionGroup>
+
+        <ToggleButton />
 
         <TransitionGroup component={null}>
           {isMounted && (
