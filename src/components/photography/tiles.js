@@ -1,6 +1,5 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-import { Link } from 'gatsby';
 import styled from 'styled-components';
 import { ImageMasonry, getUrlsFor } from '@api';
 import { Dialog } from '@reach/dialog';

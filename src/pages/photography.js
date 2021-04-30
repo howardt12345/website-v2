@@ -6,8 +6,6 @@ import { isEmpty, replaceAll } from "@utils";
 import { Layout } from '@components';
 import { LoadingPage, TilesPage } from '@components/photography';
 
-const _ = require('lodash');
-
 const url = "https://firebasestorage.googleapis.com/v0/b/portfolio-49b69.appspot.com/o/";
 const token = "ea925040-1fca-4eda-b1e8-0eb96567ab7e";
 

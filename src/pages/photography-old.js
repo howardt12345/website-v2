@@ -6,9 +6,9 @@ import { Helmet } from 'react-helmet';
 import firebase from "gatsby-plugin-firebase";
 import { isEmpty } from "@utils";
 import { fromFirestore } from '@api';
-import { OldTilesPage, CategoriesPage, NotFoundPage, LoadingPage } from '@components/photography';
+import { /*OldTilesPage, CategoriesPage,*/ NotFoundPage, /*LoadingPage*/ } from '@components/photography';
 
-const _ = require('lodash');
+//const _ = require('lodash');
 
 const StyledSection = styled.section`
   margin: auto 0;

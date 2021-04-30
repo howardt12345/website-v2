@@ -2,7 +2,7 @@
 
 import React, { useEffect, useRef } from 'react';
 import PropTypes from 'prop-types';
-import Img from 'gatsby-image';
+import { GatsbyImage } from "gatsby-plugin-image";
 import sr from '@utils/sr';
 import { srConfig, instalink } from '@config';
 import styled from 'styled-components';
@@ -38,7 +38,7 @@ const StyledPic = styled.div`
     }
   }
 `;
-const StyledAvatar = styled(Img)`
+const StyledAvatar = styled(GatsbyImage)`
   position: relative;
   mix-blend-mode: multiply;
   filter: grayscale(100%) contrast(1);
@@ -151,7 +151,7 @@ const About = ({ data }) => {
             target="_blank"
             rel="nofollow noopener noreferrer"
           >
-            <StyledAvatar fluid={avatar.childImageSharp.fluid} alt="Avatar" />
+            <StyledAvatar image={avatar.childImageSharp.gatsbyImageData} alt="Avatar" />
           </StyledAvatarLink>
         </StyledPic>
       </FlexContainer>

@@ -1,6 +1,4 @@
 import React from 'react';
-import { theme } from '@styles';
-const { colors } = theme; 
 
 const IconLogo = () => (
 <svg version="1.0" xmlns="http://www.w3.org/2000/svg"

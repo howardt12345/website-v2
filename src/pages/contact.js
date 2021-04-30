@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import { graphql } from 'gatsby';
 import { Helmet } from 'react-helmet';
 import { Layout } from '@components';
-import Img from 'gatsby-image';
 import { email, location, insta, instalink, recaptchaKey } from '@config';
 import PropTypes from 'prop-types';
 import { FormattedIcon } from '@components/icons';

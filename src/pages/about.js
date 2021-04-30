@@ -24,18 +24,18 @@ AboutPage.propTypes = {
   data: PropTypes.object.isRequired,
 };
 
-export const pageQuery = graphql`
-{
-  about: allMarkdownRemark(filter: { fileAbsolutePath: { regex: "/about/" } }) {
+export const pageQuery = graphql`{
+  about: allMarkdownRemark(filter: {fileAbsolutePath: {regex: "/about/"}}) {
     edges {
       node {
         frontmatter {
           title
           avatar {
             childImageSharp {
-              fluid(maxWidth: 700, quality: 90, traceSVG: { color: "#64ffda" }) {
-                ...GatsbyImageSharpFluid
-              }
+              gatsbyImageData(
+                quality: 90
+                layout: FULL_WIDTH
+              )
             }
           }
           skills
@@ -45,8 +45,8 @@ export const pageQuery = graphql`
     }
   }
   jobs: allMarkdownRemark(
-    filter: { fileAbsolutePath: { regex: "/jobs/" } }
-    sort: { fields: [frontmatter___date], order: DESC }
+    filter: {fileAbsolutePath: {regex: "/jobs/"}}
+    sort: {fields: [frontmatter___date], order: DESC}
   ) {
     edges {
       node {
