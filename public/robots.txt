@@ -1,4 +1,0 @@
-User-agent: *
-Allow: /
-Sitemap: https://howardt12345.com/sitemap.xml
-Host: https://howardt12345.com
