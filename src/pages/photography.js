@@ -26,7 +26,7 @@ class Picture {
 }
 
 const fromFirestore = async () => {
-  var list = [];
+  let list = [];
 
   await firebase.firestore()
   .collection("photo")

@@ -15,7 +15,7 @@ export class ImageMasonry extends React.Component {
     super(props);
 
     let state = {}
-    for (var i = 0; i < this.props.numCols; i++) {
+    for (let i = 0; i < this.props.numCols; i++) {
       state["col-" + i] = [];
     }
     this.state = state;
@@ -26,7 +26,7 @@ export class ImageMasonry extends React.Component {
   render() {
     // Create all of the columns
     let columns = []
-    for (var i = 0; i < this.props.numCols; i++) {
+    for (let i = 0; i < this.props.numCols; i++) {
       columns.push(
         <div
           style={{
@@ -87,7 +87,7 @@ export class ImageMasonry extends React.Component {
 
         // Reset the state
         let newState = {}
-        for (var i = 0; i < this.props.numCols; i++) {
+        for (let i = 0; i < this.props.numCols; i++) {
           newState["col-" + i] = [];
         }
         this.setState(newState);

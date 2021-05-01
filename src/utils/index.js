@@ -29,7 +29,7 @@ export const currentTime = () => {
 
 
 export const isEmpty = (obj) => {
-  for(var key in obj) {
+  for(let key in obj) {
       if(obj.hasOwnProperty(key))
           return false;
   }
