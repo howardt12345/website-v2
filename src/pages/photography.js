@@ -58,9 +58,10 @@ const PhotographyPage = () => {
         let tmp = await fromFirestore();
         setData(tmp);
         setIsLoading(false);
-        firebase.auth().currentUser.delete().then(() => {
+        await firebase.auth().currentUser.delete().then(() => {
           console.log('anonymous account deleted');
         });
+        setFetching(false);
       } catch(e) {
         console.log(e);
         setIsLoading(false);
