@@ -181,16 +181,13 @@ class ContactPage extends Component {
             alert(`Message has been sent! Thank you ${this.state.name}!`);
             firebase.auth().currentUser.delete();
           }).catch(e => {
-            console.log("error");
             alert(`An unexpected error has occured.`);
           });
         })
         .catch(e => {
-          console.log("error");
           alert(`An unexpected error has occured.`);
         });
       } catch (error) {
-        console.log("error");
         alert(`An unexpected error has occured.`);
       }
     } else {

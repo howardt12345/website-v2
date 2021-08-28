@@ -54,16 +54,13 @@ const PhotographyPage = () => {
     async function fetchData() {
       try {
         await firebase.auth().signInAnonymously()
-        console.log("signed in");
         let tmp = await fromFirestore();
         setData(tmp);
         setIsLoading(false);
         await firebase.auth().currentUser.delete().then(() => {
-          console.log('anonymous account deleted');
         });
         setFetching(false);
       } catch(e) {
-        console.log(e);
         setIsLoading(false);
       }
     }
