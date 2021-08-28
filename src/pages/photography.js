@@ -85,7 +85,7 @@ const PhotographyPage = () => {
 
       <StyledSection>
         {!isLoading && (
-          <TilesPage data={data ?? []} />
+          <TilesPage data={data ?? {}} />
         )}
         {isLoading && (
           <LoadingPage />

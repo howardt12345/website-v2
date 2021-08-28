@@ -57,7 +57,7 @@ const TilesPage = ({ data, size }) => {
       {!_.isEmpty(data) && size && (
         <div>
           <ImageMasonry 
-            numCols={Math.ceil(size.width/600)}
+            numCols={Math.ceil(size.width/600) ?? 3}
             imageUrls={getUrlsFor(data)}
             onClick={(index) => {
               setCurrentImage(index);
