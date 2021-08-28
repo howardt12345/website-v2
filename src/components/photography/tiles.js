@@ -33,6 +33,7 @@ const StyledDialog = styled(Dialog)`
 `;
 const StyledDialogButtons = styled.div`
   ${mixins.flexBetween}
+  justify-content: flex-end;
 `;
 const StyledImgContainer = styled.div`
   align-items: center;
