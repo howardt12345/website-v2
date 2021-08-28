@@ -46,7 +46,7 @@ const PhotographyPage = () => {
 
   const [isLoading, setIsLoading] = useState(true);
   const [fetching, setFetching] = useState(false);
-  const [data, setData] = useState({});
+  const [data, setData] = useState([]);
 
 
   useEffect(() => {
@@ -85,7 +85,7 @@ const PhotographyPage = () => {
 
       <StyledSection>
         {!isLoading && (
-          <TilesPage data={data ?? {}} />
+          <TilesPage data={data ?? []} />
         )}
         {isLoading && (
           <LoadingPage />
