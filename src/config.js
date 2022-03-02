@@ -12,7 +12,7 @@ module.exports = {
   location: "Toronto, ON, CA",
   lat: 43.64877,
   lng: -79.38171,
-  email: "me@howardt1345.com",
+  email: "me@howardt12345.com",
   github: "https://github.com/howardt12345",
   insta: "@howardt12345",
   instalink: "https://instagram.com/howardt12345",
