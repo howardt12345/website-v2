@@ -54,7 +54,7 @@ const NotFoundPage = () => {
         )}
       </TransitionGroup>
     </Layout>
-  )
-}
+  );
+};
 
 export default NotFoundPage;

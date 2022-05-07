@@ -1,12 +1,7 @@
-
-
-
 const path = require('path');
 const _ = require('lodash');
 
-
 exports.onCreateWebpackConfig = ({ stage, loaders, actions }) => {
-  
   if (stage === 'build-html') {
     actions.setWebpackConfig({
       module: {
@@ -23,7 +18,7 @@ exports.onCreateWebpackConfig = ({ stage, loaders, actions }) => {
       },
     });
   }
-  
+
   actions.setWebpackConfig({
     resolve: {
       alias: {
@@ -38,4 +33,4 @@ exports.onCreateWebpackConfig = ({ stage, loaders, actions }) => {
       },
     },
   });
-}
+};

@@ -43,9 +43,10 @@ This website was made as my first project working with React, Gatsby, and Netlif
    ```sh
    gatsby develop
    ```
+
    The site is now running at `http://localhost:8000`!
-  
-## Building and Running for Production:   
+
+## Building and Running for Production:
 
 1. Generate a full static production build
 
@@ -58,26 +59,27 @@ This website was made as my first project working with React, Gatsby, and Netlif
    ```sh
    gatsby serve
    ```
+
    The preview site should now be running at `http://localhost:9000`.
 
 ## Color Reference:
 
 Light Mode:
-| Color                | Hex                                                                |
+| Color | Hex |
 | -------------------- | ------------------------------------------------------------------ |
-| background           | ![#FFFFFF](https://via.placeholder.com/10/FFFFFF?text=+) `#FFFFFF` |
+| background | ![#FFFFFF](https://via.placeholder.com/10/FFFFFF?text=+) `#FFFFFF` |
 | background_secondary | ![#EAEAEA](https://via.placeholder.com/10/EAEAEA?text=+) `#EAEAEA` |
-| accent               | ![#2196F3](https://via.placeholder.com/10/2196F3?text=+) `#2196F3` |
-| textPrimary          | ![#000000](https://via.placeholder.com/10/000000?text=+) `#000000` |
-| textSecondary        | ![#7A7A7A](https://via.placeholder.com/10/7A7A7A?text=+) `#7A7A7A` |
-| textBody             | ![#0C0C0C](https://via.placeholder.com/10/0C0C0C?text=+) `#0C0C0C` |
+| accent | ![#2196F3](https://via.placeholder.com/10/2196F3?text=+) `#2196F3` |
+| textPrimary | ![#000000](https://via.placeholder.com/10/000000?text=+) `#000000` |
+| textSecondary | ![#7A7A7A](https://via.placeholder.com/10/7A7A7A?text=+) `#7A7A7A` |
+| textBody | ![#0C0C0C](https://via.placeholder.com/10/0C0C0C?text=+) `#0C0C0C` |
 
 Dark Mode:
-| Color                | Hex                                                                |
+| Color | Hex |
 | -------------------- | ------------------------------------------------------------------ |
-| background           | ![#000000](https://via.placeholder.com/10/000000?text=+) `#000000` |
+| background | ![#000000](https://via.placeholder.com/10/000000?text=+) `#000000` |
 | background_secondary | ![#151515](https://via.placeholder.com/10/151515?text=+) `#151515` |
-| accent               | ![#64ffda](https://via.placeholder.com/10/64ffda?text=+) `#64ffda` |
-| textPrimary          | ![#FFFFFF](https://via.placeholder.com/10/FFFFFF?text=+) `#FFFFFF` |
-| textSecondary        | ![#858585](https://via.placeholder.com/10/858585?text=+) `#858585` |
-| textBody             | ![#F3F3F3](https://via.placeholder.com/10/F3F3F3?text=+) `#F3F3F3` |
+| accent | ![#64ffda](https://via.placeholder.com/10/64ffda?text=+) `#64ffda` |
+| textPrimary | ![#FFFFFF](https://via.placeholder.com/10/FFFFFF?text=+) `#FFFFFF` |
+| textSecondary | ![#858585](https://via.placeholder.com/10/858585?text=+) `#858585` |
+| textBody | ![#F3F3F3](https://via.placeholder.com/10/F3F3F3?text=+) `#F3F3F3` |

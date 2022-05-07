@@ -123,7 +123,9 @@ const ArchivePage = ({ data }) => {
     sr.reveal(revealTitle.current, srConfig());
     sr.reveal(revealProjectsLink.current, srConfig());
     sr.reveal(revealTable.current, srConfig());
-    revealProjects.current.forEach((ref, i) => sr.reveal(ref, srConfig(i * 10)));
+    revealProjects.current.forEach((ref, i) =>
+      sr.reveal(ref, srConfig(i * 10)),
+    );
   }, []);
 
   return (
@@ -135,7 +137,9 @@ const ArchivePage = ({ data }) => {
       <StyledContainer>
         <header ref={revealTitle}>
           <Heading>Archive</Heading>
-          <p className="subtitle">A list of things I’ve worked on in the past</p>
+          <p className="subtitle">
+            A list of things I’ve worked on in the past
+          </p>
         </header>
         <div ref={revealProjectsLink}>
           <StyledProjectsLink to="/projects">
@@ -169,7 +173,9 @@ const ArchivePage = ({ data }) => {
                   } = node.frontmatter;
                   return (
                     <tr key={i} ref={el => (revealProjects.current[i] = el)}>
-                      <td className="overline year">{`${new Date(date).getFullYear()}`}</td>
+                      <td className="overline year">{`${new Date(
+                        date,
+                      ).getFullYear()}`}</td>
 
                       <td className="title">{title}</td>
 
@@ -183,7 +189,9 @@ const ArchivePage = ({ data }) => {
                             <span key={i}>
                               {item}
                               {''}
-                              {i !== tech.length - 1 && <span className="separator">&middot;</span>}
+                              {i !== tech.length - 1 && (
+                                <span className="separator">&middot;</span>
+                              )}
                             </span>
                           ))}
                       </td>
@@ -195,7 +203,8 @@ const ArchivePage = ({ data }) => {
                               href={external}
                               target="_blank"
                               rel="nofollow noopener noreferrer"
-                              aria-label="External Link">
+                              aria-label="External Link"
+                            >
                               <FormattedIcon name="External" />
                             </a>
                           )}
@@ -204,7 +213,8 @@ const ArchivePage = ({ data }) => {
                               href={github}
                               target="_blank"
                               rel="nofollow noopener noreferrer"
-                              aria-label="GitHub Link">
+                              aria-label="GitHub Link"
+                            >
                               <FormattedIcon name="GitHub" />
                             </a>
                           )}
@@ -229,7 +239,7 @@ const ArchivePage = ({ data }) => {
                               <FormattedIcon name="PlayStore" />
                             </a>
                           )
-                          */} 
+                          */}
                         </span>
                       </td>
                     </tr>

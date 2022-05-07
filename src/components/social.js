@@ -18,12 +18,11 @@ const Social = () => (
   <StyledList>
     {socialMedia &&
       socialMedia.map(({ url, name }, i) => (
-      <li key={i}>
-        <IconButton name={name} url={url} />
-      </li>
-    ))}
+        <li key={i}>
+          <IconButton name={name} url={url} />
+        </li>
+      ))}
   </StyledList>
 );
-  
 
 export default Social;

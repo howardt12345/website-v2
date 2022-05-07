@@ -20,7 +20,7 @@ const Categories = styled.div`
     border: 1px solid ${({ theme }) => theme.textSecondary};
   }
   &:hover::-webkit-scrollbar {
-      display: block;
+    display: block;
   }
   &::-webkit-scrollbar-track {
     background: ${({ theme }) => theme.background};
@@ -31,7 +31,8 @@ const Categories = styled.div`
   }
   & {
     scrollbar-width: none;
-    scrollbar-color: ${({ theme }) => theme.textSecondary} ${({ theme }) => theme.background};
+    scrollbar-color: ${({ theme }) => theme.textSecondary}
+      ${({ theme }) => theme.background};
   }
 `;
 const CategoriesMobile = styled.div`
@@ -42,60 +43,59 @@ const CategoriesMobile = styled.div`
 `;
 
 const CategoriesPage = ({ data }) => {
-  const isBrowser = typeof window !== 'undefined'
-  const [width, setWidth] = useState(isBrowser ? window.innerWidth : 0)
+  const isBrowser = typeof window !== 'undefined';
+  const [width, setWidth] = useState(isBrowser ? window.innerWidth : 0);
 
   useEffect(() => {
-    if (!isBrowser) return false
+    if (!isBrowser) return false;
 
-    const handleResize = () => setWidth(window.innerWidth)
-    const horizontalScroll = (e) => {
-      if(width > 768) {
+    const handleResize = () => setWidth(window.innerWidth);
+    const horizontalScroll = e => {
+      if (width > 768) {
         document.getElementById('scroll_container').scrollLeft += e.deltaY;
       }
-    }
+    };
 
     window.addEventListener('wheel', horizontalScroll);
-    window.addEventListener("resize", handleResize);
-    
+    window.addEventListener('resize', handleResize);
+
     return () => {
       window.removeEventListener('wheel', horizontalScroll);
-      window.removeEventListener("resize", handleResize);
-    }
+      window.removeEventListener('resize', handleResize);
+    };
   }, [width, isBrowser]);
 
-  return (
-   (width >= 768) 
-   ? (
-    <Categories id='scroll_container'>
-      {data && (width > 0) && (
-        data.getCategories()
-        .filter(c => data.getAllPicturesAt(c).length !== 0)
-        .map(c => {
-          return (
-            <Category category={c} data={data} isVisible={true} key={c}/>
-          )
-        })
-      )}
+  return width >= 768 ? (
+    <Categories id="scroll_container">
+      {data &&
+        width > 0 &&
+        data
+          .getCategories()
+          .filter(c => data.getAllPicturesAt(c).length !== 0)
+          .map(c => {
+            return (
+              <Category category={c} data={data} isVisible={true} key={c} />
+            );
+          })}
     </Categories>
   ) : (
-     <CategoriesMobile>
-      {data && (width > 0) && (
-        data.getCategories()
-        .filter(c => data.getAllPicturesAt(c).length !== 0)
-        .map(c => {
-          return (
-            <Category category={c} data={data} isVisible={true} key={c}/>
-          )
-        })
-      )}
-      </CategoriesMobile>
-   )
+    <CategoriesMobile>
+      {data &&
+        width > 0 &&
+        data
+          .getCategories()
+          .filter(c => data.getAllPicturesAt(c).length !== 0)
+          .map(c => {
+            return (
+              <Category category={c} data={data} isVisible={true} key={c} />
+            );
+          })}
+    </CategoriesMobile>
   );
-}
+};
 
 CategoriesPage.propTypes = {
   data: PropTypes.object.isRequired,
-}
+};
 
 export default CategoriesPage;

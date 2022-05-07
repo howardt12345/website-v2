@@ -1,12 +1,14 @@
-import React, { useEffect, useState } from "react"
+import React, { useEffect, useState } from 'react';
 import { Layout } from '@components';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
 import { Helmet } from 'react-helmet';
-import firebase from "gatsby-plugin-firebase";
-import { isEmpty } from "@utils";
+import firebase from 'gatsby-plugin-firebase';
+import { isEmpty } from '@utils';
 import { fromFirestore } from '@api';
-import { /*OldTilesPage, CategoriesPage,*/ NotFoundPage, /*LoadingPage*/ } from '@components/photography';
+import {
+  /*OldTilesPage, CategoriesPage,*/ NotFoundPage /*LoadingPage*/,
+} from '@components/photography';
 
 //const _ = require('lodash');
 
@@ -16,36 +18,39 @@ const StyledSection = styled.section`
 `;
 
 const OldPhotographyPage = ({ location }) => {
-  const isBrowser = typeof window !== 'undefined'
-  const [width, setWidth] = useState(isBrowser ? window.innerWidth : 0)
+  const isBrowser = typeof window !== 'undefined';
+  const [width, setWidth] = useState(isBrowser ? window.innerWidth : 0);
 
   const [isHome, setIsHome] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
   const [data, setData] = useState({});
-  const [path, setPath] = useState("");
+  const [path, setPath] = useState('');
   const [fetching, setFetching] = useState(false);
 
   useEffect(() => {
-    if (!isBrowser) return false
+    if (!isBrowser) return false;
 
-    const handleResize = () => setWidth(window.innerWidth)
+    const handleResize = () => setWidth(window.innerWidth);
 
     async function fetchData() {
       try {
-        await firebase.auth().signInAnonymously()
-        console.log("signed in");
+        await firebase.auth().signInAnonymously();
+        console.log('signed in');
         let tmp = await fromFirestore();
         setData(tmp);
         setIsLoading(false);
-        firebase.auth().currentUser.delete().then(() => {
-          console.log('anonymous account deleted');
-        });
-      } catch(e) {
+        firebase
+          .auth()
+          .currentUser.delete()
+          .then(() => {
+            console.log('anonymous account deleted');
+          });
+      } catch (e) {
         console.log(e);
         setIsLoading(false);
       }
     }
-    if(isEmpty(data) && isLoading && !fetching) {
+    if (isEmpty(data) && isLoading && !fetching) {
       setFetching(true);
       fetchData();
     }
@@ -56,17 +61,26 @@ const OldPhotographyPage = ({ location }) => {
       setIsHome(false);
     } else {
       setPath('');
-      if(!isHome) {
+      if (!isHome) {
       }
       setIsHome(true);
     }
 
-    window.addEventListener("resize", handleResize);
-    
+    window.addEventListener('resize', handleResize);
+
     return () => {
-      window.removeEventListener("resize", handleResize);
-    }
-  }, [isHome, isLoading, data, path, location.hash, fetching, width, isBrowser]);
+      window.removeEventListener('resize', handleResize);
+    };
+  }, [
+    isHome,
+    isLoading,
+    data,
+    path,
+    location.hash,
+    fetching,
+    width,
+    isBrowser,
+  ]);
 
   /*return (
     <Layout isHome={false} animateNav={false} footer={!isHome || width < 768}>
@@ -100,8 +114,8 @@ const OldPhotographyPage = ({ location }) => {
         <NotFoundPage />
       </StyledSection>
     </Layout>
-  )
-}
+  );
+};
 
 OldPhotographyPage.propTypes = {
   location: PropTypes.object.isRequired,

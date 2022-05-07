@@ -23,11 +23,15 @@ const StyledContainer = styled.header`
   pointer-events: auto !important;
   user-select: auto !important;
   width: 100%;
-  height: ${props => (props.scrollDirection === 'none' ? theme.navHeight : theme.navScrollHeight)};
+  height: ${props =>
+    props.scrollDirection === 'none' ? theme.navHeight : theme.navScrollHeight};
   box-shadow: ${props =>
-    props.scrollDirection === 'up' ? `0 10px 30px -10px ${({ theme }) => theme.translucent_bg}` : 'none'};
+    props.scrollDirection === 'up'
+      ? `0 10px 30px -10px ${({ theme }) => theme.translucent_bg}`
+      : 'none'};
   transform: translateY(
-    ${props => (props.scrollDirection === 'down' ? `-${theme.navScrollHeight}` : '0px')}
+    ${props =>
+      props.scrollDirection === 'down' ? `-${theme.navScrollHeight}` : '0px'}
   );
   ${media.desktop`padding: 0 40px;`};
   ${media.tablet`padding: 0 25px;`};
@@ -110,7 +114,8 @@ const StyledHamburgerInner = styled.div`
   transition-delay: ${props => (props.menuOpen ? `0.12s` : `0s`)};
   transform: rotate(${props => (props.menuOpen ? `225deg` : `0deg`)});
   transition-timing-function: cubic-bezier(
-    ${props => (props.menuOpen ? `0.215, 0.61, 0.355, 1` : `0.55, 0.055, 0.675, 0.19`)}
+    ${props =>
+      props.menuOpen ? `0.215, 0.61, 0.355, 1` : `0.55, 0.055, 0.675, 0.19`}
   );
   &:before,
   &:after {
@@ -131,13 +136,15 @@ const StyledHamburgerInner = styled.div`
     width: ${props => (props.menuOpen ? `100%` : `120%`)};
     top: ${props => (props.menuOpen ? `0` : `-10px`)};
     opacity: ${props => (props.menuOpen ? 0 : 1)};
-    transition: ${props => (props.menuOpen ? theme.hamBeforeActive : theme.hamBefore)};
+    transition: ${props =>
+      props.menuOpen ? theme.hamBeforeActive : theme.hamBefore};
   }
   &:after {
     width: ${props => (props.menuOpen ? `100%` : `80%`)};
     bottom: ${props => (props.menuOpen ? `0` : `-10px`)};
     transform: rotate(${props => (props.menuOpen ? `-90deg` : `0`)});
-    transition: ${props => (props.menuOpen ? theme.hamAfterActive : theme.hamAfter)};
+    transition: ${props =>
+      props.menuOpen ? theme.hamAfterActive : theme.hamAfter};
   }
 `;
 const StyledLink = styled.div`
@@ -174,8 +181,12 @@ class Nav extends Component {
     setTimeout(
       () =>
         this.setState({ isMounted: true }, () => {
-          window.addEventListener('scroll', () => throttle(this.handleScroll()));
-          window.addEventListener('resize', () => throttle(this.handleResize()));
+          window.addEventListener('scroll', () =>
+            throttle(this.handleScroll()),
+          );
+          window.addEventListener('resize', () =>
+            throttle(this.handleResize()),
+          );
           window.addEventListener('keydown', e => this.handleKeydown(e));
         }),
       100,
@@ -239,66 +250,75 @@ class Nav extends Component {
 
     return (
       <StyledContainer scrollDirection={scrollDirection}>
-      <StyledNav>
-        <TransitionGroup component={null}>
-          {isMounted && (
-            <CSSTransition classNames={fadeClass} timeout={timeout}>
-              <StyledTitle>
-                <StyledListLink to={'/'}>{siteTitle.toUpperCase()}</StyledListLink>
-              </StyledTitle>
-            </CSSTransition>
-          )}
-        </TransitionGroup>
-        <TransitionGroup component={null}>
-          {isMounted && (
-            <CSSTransition classNames={fadeClass} timeout={timeout}>
-              <StyledLogo tabindex="-1">
-                {animate ? (
-                  <a href="/" aria-label="home">
-                    <IconLogo />
-                  </a>
-                ) : (
-                  <Link to="/" aria-label="home">
-                    <IconLogo />
-                  </Link>
-                )}
-              </StyledLogo>
-            </CSSTransition>
-          )}
-        </TransitionGroup>
+        <StyledNav>
+          <TransitionGroup component={null}>
+            {isMounted && (
+              <CSSTransition classNames={fadeClass} timeout={timeout}>
+                <StyledTitle>
+                  <StyledListLink to={'/'}>
+                    {siteTitle.toUpperCase()}
+                  </StyledListLink>
+                </StyledTitle>
+              </CSSTransition>
+            )}
+          </TransitionGroup>
+          <TransitionGroup component={null}>
+            {isMounted && (
+              <CSSTransition classNames={fadeClass} timeout={timeout}>
+                <StyledLogo tabindex="-1">
+                  {animate ? (
+                    <a href="/" aria-label="home">
+                      <IconLogo />
+                    </a>
+                  ) : (
+                    <Link to="/" aria-label="home">
+                      <IconLogo />
+                    </Link>
+                  )}
+                </StyledLogo>
+              </CSSTransition>
+            )}
+          </TransitionGroup>
 
-        <ToggleButton />
+          <ToggleButton />
 
-        <TransitionGroup component={null}>
-          {isMounted && (
-            <CSSTransition classNames={fadeClass} timeout={timeout}>
-              <StyledHamburger onClick={this.toggleMenu}>
-                <StyledHamburgerBox>
-                  <StyledHamburgerInner menuOpen={menuOpen} />
-                </StyledHamburgerBox>
-              </StyledHamburger>
-            </CSSTransition>
-          )}
-        </TransitionGroup>
+          <TransitionGroup component={null}>
+            {isMounted && (
+              <CSSTransition classNames={fadeClass} timeout={timeout}>
+                <StyledHamburger onClick={this.toggleMenu}>
+                  <StyledHamburgerBox>
+                    <StyledHamburgerInner menuOpen={menuOpen} />
+                  </StyledHamburgerBox>
+                </StyledHamburger>
+              </CSSTransition>
+            )}
+          </TransitionGroup>
 
-        <StyledLink>
-          <StyledList>
-            <TransitionGroup component={null}>
-              {isMounted &&
-                navLinks &&
-                navLinks.map(({ url, name }, i) => (
-                  <CSSTransition key={i} classNames={fadeDownClass} timeout={timeout}>
-                    <StyledListItem
-                      style={{ transitionDelay: `${animate ? i * 100 : 0}ms` }}>
-                      <StyledListLink to={url}>{name}</StyledListLink>
-                    </StyledListItem>
-                  </CSSTransition>
-                ))}
-            </TransitionGroup>
-          </StyledList>
-        </StyledLink>
-      </StyledNav>
-      <Menu menuOpen={menuOpen} toggleMenu={this.toggleMenu} />
+          <StyledLink>
+            <StyledList>
+              <TransitionGroup component={null}>
+                {isMounted &&
+                  navLinks &&
+                  navLinks.map(({ url, name }, i) => (
+                    <CSSTransition
+                      key={i}
+                      classNames={fadeDownClass}
+                      timeout={timeout}
+                    >
+                      <StyledListItem
+                        style={{
+                          transitionDelay: `${animate ? i * 100 : 0}ms`,
+                        }}
+                      >
+                        <StyledListLink to={url}>{name}</StyledListLink>
+                      </StyledListItem>
+                    </CSSTransition>
+                  ))}
+              </TransitionGroup>
+            </StyledList>
+          </StyledLink>
+        </StyledNav>
+        <Menu menuOpen={menuOpen} toggleMenu={this.toggleMenu} />
       </StyledContainer>
     );
   }

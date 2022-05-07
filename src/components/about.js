@@ -2,7 +2,7 @@
 
 import React, { useEffect, useRef } from 'react';
 import PropTypes from 'prop-types';
-import { GatsbyImage } from "gatsby-plugin-image";
+import { GatsbyImage } from 'gatsby-plugin-image';
 import sr from '@utils/sr';
 import { srConfig, instalink } from '@config';
 import styled from 'styled-components';
@@ -141,17 +141,21 @@ const About = ({ data }) => {
           <div dangerouslySetInnerHTML={{ __html: html }} />
           {showSkills && (
             <SkillsContainer>
-              {skills && skills.map((skill, i) => <Skill key={i}>{skill}</Skill>)}
+              {skills &&
+                skills.map((skill, i) => <Skill key={i}>{skill}</Skill>)}
             </SkillsContainer>
           )}
         </StyledContent>
         <StyledPic>
-          <StyledAvatarLink 
+          <StyledAvatarLink
             href={instalink}
             target="_blank"
             rel="nofollow noopener noreferrer"
           >
-            <StyledAvatar image={avatar.childImageSharp.gatsbyImageData} alt="Avatar" />
+            <StyledAvatar
+              image={avatar.childImageSharp.gatsbyImageData}
+              alt="Avatar"
+            />
           </StyledAvatarLink>
         </StyledPic>
       </FlexContainer>
@@ -160,7 +164,8 @@ const About = ({ data }) => {
           <StyledResumeButton
             href="/resume.pdf"
             target="_blank"
-            rel="nofollow noopener noreferrer">
+            rel="nofollow noopener noreferrer"
+          >
             Resume
           </StyledResumeButton>
         </div>

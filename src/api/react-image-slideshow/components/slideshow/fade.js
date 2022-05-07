@@ -11,7 +11,7 @@ class Fade extends Component {
       index:
         props.defaultIndex && props.defaultIndex < props.children.length
           ? props.defaultIndex
-          : 0
+          : 0,
     };
     this.width = 0;
     this.timeout = null;
@@ -39,7 +39,7 @@ class Fade extends Component {
       clearTimeout(this.timeout);
       this.timeout = setTimeout(
         () => this.fadeImages(index + 1),
-        this.props.duration
+        this.props.duration,
       );
     }
   }
@@ -172,9 +172,9 @@ class Fade extends Component {
     const { arrows, nextArrow, infinite, children } = this.props;
     let className = '';
     if (!nextArrow) {
-      className = `nav ${this.state.index === children.length - 1 &&
-        !infinite &&
-        'disabled'}`;
+      className = `nav ${
+        this.state.index === children.length - 1 && !infinite && 'disabled'
+      }`;
     }
     return (
       arrows && (
@@ -209,7 +209,7 @@ class Fade extends Component {
                 <div
                   style={{
                     opacity: key === index ? '1' : '0',
-                    zIndex: key === index ? '1' : '0'
+                    zIndex: key === index ? '1' : '0',
                   }}
                   data-index={key}
                   key={key}
@@ -234,7 +234,7 @@ class Fade extends Component {
       infinite,
       duration,
       transitionDuration,
-      onChange
+      onChange,
     } = this.props;
     const existingTweens = this.tweenGroup.getAll();
     if (!existingTweens.length) {
@@ -268,7 +268,7 @@ class Fade extends Component {
           return;
         }
         this.setState({
-          index: newIndex
+          index: newIndex,
         });
         if (typeof onChange === 'function') {
           onChange(index, newIndex);
@@ -292,7 +292,7 @@ Fade.defaultProps = {
   arrows: true,
   autoplay: true,
   infinite: true,
-  pauseOnHover: false
+  pauseOnHover: false,
 };
 
 Fade.propTypes = {
@@ -306,6 +306,6 @@ Fade.propTypes = {
   onChange: PropTypes.func,
   pauseOnHover: PropTypes.bool,
   prevArrow: PropTypes.oneOfType([PropTypes.object, PropTypes.func]),
-  nextArrow: PropTypes.oneOfType([PropTypes.object, PropTypes.func])
+  nextArrow: PropTypes.oneOfType([PropTypes.object, PropTypes.func]),
 };
 export default Fade;

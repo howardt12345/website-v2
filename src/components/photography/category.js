@@ -23,7 +23,7 @@ const CategoryNameVisible = styled(Subheading)`
   color: ${({ theme }) => theme.textPrimary};
   line-height: 1;
 `;
-const CategoryNameHidden= styled(Subheading)`
+const CategoryNameHidden = styled(Subheading)`
   color: ${({ theme }) => theme.textSecondary};
   line-height: 1;
 `;
@@ -53,29 +53,26 @@ const CategoryTilesSection = styled.div`
   ${media.tablet`padding-left: 0px`};
 `;
 
-
 export const Category = ({ category, data, isVisible }) => {
   return (
     <CategorySection>
       <CategoryTitleSection>
-        {isVisible
-          ? (<CategoryNameVisible>{category}</CategoryNameVisible>)
-          : (<CategoryNameHidden>{category}</CategoryNameHidden>)
-        }
+        {isVisible ? (
+          <CategoryNameVisible>{category}</CategoryNameVisible>
+        ) : (
+          <CategoryNameHidden>{category}</CategoryNameHidden>
+        )}
       </CategoryTitleSection>
       <CategoryLineSection>
-        {isVisible 
-          ? (<LineVisible />) 
-          : (<LineHidden />)
-        }
+        {isVisible ? <LineVisible /> : <LineHidden />}
       </CategoryLineSection>
       <CategoryTilesSection>
-        {data && (
+        {data &&
           data.getSubcategoriesAt(category).map((s, i) => {
-            if(s === 'icon') {
+            if (s === 'icon') {
               return (
-                <CategoryTile 
-                  name={"All"} 
+                <CategoryTile
+                  name={'All'}
                   path={`/photography/#${category}/`}
                   pictures={data.getAllPicturesAt(category)}
                   key={`/photography/#${category}/${i}`}
@@ -83,26 +80,25 @@ export const Category = ({ category, data, isVisible }) => {
               );
             } else {
               return (
-                <CategoryTile 
-                  name={s} 
+                <CategoryTile
+                  name={s}
                   path={`/photography/#${category}/${s}`}
                   pictures={data.getPicturesAt(category, s)}
                   key={`/photography/#${category}/${s}${i}`}
                 />
               );
             }
-          })
-        )}
+          })}
       </CategoryTilesSection>
     </CategorySection>
   );
-}
+};
 
 Category.propTypes = {
   category: PropTypes.string.isRequired,
   data: PropTypes.object.isRequired,
   isVisible: PropTypes.bool.isRequired,
-}
+};
 
 const StyledName = styled.h2`
   position: absolute;
@@ -125,7 +121,7 @@ const StyledCategoryTile = styled(Link)`
 const StyledBackgroundImage = styled.img`
   height: 100%;
   max-width: 100%;
-  -webkit-filter: blur(10px); 
+  -webkit-filter: blur(10px);
   filter: blur(10px);
 `;
 const StyledImage = styled.img`
@@ -148,49 +144,52 @@ const StyledImageDiv = styled.div`
 `;
 
 const CategoryTile = ({ name, path, pictures }) => {
-
   const fadeProperties = {
     duration: 2500,
     transitionDuration: 500,
     infinite: true,
     arrows: false,
-  }
+  };
 
   return (
     <StyledCategoryTile to={path}>
-      <StyledImageDiv className={"slide-container-"+name}>
+      <StyledImageDiv className={'slide-container-' + name}>
         <Fade {...fadeProperties}>
-          {pictures && 
-          [...pictures.map((pic, i) => {
-            return (
-              <StyledImageDiv className={'each-fade'} key={'each-fade-' + i}>
-                <StyledImageDiv className={'image-container'} key={'image-container-' + i}>
-                  {(pic.height !== 5 && pic.width !== 4) && (
-                    <StyledBackgroundImage    
+          {pictures && [
+            ...pictures.map((pic, i) => {
+              return (
+                <StyledImageDiv className={'each-fade'} key={'each-fade-' + i}>
+                  <StyledImageDiv
+                    className={'image-container'}
+                    key={'image-container-' + i}
+                  >
+                    {pic.height !== 5 && pic.width !== 4 && (
+                      <StyledBackgroundImage
+                        src={pic.getUrl()}
+                        alt={pic.getUrl()}
+                        key={pic.name + '-bg' + i}
+                      />
+                    )}
+                    <StyledImage
                       src={pic.getUrl()}
                       alt={pic.getUrl()}
-                      key={pic.name + '-bg' + i}
+                      key={pic.name + i}
                     />
-                  )}
-                  <StyledImage 
-                    src={pic.getUrl()}
-                    alt={pic.getUrl()}
-                    key={pic.name + i}
-                  />
+                  </StyledImageDiv>
+                  <StyledName>{name}</StyledName>
                 </StyledImageDiv>
-                <StyledName>{name}</StyledName>
-              </StyledImageDiv>
-            );
-          })]}
+              );
+            }),
+          ]}
         </Fade>
       </StyledImageDiv>
       <StyledName>{name}</StyledName>
     </StyledCategoryTile>
   );
-}
+};
 
 CategoryTile.propTypes = {
   name: PropTypes.string.isRequired,
   path: PropTypes.string.isRequired,
   pictures: PropTypes.array.isRequired,
-}
+};

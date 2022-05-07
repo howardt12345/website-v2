@@ -6,6 +6,7 @@ location: 'Toronto, ON, CA'
 range: 'Sept 2017 - Jan 2018'
 url: 'http://k12-solutions.com/'
 ---
+
 - Maintained technology equipment by installing, configuring, diagnosing, repairing and upgrading all hardware to ensure optimal performance.
 - Assessed, troubleshot and repaired various machines such as desktops, laptops, and monitors.
 - Used diagnostic tools to identify hardware failures and replace non-functional components.

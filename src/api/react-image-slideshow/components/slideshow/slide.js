@@ -12,7 +12,7 @@ class Slideshow extends Component {
       index:
         props.defaultIndex && props.defaultIndex < props.children.length
           ? props.defaultIndex
-          : 0
+          : 0,
     };
     this.width = 0;
     this.imageContainer = null;
@@ -28,7 +28,7 @@ class Slideshow extends Component {
 
   componentDidMount() {
     this.setWidth();
-    if(typeof window !== 'undefined') {
+    if (typeof window !== 'undefined') {
       window.addEventListener('resize', this.resizeListener);
     }
     const { autoplay, duration } = this.props;
@@ -47,13 +47,14 @@ class Slideshow extends Component {
     // the .slice.call was needed to support ie11
     this.allImages = Array.prototype.slice.call(
       this.wrapper.querySelectorAll(`.images-wrap > div`),
-      0
+      0,
     );
     this.width = this.wrapper.clientWidth;
     const fullwidth = this.width * (this.props.children.length + 2);
     this.imageContainer.style.width = `${fullwidth}px`;
-    this.imageContainer.style.transform = `translate(-${this.width *
-      (this.state.index + 1)}px)`;
+    this.imageContainer.style.transform = `translate(-${
+      this.width * (this.state.index + 1)
+    }px)`;
     this.applySlideStyle();
   }
 
@@ -165,9 +166,9 @@ class Slideshow extends Component {
     const { arrows, nextArrow, infinite, children } = this.props;
     let className = '';
     if (!nextArrow) {
-      className = `nav ${this.state.index === children.length - 1 &&
-        !infinite &&
-        'disabled'}`;
+      className = `nav ${
+        this.state.index === children.length - 1 && !infinite && 'disabled'
+      }`;
     }
     return (
       arrows && (
@@ -183,7 +184,7 @@ class Slideshow extends Component {
     const unhandledProps = getUnhandledProps(Slideshow.propTypes, this.props);
     const { index } = this.state;
     const style = {
-      transform: `translate(-${(index + 1) * this.width}px)`
+      transform: `translate(-${(index + 1) * this.width}px)`,
     };
 
     return (
@@ -230,7 +231,7 @@ class Slideshow extends Component {
       autoplay,
       infinite,
       duration,
-      onChange
+      onChange,
     } = this.props;
     const existingTweens = this.tweenGroup.getAll();
     if (!existingTweens.length) {
@@ -269,13 +270,13 @@ class Slideshow extends Component {
         }
         this.setState(
           {
-            index: newIndex
+            index: newIndex,
           },
           () => {
             if (autoplay && (infinite || this.state.index < children.length)) {
               this.timeout = setTimeout(() => this.goNext(), duration);
             }
-          }
+          },
         );
       });
     }
@@ -290,7 +291,7 @@ Slideshow.defaultProps = {
   autoplay: true,
   indicators: false,
   arrows: true,
-  pauseOnHover: false
+  pauseOnHover: false,
 };
 
 Slideshow.propTypes = {
@@ -304,6 +305,6 @@ Slideshow.propTypes = {
   onChange: PropTypes.func,
   pauseOnHover: PropTypes.bool,
   prevArrow: PropTypes.oneOfType([PropTypes.object, PropTypes.func]),
-  nextArrow: PropTypes.oneOfType([PropTypes.object, PropTypes.func])
+  nextArrow: PropTypes.oneOfType([PropTypes.object, PropTypes.func]),
 };
 export default Slideshow;

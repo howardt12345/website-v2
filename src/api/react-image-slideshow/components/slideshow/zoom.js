@@ -12,7 +12,7 @@ class Zoom extends Component {
       index:
         props.defaultIndex && props.defaultIndex < props.children.length
           ? props.defaultIndex
-          : 0
+          : 0,
     };
     this.width = 0;
     this.timeout = null;
@@ -28,7 +28,7 @@ class Zoom extends Component {
   }
 
   componentDidMount() {
-    if(typeof window !== 'undefined') {
+    if (typeof window !== 'undefined') {
       window.addEventListener('resize', this.resizeListener);
     }
     this.setWidth();
@@ -42,7 +42,7 @@ class Zoom extends Component {
       clearTimeout(this.timeout);
       this.timeout = setTimeout(
         () => this.zoomTo(index + 1),
-        this.props.duration
+        this.props.duration,
       );
     }
   }
@@ -175,9 +175,9 @@ class Zoom extends Component {
     const { arrows, nextArrow, infinite, children } = this.props;
     let className = '';
     if (!nextArrow) {
-      className = `nav ${this.state.index === children.length - 1 &&
-        !infinite &&
-        'disabled'}`;
+      className = `nav ${
+        this.state.index === children.length - 1 && !infinite && 'disabled'
+      }`;
     }
     return (
       arrows && (
@@ -212,7 +212,7 @@ class Zoom extends Component {
                 <div
                   style={{
                     opacity: key === index ? '1' : '0',
-                    zIndex: key === index ? '1' : '0'
+                    zIndex: key === index ? '1' : '0',
                   }}
                   data-index={key}
                   key={key}
@@ -238,7 +238,7 @@ class Zoom extends Component {
       infinite,
       transitionDuration,
       duration,
-      onChange
+      onChange,
     } = this.props;
     const existingTweens = this.tweenGroup.getAll();
     if (!existingTweens.length) {
@@ -248,7 +248,7 @@ class Zoom extends Component {
       clearTimeout(this.timeout);
       const value = {
         opacity: 0,
-        scale: 1
+        scale: 1,
       };
 
       let animate = () => {
@@ -282,11 +282,11 @@ class Zoom extends Component {
         }
         this.setState(
           {
-            index: newIndex
+            index: newIndex,
           },
           () => {
             this.divsContainer.children[index].style.transform = `scale(1)`;
-          }
+          },
         );
         if (autoplay && (infinite || newIndex < children.length - 1)) {
           clearTimeout(this.timeout);
@@ -307,7 +307,7 @@ Zoom.defaultProps = {
   arrows: true,
   autoplay: true,
   infinite: true,
-  pauseOnHover: false
+  pauseOnHover: false,
 };
 
 Zoom.propTypes = {
@@ -322,6 +322,6 @@ Zoom.propTypes = {
   onChange: PropTypes.func,
   pauseOnHover: PropTypes.bool,
   prevArrow: PropTypes.oneOfType([PropTypes.object, PropTypes.func]),
-  nextArrow: PropTypes.oneOfType([PropTypes.object, PropTypes.func])
+  nextArrow: PropTypes.oneOfType([PropTypes.object, PropTypes.func]),
 };
 export default Zoom;

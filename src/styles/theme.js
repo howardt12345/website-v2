@@ -27,13 +27,12 @@ export const theme_dark = {
   textBody: '#F3F3F3',
   translucent_accent: 'rgba(100, 255, 218, 0.07)',
   shadow_bg: 'rgba(21, 21, 21, 0.07)',
-}
+};
 
 export const theme = {
-
   fonts: {
-    Poppins: "Poppins",
-    Raleway: "raleway, sans-serif",
+    Poppins: 'Poppins',
+    Raleway: 'raleway, sans-serif',
   },
 
   fontSizes: {

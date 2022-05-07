@@ -92,15 +92,16 @@ const Jobs = ({ data }) => {
           const { frontmatter, html } = node;
           const { title, url, company, location, range } = frontmatter;
           return (
-            <StyledTabContent
-              key={i}
-              id={`panel-${i}`}
-              role="tabpanel">
+            <StyledTabContent key={i} id={`panel-${i}`} role="tabpanel">
               <StyledJobTitle>
                 <span>{title}</span>
                 <StyledCompany>
                   <span>&nbsp;@&nbsp;</span>
-                  <a href={url} target="_blank" rel="nofollow noopener noreferrer">
+                  <a
+                    href={url}
+                    target="_blank"
+                    rel="nofollow noopener noreferrer"
+                  >
                     {company}
                   </a>
                 </StyledCompany>
@@ -121,9 +122,8 @@ const Jobs = ({ data }) => {
           );
         })}
     </StyledContainer>
-  )
-}
-
+  );
+};
 
 Jobs.propTypes = {
   data: PropTypes.array.isRequired,

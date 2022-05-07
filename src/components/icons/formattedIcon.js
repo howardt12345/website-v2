@@ -10,7 +10,7 @@ import {
   MdFolderOpen,
   MdLocationOn,
   MdPhotoCamera,
-} from "react-icons/md";
+} from 'react-icons/md';
 import {
   FaDribbble,
   FaExternalLinkAlt,
@@ -19,8 +19,8 @@ import {
   FaInstagram,
   FaRegFolder,
   FaStar,
-} from "react-icons/fa";
-import { CgGitFork } from 'react-icons/cg'
+} from 'react-icons/fa';
+import { CgGitFork } from 'react-icons/cg';
 import { ImLinkedin } from 'react-icons/im';
 import { SiRedbubble } from 'react-icons/si';
 
@@ -34,7 +34,7 @@ const FormattedIcon = ({ name }) => {
       return <MdFolderOpen />;
     case 'Contact':
       return <MdContactMail />;
-    case "dark":
+    case 'dark':
       return <MdBrightness7 />;
     case 'Dribbble':
       return <FaDribbble />;
@@ -50,7 +50,7 @@ const FormattedIcon = ({ name }) => {
       return <FaGithub />;
     case 'Instagram':
       return <FaInstagram />;
-    case "light":
+    case 'light':
       return <MdBrightness3 />;
     case 'Linkedin':
       return <ImLinkedin />;

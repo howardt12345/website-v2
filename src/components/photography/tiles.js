@@ -4,8 +4,8 @@ import styled from 'styled-components';
 import { ImageMasonry, getUrlsFor } from '@api';
 import { Dialog } from '@reach/dialog';
 import '@reach/dialog/styles.css';
-import Zoom from 'react-medium-image-zoom'
-import 'react-medium-image-zoom/dist/styles.css'
+import Zoom from 'react-medium-image-zoom';
+import 'react-medium-image-zoom/dist/styles.css';
 import { media, mixins, Heading, Button } from '@styles';
 import sizeMe from 'react-sizeme';
 
@@ -27,7 +27,10 @@ const StyledHeading = styled(Heading)`
   align-self: baseline;
 `;
 const StyledDialog = styled(Dialog)`
-  width: ${props => ((props.width/props.height)*40 > 100 ? 100 : (props.width/props.height)*40)}vw;
+  width: ${props =>
+    (props.width / props.height) * 40 > 100
+      ? 100
+      : (props.width / props.height) * 40}vw;
   ${media.tablet`width: 100vw;`};
   background-color: ${({ theme }) => theme.background};
 `;
@@ -52,42 +55,46 @@ const TilesPage = ({ data, size }) => {
     <StyledSection>
       <StyledTitleSection>
         <StyledHeading>
-        <span>{"Photography"}</span>
+          <span>{'Photography'}</span>
         </StyledHeading>
       </StyledTitleSection>
       {!_.isEmpty(data) && size && (
         <div>
-          <ImageMasonry 
-            numCols={Math.ceil(size.width/600) ?? 3}
+          <ImageMasonry
+            numCols={Math.ceil(size.width / 600) ?? 3}
             imageUrls={getUrlsFor(data)}
-            onClick={(index) => {
+            onClick={index => {
               setCurrentImage(index);
               open();
             }}
           />
-          <StyledDialog width={data[currentImage].width} height={data[currentImage].height} isOpen={showDialog} onDismiss={close} aria-label="Image">
+          <StyledDialog
+            width={data[currentImage].width}
+            height={data[currentImage].height}
+            isOpen={showDialog}
+            onDismiss={close}
+            aria-label="Image"
+          >
             <StyledImgContainer>
               <Zoom>
-                <img 
+                <img
                   src={data[currentImage].getUrl()}
                   alt={data[currentImage].getUrl()}
                 />
               </Zoom>
             </StyledImgContainer>
             <StyledDialogButtons>
-              <Button onClick={close}>
-                Close
-              </Button>
+              <Button onClick={close}>Close</Button>
             </StyledDialogButtons>
           </StyledDialog>
         </div>
       )}
     </StyledSection>
   );
-}
+};
 
 TilesPage.propTypes = {
   data: PropTypes.array.isRequired,
-}
+};
 
 export default sizeMe()(TilesPage);

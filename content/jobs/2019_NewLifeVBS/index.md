@@ -6,6 +6,7 @@ location: 'Toronto, ON, CA'
 range: 'August 2019'
 url: 'http://www.efcnewlife.com/vbs/'
 ---
+
 - Event photography for Pathfinder Vacation Bible School over the span of 3 weeks.
 - Documented the event through both photo and video media.
 - Post-processed and uploaded hundreds of photographs daily for social media promotions.

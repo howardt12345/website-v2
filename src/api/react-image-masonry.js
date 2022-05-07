@@ -9,35 +9,39 @@ import React from 'react';
 //      [required] numCols: number of columns
 //      containerWidth: width of mansonry component, default 100%
 //      animate: whether or not to animate components fading in, default true
-//      onClick: the action to perform when clicking on an image. 
+//      onClick: the action to perform when clicking on an image.
 export class ImageMasonry extends React.Component {
   constructor(props) {
     super(props);
 
-    let state = {}
+    let state = {};
     for (let i = 0; i < this.props.numCols; i++) {
-      state["col-" + i] = [];
+      state['col-' + i] = [];
     }
     this.state = state;
 
-    this.cancel = function () { console.log("Cancelation not set yet") }
+    this.cancel = function () {
+      console.log('Cancelation not set yet');
+    };
   }
 
   render() {
     // Create all of the columns
-    let columns = []
+    let columns = [];
     for (let i = 0; i < this.props.numCols; i++) {
       columns.push(
         <div
           style={{
-            width: (100 / this.props.numCols) + "%",
-            display: "flex",
-            flexDirection: "column",
-            float: "left"
+            width: 100 / this.props.numCols + '%',
+            display: 'flex',
+            flexDirection: 'column',
+            float: 'left',
           }}
           className="react-image-masonry-col"
-          key={"col-" + i}
-        >{Object.values(this.state["col-" + i])}</div>
+          key={'col-' + i}
+        >
+          {Object.values(this.state['col-' + i])}
+        </div>,
       );
     }
 
@@ -47,10 +51,16 @@ export class ImageMasonry extends React.Component {
     `;
 
     // Set the container width ( default to 100% )
-    const containerWidth = this.props.hasOwnProperty('containerWidth') ? this.props.containerWidth : '100%';
+    const containerWidth = this.props.hasOwnProperty('containerWidth')
+      ? this.props.containerWidth
+      : '100%';
     // Set the container height, if it is scrollable and no height was given, default to 500px
-    const containerHeight = this.props.hasOwnProperty('containerHeight') ? this.props.containerHeight : (this.props.scrollable ? '500px' : 'auto');
-    const overflowY = this.props.scrollable ? "scroll" : "hidden"
+    const containerHeight = this.props.hasOwnProperty('containerHeight')
+      ? this.props.containerHeight
+      : this.props.scrollable
+      ? '500px'
+      : 'auto';
+    const overflowY = this.props.scrollable ? 'scroll' : 'hidden';
 
     return (
       <div
@@ -58,15 +68,16 @@ export class ImageMasonry extends React.Component {
         style={{
           width: containerWidth,
           height: containerHeight,
-          overflowX: "hidden",
+          overflowX: 'hidden',
           overflowY: overflowY,
-          margin: "auto"
+          margin: 'auto',
         }}
-        className={this.props.className}>
+        className={this.props.className}
+      >
         <style>{styles}</style>
         {columns}
       </div>
-    )
+    );
   }
 
   componentDidMount() {
@@ -79,16 +90,19 @@ export class ImageMasonry extends React.Component {
   componentDidUpdate(prevProps) {
     try {
       // If any of these props changed, recalculate the tiles
-      if (this.props.numCols !== prevProps.numCols
-        || !this.areArraysEqual(prevProps.imageUrls, this.props.imageUrls)
-        || (prevProps.children || []).length !== (this.props.children || []).length
-        || !(prevProps.children || []).every((child, i) => { return prevProps.children[i].key === this.props.children[i].key })
+      if (
+        this.props.numCols !== prevProps.numCols ||
+        !this.areArraysEqual(prevProps.imageUrls, this.props.imageUrls) ||
+        (prevProps.children || []).length !==
+          (this.props.children || []).length ||
+        !(prevProps.children || []).every((child, i) => {
+          return prevProps.children[i].key === this.props.children[i].key;
+        })
       ) {
-
         // Reset the state
-        let newState = {}
+        let newState = {};
         for (let i = 0; i < this.props.numCols; i++) {
-          newState["col-" + i] = [];
+          newState['col-' + i] = [];
         }
         this.setState(newState);
 
@@ -107,7 +121,12 @@ export class ImageMasonry extends React.Component {
 
   areArraysEqual(array1, array2) {
     // Note: This only works on scalar arrays
-    return array1.length === array2.length && array1.sort().every(function (value, index) { return value === array2.sort()[index] });
+    return (
+      array1.length === array2.length &&
+      array1.sort().every(function (value, index) {
+        return value === array2.sort()[index];
+      })
+    );
   }
 
   // Gets tiles based on the props passed in
@@ -116,23 +135,29 @@ export class ImageMasonry extends React.Component {
     if (props.imageUrls) {
       // If imageUrls is defined, generate img tags
       tiles = props.imageUrls.map((imageUrl, index) => {
-        return <img
-          src={imageUrl}
-          alt={imageUrl}
-          key={"img-" + index + Date.now()}
-          onClick={(typeof this.props.onClick !== 'undefined') ? () => this.props.onClick(index) : null}
-          style={{
-            border: "2px solid transparent",
-            boxSizing: "border-box"
-          }}
-        />
-      })
+        return (
+          <img
+            src={imageUrl}
+            alt={imageUrl}
+            key={'img-' + index + Date.now()}
+            onClick={
+              typeof this.props.onClick !== 'undefined'
+                ? () => this.props.onClick(index)
+                : null
+            }
+            style={{
+              border: '2px solid transparent',
+              boxSizing: 'border-box',
+            }}
+          />
+        );
+      });
     } else if (props.children) {
       // Otherwise use the children components
-      tiles = props.children
+      tiles = props.children;
     } else {
       // imageUrls or children must be passed in
-      console.warn("No images were passed into react-image-masonry")
+      console.warn('No images were passed into react-image-masonry');
     }
 
     return tiles;
@@ -146,7 +171,7 @@ export class ImageMasonry extends React.Component {
     }
 
     // If the element is an image, return the src
-    if (reactEl.type === "img") {
+    if (reactEl.type === 'img') {
       return [reactEl.props.src];
     }
 
@@ -155,8 +180,8 @@ export class ImageMasonry extends React.Component {
     if (children) {
       let imageUrls = [];
       React.Children.forEach(children, child => {
-        imageUrls = imageUrls.concat(this.getAllImageUrls(child))
-      })
+        imageUrls = imageUrls.concat(this.getAllImageUrls(child));
+      });
       return imageUrls;
     }
 
@@ -169,28 +194,30 @@ export class ImageMasonry extends React.Component {
   loadImages(imageUrls) {
     const imagesLoaded = [];
     imageUrls.forEach(src => {
-      imagesLoaded.push(new Promise((resolve, reject) => {
-        let image = new Image();
-        image.onload = resolve;
-        image.onerror = reject;
-        image.src = src
-        this.cancel = function () {
-          image.src = ""
-        }
-      }))
+      imagesLoaded.push(
+        new Promise((resolve, reject) => {
+          let image = new Image();
+          image.onload = resolve;
+          image.onerror = reject;
+          image.src = src;
+          this.cancel = function () {
+            image.src = '';
+          };
+        }),
+      );
     });
     return Promise.all(imagesLoaded);
   }
 
   // Returns the index of the shortest column
   getShortestCol(containerEl) {
-    const cols = containerEl.querySelectorAll(".react-image-masonry-col");
+    const cols = containerEl.querySelectorAll('.react-image-masonry-col');
 
     // Get the shortestColumn
     let shortestCol = 0;
     cols.forEach((column, index) => {
       if (column.offsetHeight < cols[shortestCol].offsetHeight) {
-        shortestCol = index
+        shortestCol = index;
       }
     });
 
@@ -208,9 +235,11 @@ export class ImageMasonry extends React.Component {
       let style = {};
 
       // If animation is turned on add the style (on by default)
-      let animate = this.props.hasOwnProperty('animate') ? this.props.animate : true;
+      let animate = this.props.hasOwnProperty('animate')
+        ? this.props.animate
+        : true;
       if (animate) {
-        style.animation = "fadeIn 1s ease-in"
+        style.animation = 'fadeIn 1s ease-in';
       }
 
       // If forceOrder is turned on maintain the order of the tiles
@@ -220,28 +249,32 @@ export class ImageMasonry extends React.Component {
 
       // Copy over any styles that were set on the tile
       if (tile && tile.props && tile.props.style) {
-        style = Object.assign({}, tile.props.style, style)
+        style = Object.assign({}, tile.props.style, style);
       }
       tile = React.cloneElement(tile, { style });
 
       // Once all of the images have been loaded, then add the tile to the shortest column
-      const imageUrls = this.getAllImageUrls(tile)
-      this.loadImages(imageUrls).then(() => {
-        const containerEl = this.refs.container;
-        if (!containerEl) {
-          return;
-        }
+      const imageUrls = this.getAllImageUrls(tile);
+      this.loadImages(imageUrls)
+        .then(() => {
+          const containerEl = this.refs.container;
+          if (!containerEl) {
+            return;
+          }
 
-        const shortestCol = this.getShortestCol(containerEl)
+          const shortestCol = this.getShortestCol(containerEl);
 
-        // Add the element to the column
-        this.setState({
-          ["col-" + shortestCol]: this.state["col-" + shortestCol].concat([tile])
+          // Add the element to the column
+          this.setState({
+            ['col-' + shortestCol]: this.state['col-' + shortestCol].concat([
+              tile,
+            ]),
+          });
         })
-      }).catch(error => {
-        console.error(error)
-      });
-    })
+        .catch(error => {
+          console.error(error);
+        });
+    });
   }
 }
 

@@ -5,8 +5,8 @@ import styled from 'styled-components';
 import { ImageMasonry, getUrlsFor } from '@api';
 import { Dialog } from '@reach/dialog';
 import '@reach/dialog/styles.css';
-import Zoom from 'react-medium-image-zoom'
-import 'react-medium-image-zoom/dist/styles.css'
+import Zoom from 'react-medium-image-zoom';
+import 'react-medium-image-zoom/dist/styles.css';
 
 import { theme, media, mixins, Heading, Button } from '@styles';
 
@@ -54,8 +54,7 @@ const StyledImgContainer = styled.div`
   justify-content: center;
   padding-bottom: 1rem;
 `;
-const StyledImg = styled.img`
-`;
+const StyledImg = styled.img``;
 const StyledButton = styled.a`
   ${mixins.bigButton}
   margin-left: 10px;
@@ -66,10 +65,9 @@ const StyledDialog = styled(Dialog)`
   background-color: ${({ theme }) => theme.background};
 `;
 
-
 const OldTilesPage = ({ data, name, path }) => {
-  const isBrowser = typeof window !== 'undefined'
-  const [width, setWidth] = useState(isBrowser ? window.innerWidth : 0)
+  const isBrowser = typeof window !== 'undefined';
+  const [width, setWidth] = useState(isBrowser ? window.innerWidth : 0);
   const [showDialog, setShowDialog] = useState(false);
   const [currentImage, setCurrentImage] = useState(0);
   const [currentPath, setCurrentPath] = useState(path);
@@ -78,26 +76,26 @@ const OldTilesPage = ({ data, name, path }) => {
   const close = () => setShowDialog(false);
 
   useEffect(() => {
-    if (!isBrowser) return false
+    if (!isBrowser) return false;
 
-    if(path !== currentPath) {
+    if (path !== currentPath) {
       close();
       setCurrentPath(path);
       setCurrentImage(0);
     }
 
     const handleResize = () => {
-      if(typeof window !== 'undefined' && window !== null) {
+      if (typeof window !== 'undefined' && window !== null) {
         try {
           setWidth(window.innerWidth);
-        } catch(e) {
+        } catch (e) {
           console.log(e);
         }
       }
-    }
-    window.addEventListener("resize", handleResize);
-    
-    return () => window.removeEventListener("resize", handleResize);
+    };
+    window.addEventListener('resize', handleResize);
+
+    return () => window.removeEventListener('resize', handleResize);
   }, [isBrowser, path, currentPath, width]);
 
   return (
@@ -115,57 +113,58 @@ const OldTilesPage = ({ data, name, path }) => {
           <span>{name.subcategory}</span>
         </StyledSubheading>
       </StyledTitleSection>
-      <ImageMasonry 
-        numCols={Math.ceil(width/450)}
+      <ImageMasonry
+        numCols={Math.ceil(width / 450)}
         containerWidth={'100%'}
         forceOrder={true}
         animate={true}
         imageUrls={getUrlsFor(data)}
-        onClick={(index) => {
+        onClick={index => {
           setCurrentImage(index);
           open();
         }}
-      >
-      </ImageMasonry>
+      ></ImageMasonry>
       <StyledDialog isOpen={showDialog} onDismiss={close} aria-label="Image">
         <StyledImgContainer>
           <Zoom>
-            <StyledImg 
+            <StyledImg
               src={data[currentImage].getUrl()}
               alt={data[currentImage].getUrl()}
             />
           </Zoom>
         </StyledImgContainer>
         <StyledDialogButtons>
-          <Button onClick={close}>
-            Close
-          </Button>
+          <Button onClick={close}>Close</Button>
           <StyledImgActions>
-            {(data[currentImage].buy.length > 0) && (
-              <StyledButton 
+            {data[currentImage].buy.length > 0 && (
+              <StyledButton
                 href={data[currentImage].buy}
                 target="_blank"
                 rel="nofollow noopener noreferrer"
-              >Buy</StyledButton>
+              >
+                Buy
+              </StyledButton>
             )}
-            {(data[currentImage].download.length > 0) && (
-              <StyledButton 
+            {data[currentImage].download.length > 0 && (
+              <StyledButton
                 href={data[currentImage].download}
                 target="_blank"
                 rel="nofollow noopener noreferrer"
-              >Download</StyledButton>
+              >
+                Download
+              </StyledButton>
             )}
           </StyledImgActions>
         </StyledDialogButtons>
       </StyledDialog>
     </StyledSection>
   );
-}
+};
 
 OldTilesPage.propTypes = {
   data: PropTypes.array.isRequired,
   name: PropTypes.object.isRequired,
   path: PropTypes.string.isRequired,
-}
+};
 
 export default OldTilesPage;

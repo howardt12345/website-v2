@@ -134,7 +134,9 @@ const ProjectsPage = ({ data }) => {
     sr.reveal(revealTitle.current, srConfig());
     sr.reveal(revealArchiveLink.current, srConfig());
     sr.reveal(revealTable.current, srConfig());
-    revealProjects.current.forEach((ref, i) => sr.reveal(ref, srConfig(i * 100)));
+    revealProjects.current.forEach((ref, i) =>
+      sr.reveal(ref, srConfig(i * 100)),
+    );
   }, []);
 
   const GRID_LIMIT = 6;
@@ -143,7 +145,7 @@ const ProjectsPage = ({ data }) => {
   const projectsToShow = showMore ? projects : firstSix;
 
   return (
-    <Layout isHome={false} animateNav={false} footer={true}>      
+    <Layout isHome={false} animateNav={false} footer={true}>
       <Helmet>
         <title>Projects | Howard Tseng</title>
         <link rel="canonical" href="https://howardt12345.com/projects" />
@@ -151,9 +153,7 @@ const ProjectsPage = ({ data }) => {
       <StyledContainer>
         <Heading ref={revealTitle}>Projects</Heading>
         <div ref={revealArchiveLink}>
-          <StyledArchiveLink to="/archive">
-            View the archive
-          </StyledArchiveLink>
+          <StyledArchiveLink to="/archive">View the archive</StyledArchiveLink>
         </div>
 
         <StyledGrid ref={revealTable}>
@@ -167,14 +167,18 @@ const ProjectsPage = ({ data }) => {
                     key={i}
                     classNames="fadeup"
                     timeout={i >= GRID_LIMIT ? (i - GRID_LIMIT) * 300 : 300}
-                    exit={false}>
+                    exit={false}
+                  >
                     <StyledProject
                       key={i}
                       ref={el => (revealProjects.current[i] = el)}
                       tabIndex="0"
                       style={{
-                        transitionDelay: `${i >= GRID_LIMIT ? (i - GRID_LIMIT) * 100 : 0}ms`,
-                      }}>
+                        transitionDelay: `${
+                          i >= GRID_LIMIT ? (i - GRID_LIMIT) * 100 : 0
+                        }ms`,
+                      }}
+                    >
                       <StyledProjectInner>
                         <header>
                           <StyledProjectHeader>
@@ -187,7 +191,8 @@ const ProjectsPage = ({ data }) => {
                                   href={github}
                                   target="_blank"
                                   rel="nofollow noopener noreferrer"
-                                  aria-label="GitHub Link">
+                                  aria-label="GitHub Link"
+                                >
                                   <FormattedIcon name="GitHub" />
                                 </StyledIconLink>
                               )}
@@ -196,14 +201,17 @@ const ProjectsPage = ({ data }) => {
                                   href={external}
                                   target="_blank"
                                   rel="nofollow noopener noreferrer"
-                                  aria-label="External Link">
+                                  aria-label="External Link"
+                                >
                                   <FormattedIcon name="External" />
                                 </StyledIconLink>
                               )}
                             </StyledProjectLinks>
                           </StyledProjectHeader>
                           <StyledProjectName>{title}</StyledProjectName>
-                          <StyledProjectDescription dangerouslySetInnerHTML={{ __html: html }} />
+                          <StyledProjectDescription
+                            dangerouslySetInnerHTML={{ __html: html }}
+                          />
                         </header>
                         <footer>
                           {tech && (
@@ -237,25 +245,25 @@ ProjectsPage.propTypes = {
 export default ProjectsPage;
 
 export const pageQuery = graphql`
-{
-  projects: allMarkdownRemark(
-    filter: {
-      fileAbsolutePath: { regex: "/projects/" }
-      frontmatter: { showInProjects: { ne: false } }
-    }
-    sort: { fields: [frontmatter___date], order: DESC }
-  ) {
-    edges {
-      node {
-        frontmatter {
-          title
-          tech
-          github
-          external
+  {
+    projects: allMarkdownRemark(
+      filter: {
+        fileAbsolutePath: { regex: "/projects/" }
+        frontmatter: { showInProjects: { ne: false } }
+      }
+      sort: { fields: [frontmatter___date], order: DESC }
+    ) {
+      edges {
+        node {
+          frontmatter {
+            title
+            tech
+            github
+            external
+          }
+          html
         }
-        html
       }
     }
   }
-}
 `;

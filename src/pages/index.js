@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { theme, mixins, media, Main } from '@styles';
 import { Layout } from '@components';
-import { motion } from "framer-motion"
+import { motion } from 'framer-motion';
 import { navLinks } from '@config';
 import { IconButton, ToggleButton } from '@components';
 
@@ -52,12 +52,12 @@ const StyledSubtitle = styled.h2`
   ${media.bigDesktop`width: 800px;`};
   ${media.desktop`width: 80vw;`};
   text-align: right;
-  font-size: 36px;
+  font-size: 30px;
   font-weight: 400;
   font-family: ${fonts.Poppins};
   color: ${({ theme }) => theme.textPrimary};
   line-height: 1;
-  ${media.bigDesktop`font-size: 36px;`};
+  ${media.bigDesktop`font-size: 30px;`};
   ${media.bigDesktop`text-align: right;`}
   ${media.tablet`font-size: 20px;`};
   ${media.thone`text-align: center;`}
@@ -91,10 +91,9 @@ const StyledNavListLink = styled(Link)`
   padding: 8px 6px;
 `;
 
-
 const HomePage = ({ data }) => {
-  const isBrowser = typeof window !== 'undefined'
-  const [width, setWidth] = useState(isBrowser ? window.innerWidth : 0)
+  const isBrowser = typeof window !== 'undefined';
+  const [width, setWidth] = useState(isBrowser ? window.innerWidth : 0);
 
   const [isMounted, setIsMounted] = useState(false);
 
@@ -105,14 +104,14 @@ const HomePage = ({ data }) => {
       if (typeof window !== 'undefined') {
         setWidth(window.innerWidth);
       }
-    }
-    window.addEventListener("resize", handleResize);
+    };
+    window.addEventListener('resize', handleResize);
 
     const timeout = setTimeout(() => setIsMounted(true), navDelay);
     return () => {
-      window.removeEventListener("resize", handleResize);
+      window.removeEventListener('resize', handleResize);
       clearTimeout(timeout);
-    }
+    };
   }, [width, isBrowser, isMounted]);
 
   const { frontmatter } = data.home.edges[0].node;
@@ -126,11 +125,11 @@ const HomePage = ({ data }) => {
       opacity: 1,
       y: 0,
       transition: {
-        ease: "easeOut",
+        ease: 'easeOut',
         duration: 0.5,
-        delay: 0.5
-      }
-    }
+        delay: 0.5,
+      },
+    },
   };
   const subtitleVariants = {
     hidden: {
@@ -141,11 +140,11 @@ const HomePage = ({ data }) => {
       opacity: 1,
       y: 0,
       transition: {
-        ease: "easeOut",
+        ease: 'easeOut',
         duration: 0.5,
         delay: 0.75,
-      }
-    }
+      },
+    },
   };
   const lineVariants = {
     hidden: {
@@ -156,25 +155,25 @@ const HomePage = ({ data }) => {
       opacity: 1,
       scale: 1,
       transition: {
-        ease: "easeOut",
-        duration: 0.5
-      }
-    }
+        ease: 'easeOut',
+        duration: 0.5,
+      },
+    },
   };
   const navVariants = {
     hidden: {
       opacity: 0,
-      y: -20
+      y: -20,
     },
     visible: i => ({
       opacity: 1,
       y: 0,
       transition: {
-        ease: "easeOut",
+        ease: 'easeOut',
         duration: 0.5,
-        delay: i * 0.1 + 1
-      }
-    })
+        delay: i * 0.1 + 1,
+      },
+    }),
   };
   const toggleVariants = {
     hidden: {
@@ -185,12 +184,12 @@ const HomePage = ({ data }) => {
       opacity: 1,
       y: 0,
       transition: {
-        ease: "easeOut",
+        ease: 'easeOut',
         duration: 0.5,
-        delay: 2.5
-      }
-    }
-  }
+        delay: 2.5,
+      },
+    },
+  };
 
   return (
     <Layout isHome={true} animateNav={false} footer={true}>
@@ -225,7 +224,13 @@ const HomePage = ({ data }) => {
             animate="visible"
             variants={subtitleVariants}
           >
-            <StyledSubtitle>{<div dangerouslySetInnerHTML={{ __html: frontmatter.subtitle }} />}</StyledSubtitle>
+            <StyledSubtitle>
+              {
+                <div
+                  dangerouslySetInnerHTML={{ __html: frontmatter.subtitle }}
+                />
+              }
+            </StyledSubtitle>
           </motion.div>
         )}
         <StyledNavLinks>
@@ -234,23 +239,20 @@ const HomePage = ({ data }) => {
               navLinks &&
               navLinks.map(({ url, name }, i) => (
                 <motion.div
-                  key={"nav" + i}
+                  key={'nav' + i}
                   custom={i}
                   initial="hidden"
                   animate="visible"
                   variants={navVariants}
                 >
-                  {(width >= 600) && (
+                  {width >= 600 && (
                     <StyledNavListItem>
                       <StyledNavListLink to={url}>{name}</StyledNavListLink>
                     </StyledNavListItem>
                   )}
-                  {(width < 600) && (
-                    <IconButton name={name} url={url} />
-                  )}
+                  {width < 600 && <IconButton name={name} url={url} />}
                 </motion.div>
-              ))
-            }
+              ))}
           </StyledNavList>
         </StyledNavLinks>
 
@@ -264,8 +266,8 @@ const HomePage = ({ data }) => {
         </motion.div>
       </StyledContainer>
     </Layout>
-  )
-}
+  );
+};
 
 HomePage.propTypes = {
   data: PropTypes.object.isRequired,
@@ -274,18 +276,18 @@ HomePage.propTypes = {
 export default HomePage;
 
 export const pageQuery = graphql`
-{
-  home: allMarkdownRemark(filter: { fileAbsolutePath: { regex: "/home/" } }) {
-    edges {
-      node {
-        frontmatter {
-          overline
-          title
-          subtitle
+  {
+    home: allMarkdownRemark(filter: { fileAbsolutePath: { regex: "/home/" } }) {
+      edges {
+        node {
+          frontmatter {
+            overline
+            title
+            subtitle
+          }
+          html
         }
-        html
       }
     }
   }
-}
 `;

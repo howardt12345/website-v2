@@ -53,12 +53,11 @@ const StyledSubtitle = styled.h2`
   ${media.phablet`font-size: 28px;`};
 `;
 
-const LoadingPage = withTheme((props) => {
-
+const LoadingPage = withTheme(props => {
   const muitheme = createMuiTheme({
     palette: {
       primary: {
-        main: props.theme.accent
+        main: props.theme.accent,
       },
     },
   });
@@ -66,11 +65,11 @@ const LoadingPage = withTheme((props) => {
   return (
     <StyledMainContainer className="fillHeight">
       <ThemeProvider theme={muitheme}>
-        <CircularProgress color='primary'/>
+        <CircularProgress color="primary" />
       </ThemeProvider>
       <StyledSubtitle>Loading...</StyledSubtitle>
     </StyledMainContainer>
-  )
-})
+  );
+});
 
 export default LoadingPage;

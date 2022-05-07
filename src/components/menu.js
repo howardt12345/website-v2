@@ -54,8 +54,7 @@ const NavList = styled.ol`
 const NavListItem = styled.li`
   margin: 0 auto 20px;
   position: relative;
-  font-size: ${fontSizes.lg}
-  ${media.thone`
+  font-size: ${fontSizes.lg} ${media.thone`
     margin: 0 auto 10px;
     font-size: ${fontSizes.lg};
   `};
@@ -69,7 +68,8 @@ const Menu = ({ menuOpen, toggleMenu }) => {
   const handleMenuClick = e => {
     const target = e.target;
     const isLink = target.hasAttribute('href');
-    const isNotMenu = target.classList && target.classList[0].includes('StyledContainer');
+    const isNotMenu =
+      target.classList && target.classList[0].includes('StyledContainer');
 
     if (isLink || isNotMenu) {
       toggleMenu();
@@ -81,7 +81,8 @@ const Menu = ({ menuOpen, toggleMenu }) => {
       menuOpen={menuOpen}
       onClick={handleMenuClick}
       aria-hidden={!menuOpen}
-      tabIndex={menuOpen ? 1 : -1}>
+      tabIndex={menuOpen ? 1 : -1}
+    >
       <Sidebar>
         <NavLinks>
           <NavList>

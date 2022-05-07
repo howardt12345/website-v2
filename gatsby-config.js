@@ -13,20 +13,20 @@ module.exports = {
     description: config.siteDescription,
     menuLinks: [
       {
-        name: "about",
-        link: "/about"
+        name: 'about',
+        link: '/about',
       },
       {
-        name: "photos",
-        link: "/photos"
+        name: 'photos',
+        link: '/photos',
       },
       {
-        name: "projects",
-        link: "/projects"
+        name: 'projects',
+        link: '/projects',
       },
       {
-        name: "contact",
-        link: "/contact"
+        name: 'contact',
+        link: '/contact',
       },
     ],
   },
@@ -37,7 +37,7 @@ module.exports = {
     `gatsby-plugin-sitemap`,
     `gatsby-plugin-offline`,
     `gatsby-plugin-image`,
-    `gatsby-plugin-sharp`, 
+    `gatsby-plugin-sharp`,
     `gatsby-transformer-sharp`,
     {
       resolve: 'gatsby-source-filesystem',
@@ -67,7 +67,7 @@ module.exports = {
               // you may use this to prevent Prism from re-processing syntax.
               // This is an uncommon use-case though;
               // If you're unsure, it's best to use the default value.
-              classPrefix: "language-",
+              classPrefix: 'language-',
               // This is used to allow setting a language for inline code
               // (i.e. single backticks) by creating a separator.
               // This separator is a string and will do no white-space
@@ -97,8 +97,8 @@ module.exports = {
               // existing language" below.
               languageExtensions: [
                 {
-                  language: "superscript",
-                  extend: "javascript",
+                  language: 'superscript',
+                  extend: 'javascript',
                   definition: {
                     superscript_types: /(SuperType)/,
                   },
@@ -112,8 +112,8 @@ module.exports = {
               // Customize the prompt used in shell output
               // Values below are default
               prompt: {
-                user: "root",
-                host: "localhost",
+                user: 'root',
+                host: 'localhost',
                 global: false,
               },
               // By default the HTML entities <>&'" are escaped.
@@ -126,23 +126,23 @@ module.exports = {
       },
     },
     {
-      resolve: "gatsby-plugin-firebase",
+      resolve: 'gatsby-plugin-firebase',
       options: {
         features: {
           auth: true,
           firestore: true,
         },
         credentials: {
-          apiKey: "AIzaSyCWIxXQ7u9VbNQRg21pOwRYd1p5i7I0xCI",
-          authDomain: "portfolio-49b69.firebaseapp.com",
-          databaseURL: "https://portfolio-49b69.firebaseio.com",
-          projectId: "portfolio-49b69",
-          storageBucket: "portfolio-49b69.appspot.com",
-          messagingSenderId: "1036625872430",
-          appId: "1:1036625872430:web:bc6aeb0b95acdd168e81bf",
-          measurementId: "G-X702WSRBLY"
-        }
-      }
+          apiKey: 'AIzaSyCWIxXQ7u9VbNQRg21pOwRYd1p5i7I0xCI',
+          authDomain: 'portfolio-49b69.firebaseapp.com',
+          databaseURL: 'https://portfolio-49b69.firebaseio.com',
+          projectId: 'portfolio-49b69',
+          storageBucket: 'portfolio-49b69.appspot.com',
+          messagingSenderId: '1036625872430',
+          appId: '1:1036625872430:web:bc6aeb0b95acdd168e81bf',
+          measurementId: 'G-X702WSRBLY',
+        },
+      },
     },
     {
       resolve: `gatsby-plugin-google-analytics`,
@@ -176,4 +176,4 @@ module.exports = {
       },
     },
   ],
-}
+};

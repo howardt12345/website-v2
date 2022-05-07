@@ -18,12 +18,11 @@ const StyledContent = styled.div`
 `;
 
 const Layout = ({ children, isHome, animateNav, footer }) => {
-
   useEffect(() => {
     function preventRightClick(e) {
       if (e.target.tagName === 'IMG') {
-        e.preventDefault()
-        e.stopPropagation()
+        e.preventDefault();
+        e.stopPropagation();
       }
     }
 
@@ -52,7 +51,7 @@ const Layout = ({ children, isHome, animateNav, footer }) => {
             {!isHome ? <Nav animate={animateNav} /> : <br />}
             <div id="content">
               {children}
-              {footer && (<Footer />)}
+              {footer && <Footer />}
             </div>
           </StyledContent>
         </div>
