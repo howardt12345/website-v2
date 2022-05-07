@@ -5,6 +5,8 @@ company: 'K12 Solutions'
 location: 'Toronto, ON, CA'
 range: 'Sept 2017 - Jan 2018'
 url: 'http://k12-solutions.com/'
+show: false
+type: 'Co-op'
 ---
 
 - Maintained technology equipment by installing, configuring, diagnosing, repairing and upgrading all hardware to ensure optimal performance.

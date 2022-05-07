@@ -5,6 +5,8 @@ company: 'AFC Eastern Canada'
 location: 'Richmond Hill, ON, CA'
 range: 'Sept 2018 - Mar 2019'
 url: 'https://www.afccanada.org/tc'
+show: true
+type: 'Volunteer'
 ---
 
 - Collaborated with a small team to product promotional videos for Teens Conference.
