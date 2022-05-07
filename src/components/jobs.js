@@ -40,8 +40,8 @@ const StyledCompany = styled.span`
   color: ${({ theme }) => theme.accent};
   font-family: ${fonts.Poppins};
 `;
-const StyledJobRange = styled.h5`
-  width: 40vw;
+const StyledDetailsText = styled.h5`
+  display: flex;
   font-family: ${fonts.Poppins};
   font-size: ${fontSizes.md};
   font-weight: normal;
@@ -52,23 +52,9 @@ const StyledJobRange = styled.h5`
     width: 15px;
   }
 `;
-const StyledLocation = styled.h5`
-  display: flex;
-  width: 40vw;
-  text-align: left;
-  font-family: ${fonts.Poppins};
-  font-size: ${fontSizes.md};
-  font-weight: normal;
-  letter-spacing: 0.05em;
-  color: ${({ theme }) => theme.textSecondary};
-  margin-bottom: 0px;
-  svg {
-    width: 15px;
-  }
-`;
 const StyledDetailsBar = styled.div`
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
   align-items: center;
 `;
 const StyledIcon = styled.div`
@@ -90,8 +76,8 @@ const Jobs = ({ data }) => {
       {data &&
         data.map(({ node }, i) => {
           const { frontmatter, html } = node;
-          const { title, url, company, location, range } = frontmatter;
-          return (
+          const { title, url, company, location, range, show, type } = frontmatter;
+          return show ? (
             <StyledTabContent key={i} id={`panel-${i}`} role="tabpanel">
               <StyledJobTitle>
                 <span>{title}</span>
@@ -107,19 +93,22 @@ const Jobs = ({ data }) => {
                 </StyledCompany>
               </StyledJobTitle>
               <StyledDetailsBar>
-                <StyledJobRange>
+                <StyledDetailsText>
                   <span>{range}</span>
-                </StyledJobRange>
-                <StyledLocation>
+                </StyledDetailsText>
+                <StyledDetailsText>
+                  <span>{type}</span>
+                </StyledDetailsText>
+                <StyledDetailsText>
                   <StyledIcon>
                     <FormattedIcon name="Location" />
                   </StyledIcon>
                   <span>{location}</span>
-                </StyledLocation>
+                </StyledDetailsText>
               </StyledDetailsBar>
               <div dangerouslySetInnerHTML={{ __html: html }} />
             </StyledTabContent>
-          );
+          ) : <div />;
         })}
     </StyledContainer>
   );

@@ -55,6 +55,8 @@ export const pageQuery = graphql`
             location
             range
             url
+            show
+            type
           }
           html
         }
