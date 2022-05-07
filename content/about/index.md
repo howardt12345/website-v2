@@ -1,5 +1,5 @@
 ---
-title: 'About Me'
+title: 'About'
 avatar: './me.jpg'
 skills:
   - Java
